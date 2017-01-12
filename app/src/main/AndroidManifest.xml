@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="com.a8thmile.rvce.a8thmile">
+=======
+          package="com.a8thmile.rvce.a8thmile">
+>>>>>>> 6bf7d86b74ad902f1a10803c4bc16fdc7bd0434a
 
     <application
         android:allowBackup="true"
@@ -10,12 +14,20 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
+<<<<<<< HEAD
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".otp"></activity>
+=======
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+>>>>>>> 6bf7d86b74ad902f1a10803c4bc16fdc7bd0434a
     </application>
 
 </manifest>
