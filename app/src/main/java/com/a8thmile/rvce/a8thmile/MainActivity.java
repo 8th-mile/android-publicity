@@ -1,6 +1,8 @@
 package com.a8thmile.rvce.a8thmile;
 
-<<<<<<< HEAD
+import android.os.Handler;
+
+
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Handler;
@@ -34,15 +36,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 cb.setIndeterminateProgressMode(true);
                 cb.setProgress(50);
+                //API CALL HERE VIGNESH
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         cb.setProgress(100);
+                        Intent intent = new Intent(MainActivity.this, otp.class );
+
+                        startActivity(intent);
                     }
                 }, 5000);
-                Intent intent = new Intent(MainActivity.this, otp.class );
 
-                startActivity(intent);
+
 
 
             }
@@ -50,17 +55,3 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
-
-=======
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-public class MainActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-}
->>>>>>> 6bf7d86b74ad902f1a10803c4bc16fdc7bd0434a
