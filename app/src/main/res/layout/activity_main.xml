@@ -11,7 +11,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#223548"
-    tools:context="com.a8thmile.rvce.a8thmile.MainActivity"
+    tools:context="com.a8thmile.rvce.a8thmile.ui.MainActivity"
     android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
     >
 
@@ -29,7 +29,7 @@
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
         android:textColor="#ffffff"
-        android:textSize="20dp"
+        android:textSize="18sp"
         android:id="@+id/signupbtn"
         />
 
@@ -72,13 +72,14 @@
         android:layout_height="64dp"
         app:cpb_cornerRadius="48dp"
         android:textColor="#ffff"
-        android:textSize="18sp"
+        android:textSize="25sp"
 
         app:cpb_textError="Network Error"
         app:cpb_textIdle="Get OTP"
         app:cpb_colorProgress="#00ffffff"
         android:layout_marginTop="40dp"
         android:textStyle="bold"
+
         android:layout_below="@+id/uname"
         android:layout_centerHorizontal="true"
         app:cpb_iconComplete="@drawable/forward"

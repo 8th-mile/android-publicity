@@ -1,4 +1,4 @@
-package com.a8thmile.rvce.a8thmile;
+package com.a8thmile.rvce.a8thmile.ui;
 
 import android.os.Handler;
 
@@ -15,6 +15,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.dd.CircularProgressButton;
+
+import com.a8thmile.rvce.a8thmile.R;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
                         startActivity(intent);
                     }
-                }, 5000);
+                }, 1000);
 
 
 
