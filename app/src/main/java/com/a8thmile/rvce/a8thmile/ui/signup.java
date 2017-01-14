@@ -10,26 +10,25 @@ import android.widget.Button;
 
 import com.a8thmile.rvce.a8thmile.R;
 
-public class otp extends AppCompatActivity {
-    private Button loginbtn;
+public class signup extends AppCompatActivity {
+    private Button otpbtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_otp);
+        setContentView(R.layout.activity_signup);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        //LOT OF BACKEND HERE
-        loginbtn = (Button) findViewById(R.id.login);
 
-        loginbtn.setOnClickListener(new View.OnClickListener() {
+        otpbtn = (Button) findViewById(R.id.btnWithText);
+        otpbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        Intent intent = new Intent(otp.this, homepage2.class );
-                        startActivity(intent);
-                    }
+                //Get OTP progress bar thing to be done here too
+                Intent intent = new Intent(signup.this, otp.class );
 
+                startActivity(intent);
 
-            });
-
+            }
+        });
     }
 }

@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements LoginView {
         actionBar.hide();
 
         ProgressButton = (Button) findViewById(R.id.btnWithText);
+        signupbtn = (Button)findViewById(R.id.signupbtn);
         cb = (CircularProgressButton) findViewById(R.id.btnWithText);
         phoneNumberEditText  = (EditText) findViewById(R.id.PhoneNumberLabel);
 
@@ -71,6 +72,17 @@ public class MainActivity extends AppCompatActivity implements LoginView {
 
             }
 
+        });
+
+        signupbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, signup.class );
+
+                startActivity(intent);
+
+            }
         });
 
     }

@@ -35,7 +35,7 @@ public class CodeInput2 extends EditText {
     private float underlineStrokeWidth;
     private float underlineWidth;
     private float reduction;
-    private float textSize;
+    private float textSize= 50;
     private float textMarginBottom;
     private float hintX;
     private float hintNormalSize;
