@@ -60,7 +60,7 @@
             android:textSize="15sp"
             android:inputType="number"
             android:maxLines="1"
-            />
+            android:id="@+id/PhoneNumberLabel"/>
 
     </com.github.florent37.materialtextfield.MaterialTextField>
 
