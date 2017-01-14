@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         actionBar.hide();
 
         ProgressButton = (Button) findViewById(R.id.btnWithText);
+        signupbtn = (Button)findViewById(R.id.signupbtn);
         cb = (CircularProgressButton) findViewById(R.id.btnWithText);
         ProgressButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +52,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+            }
+        });
+
+        signupbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, signup.class );
+
+                startActivity(intent);
 
             }
         });
