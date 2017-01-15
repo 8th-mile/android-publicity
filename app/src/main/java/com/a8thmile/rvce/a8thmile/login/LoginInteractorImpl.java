@@ -16,7 +16,7 @@ import retrofit2.Response;
  */
 public class LoginInteractorImpl implements LoginInteractor {
 
-    //private LoginPresenter mLoginPresenter;
+    //private SignUpPresenter mSignUpPresenter;
     @Override
     public void callLoginApi(String phone, final onLoginFinishedListener listener) {
         LoginRequest mLoginRequest = createLoginRequestObject(phone);
