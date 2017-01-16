@@ -1,5 +1,7 @@
 package com.a8thmile.rvce.a8thmile.login;
 
+import android.util.Log;
+
 import com.a8thmile.rvce.a8thmile.api.LoginClient;
 import com.a8thmile.rvce.a8thmile.api.ServiceGenerator;
 import com.a8thmile.rvce.a8thmile.models.LoginRequest;
@@ -25,7 +27,7 @@ public class LoginInteractorImpl implements LoginInteractor {
 
         // Fetch and print a list of the contributors to this library.
         Call<LoginResponse> call =
-                client.loginResponse(mLoginRequest);
+                client.loginResponse(mLoginRequest.getPhone());
         //final LoginResponse mLoginResponse ;
         /*
         try {
@@ -53,6 +55,7 @@ public class LoginInteractorImpl implements LoginInteractor {
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
                 LoginResponse mLoginResponse = response.body();
                 if(checkResponse(mLoginResponse)==true)
                     listener.onSucess();

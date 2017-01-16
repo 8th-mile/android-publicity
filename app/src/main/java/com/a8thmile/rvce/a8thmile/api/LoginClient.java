@@ -5,15 +5,17 @@ import com.a8thmile.rvce.a8thmile.models.LoginResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by ashwin on 13/1/17.
  */
 public interface LoginClient {
 
-    @POST("/user/login")
+    @GET("/user/login")
     Call<LoginResponse> loginResponse(
-            @Body LoginRequest mLoginRequest
+            @Query("phone") String phone
             );
 }

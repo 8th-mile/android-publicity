@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void goToOtpActivity() {
-        Intent intent = new Intent(this,otp.class);
+        Intent intent = new Intent(this,homepage.class);
         startActivity(intent);
     }
 
