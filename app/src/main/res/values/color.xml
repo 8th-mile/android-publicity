@@ -5,4 +5,13 @@
     <color name="colorPrimaryDark">#131f2b</color>
     <color name="colorAccent">#FF4081</color>
     <color name="TRANSPARENT">#00000000</color>
+    <color name="twitter">#23C4FF</color>
+<color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="cultural">#B259EC</color>
+    <color name="technical">#ECC449</color>
+    <color name="proshows">#33AFFF</color>
+    <color name="informal">#f442a4</color>
+    <color name="flagship">#f45f42</color>
+    <color name="workshop">#7df442</color>
 </resources>

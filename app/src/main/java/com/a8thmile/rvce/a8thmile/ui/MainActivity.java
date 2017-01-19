@@ -55,13 +55,15 @@ public class MainActivity extends AppCompatActivity implements LoginView {
                // cb.setIndeterminateProgressMode(true);
              //   cb.setProgress(50);
                 //API CALL HERE VIGNESH
-                mLoginPresenter.validatePhoneNUmber(getPhoneNumber());
+              //  mLoginPresenter.validatePhoneNUmber(getPhoneNumber());
+                Intent i=new Intent(getApplicationContext(),HomeActivity.class);
+                startActivity(i);
                 /*
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
                         cb.setProgress(100);
-                        Intent intent = new Intent(MainActivity.this, otp.class );
+                        Intent intent = new Intent(MainActivity.this, HomeActivity.class );
 
                         startActivity(intent);
                     }
@@ -111,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void goToOtpActivity() {
-        Intent intent = new Intent(this,homepage.class);
+        Intent intent = new Intent(this,HomeActivity.class);
         startActivity(intent);
     }
 

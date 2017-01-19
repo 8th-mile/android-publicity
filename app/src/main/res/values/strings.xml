@@ -2,4 +2,29 @@
     <string name="app_name">8th Mile</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
+    <!--  All the items in the nav bar-->
+    <string name="nav_home">Home</string>
+    <string name="nav_events">Events</string>
+    <string name="nav_sponsers">Sponsers</string>
+    <string name="nav_hospitality">Hospitality</string>
+    <string name="nav_contact">Contact Us</string>
+    <string name="nav_tour">Rvce Tour</string>
+    <string name="nav_wishlist">My Wish List</string>
+    <string name="openDrawer">open_drawer</string>
+    <string name="closeDrawer">close_drawer</string>
+
+
+    <!-- Toolbar titles when navigation menu item is selected -->
+    <string-array name="nav_item_activity_titles">
+        <item>Home</item>
+        <item>Eventss</item>
+        <item>Sponserers</item>
+        <item>Hospitality</item>
+        <item>Campus Tour</item>
+        <item>Contact Us</item>
+        <item>My Wish List</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
