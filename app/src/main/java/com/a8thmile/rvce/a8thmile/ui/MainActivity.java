@@ -141,8 +141,9 @@ Log.v("test","faileed "+connectionResult);
         {
             setCircularProgressStatus(100);
             Intent homeIntent=new Intent(MainActivity.this,HomeActivity.class);
-            homeIntent.putExtra("userName",result.getSignInAccount().getDisplayName());
+            homeIntent.putExtra("userName",result.getSignInAccount().getIdToken());
             homeIntent.putExtra("userEmail",result.getSignInAccount().getEmail());
+            Log.v("test","hey man "+result.getSignInAccount().getIdToken());
             Log.v("test","hey man "+mGoogleApiClient.isConnected());
             startActivity(homeIntent);
         }

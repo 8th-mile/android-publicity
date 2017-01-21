@@ -1,66 +1,139 @@
 package com.a8thmile.rvce.a8thmile.ui.fragments;
 
+import java.util.ArrayList;
 
+
+import android.net.Uri;
 import android.os.Bundle;
+import android.app.Activity;
+
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ExpandableListView.OnGroupExpandListener;
+import android.widget.Toast;
 
 import com.a8thmile.rvce.a8thmile.R;
+import com.a8thmile.rvce.a8thmile.ui.ContactUsAdapter;
+import com.a8thmile.rvce.a8thmile.ui.Team_ContactUs;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ContactFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ContactFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-
-    public ContactFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ContactFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ContactFragment newInstance(String param1, String param2) {
-        ContactFragment fragment = new ContactFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState)
+    {
+        View view= inflater.inflate(R.layout.fragment_contact, container,false);
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+        //THE EXPANDABLE
+        final ExpandableListView elv=(ExpandableListView) view.findViewById(R.id.expandableListView1);
+        final ArrayList<Team_ContactUs> team=getData();
+        //CREATE AND BIND TO ADAPTER
+        ContactUsAdapter adapter=new ContactUsAdapter(ContactFragment.this.getActivity(), team);
+        elv.setAdapter(adapter);
+        //SET ONCLICK LISTENER
+        elv.setOnGroupExpandListener(new OnGroupExpandListener() {
+            int previousGroup = -1;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact, container, false);
-    }
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if(groupPosition != previousGroup)
+                    elv.collapseGroup(previousGroup);
+                previousGroup = groupPosition;
+            }
+        });
+        elv.setOnChildClickListener(new OnChildClickListener() {
+                                        @Override
+                                        public boolean onChildClick(ExpandableListView parent, View v, int groupPos,
+                                                                    int childPos, long id) {
+                                            if(groupPos==0)
+                                            {
+                                                if(childPos==0)
+                                                {
+                                                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                                                    callIntent.setData(Uri.parse("tel:0377778888"));
 
+                                                    startActivity(callIntent);
+                                                }
+                                                else if(childPos==1)
+                                                {
+                                                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                                                    callIntent.setData(Uri.parse("tel:0377778888"));
+
+                                                    startActivity(callIntent);
+                                                }
+                                                else if(childPos==2)
+                                                {
+                                                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                                                    callIntent.setData(Uri.parse("tel:0377778888"));
+
+                                                    startActivity(callIntent);
+                                                }
+                                                else if(childPos==2)
+                                                {
+                                                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                                                    callIntent.setData(Uri.parse("tel:0377778888"));
+
+                                                    startActivity(callIntent);
+                                                }
+                                            }
+                                            else  if(groupPos==1)
+                                            {
+                                                if(childPos==0)
+                                                {
+                                                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                                                    callIntent.setData(Uri.parse("tel:0377778888"));
+
+                                                    startActivity(callIntent);
+                                                }
+                                                else if(childPos==1)
+                                                {
+                                                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                                                    callIntent.setData(Uri.parse("tel:0377778888"));
+
+                                                    startActivity(callIntent);
+                                                }
+                                                else if(childPos==2)
+                                                {
+                                                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                                                    callIntent.setData(Uri.parse("tel:0377778888"));
+
+                                                    startActivity(callIntent);
+                                                }
+                                                else if(childPos==2)
+                                                {
+                                                    Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                                                    callIntent.setData(Uri.parse("tel:0377778888"));
+
+                                                    startActivity(callIntent);
+                                                }  }
+
+                                            return false;
+                                        }
+                                    }
+
+        );
+        return view;
+    }
+    //ADD AND GET DATA
+    private ArrayList<Team_ContactUs> getData()
+    {
+        Team_ContactUs t1=new Team_ContactUs("Conveniers");
+        t1.contacts.add("Convenier1");
+        t1.contacts.add("Convenier2");
+        t1.contacts.add("Convenier3");
+
+        Team_ContactUs t2=new Team_ContactUs("Technical Head");
+        t2.contacts.add("TechHead1");
+        t2.contacts.add("TechHead2");
+        t2.contacts.add("TechHead3");
+
+        ArrayList<Team_ContactUs> allTeams=new ArrayList<Team_ContactUs>();
+        allTeams.add(t1);
+        allTeams.add(t2);
+        return allTeams;
+    }
 }
