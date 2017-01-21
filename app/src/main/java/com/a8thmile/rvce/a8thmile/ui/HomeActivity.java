@@ -3,6 +3,8 @@ package com.a8thmile.rvce.a8thmile.ui;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -14,6 +16,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,21 +35,27 @@ import com.a8thmile.rvce.a8thmile.ui.fragments.TourFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.WishListFragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,GoogleApiClient.ConnectionCallbacks {
     public NavigationView navigationView;
     private DrawerLayout drawer;
     private View navHeader;
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtEmail;
     private Toolbar toolbar;
+    private TextView textView;
     private FloatingActionButton fab;
     public static int navItemIndex = 0;
 
 
     private static final String TAG_HOME = "home";
     private static final String TAG_EVENTS = "events";
-    private static final String TAG_SPONSERS = "sponsers";
+    private static final String TAG_SPONSERS = "sponsors";
     private static final String TAG_HOSPITALITY = "hospitality";
     private static final String TAG_CONTACT = "contact";
     private static final String TAG_TOUR = "tour";
@@ -56,8 +65,10 @@ public class HomeActivity extends AppCompatActivity {
 
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
-
+private String UserName;
+    private String UserEmail;
     private String[] activityTitles;
+    private GoogleApiClient mGoogleApiClient;
     public HomeActivity() {
     }
 
@@ -66,32 +77,33 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        textView=(TextView)toolbar.findViewById(R.id.toolbar_title);
+        UserName=getIntent().getStringExtra("userName");
+        UserEmail=getIntent().getStringExtra("userEmail");
+        mGoogleApiClient= new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API)
+                .build();
 
+        //mGoogleApiClient=getIntent().getStringExtra("apiclient");
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         mHandler = new Handler();
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         //fab = (FloatingActionButton) findViewById(R.id.fab);
 
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
+navigationView.setItemIconTintList(null);
         txtName = (TextView) navHeader.findViewById(R.id.name);
-        txtEmail = (TextView) navHeader.findViewById(R.id.email);
+       // txtEmail = (TextView) navHeader.findViewById(R.id.email);
         imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
-        activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
-       // ViewTreeObserver vto= drawer.getViewTreeObserver();
-        //if (vto != null) vto.addOnPreDrawListener(new ShouldShowListener(drawer));
 
-        /*fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-        loadNavHeader();
+        activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
+
+        loadNavHeader(UserName);
 
         // initializing navigation menu
         setUpNavigationView();
@@ -102,37 +114,17 @@ public class HomeActivity extends AppCompatActivity {
             loadHomeFragment();
         }
     }
-  /*  private static class ShouldShowListener implements ViewTreeObserver.OnPreDrawListener {
 
-        private final DrawerLayout drawerLayout;
-
-        private ShouldShowListener(DrawerLayout drawerLayout) {
-            this.drawerLayout= drawerLayout;
-        }
-
-        @Override
-        public boolean onPreDraw() {
-            if (drawerLayout != null) {
-                ViewTreeObserver vto = drawerLayout.getViewTreeObserver();
-                if (vto != null) {
-                    vto.removeOnPreDrawListener(this);
-                }
-            }
-
-            drawerLayout.openDrawer(Gravity.LEFT);
-            return true;
-        }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
     }
 
-*/    /***
-     * Load navigation menu header information
-     * like background image, profile image
-     * name, website, notifications action view (dot)
-     */
-    private void loadNavHeader() {
+    private void loadNavHeader(String UserName) {
         // name, website
-        txtName.setText("R Vignesh");
-        txtEmail.setText("vigneshr9619@gmail.com");
+        txtName.setText(UserName);
+
 
 
     }
@@ -180,6 +172,23 @@ public class HomeActivity extends AppCompatActivity {
         // refresh toolbar menu
         invalidateOptionsMenu();
     }
+   private void signOut() {
+       Log.v("test","signout");
+if(mGoogleApiClient.isConnected()) {
+    Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+            new ResultCallback<Status>() {
+                @Override
+                public void onResult(Status status) {
+                    // Get sign out result
+                    Log.v("test","signout2");
+                    finish();
+                }
+            });
+
+}
+       }
+
+
     private Fragment getHomeFragment() {
         switch (navItemIndex) {
             case 0:
@@ -215,7 +224,9 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
     private void setToolbarTitle() {
-        getSupportActionBar().setTitle(activityTitles[navItemIndex]);
+      //  getSupportActionBar().setTitle(activityTitles[navItemIndex]);
+        textView.setText(activityTitles[navItemIndex]);
+
     }
 
     private void selectNavMenu() {
@@ -260,6 +271,10 @@ public class HomeActivity extends AppCompatActivity {
                         navItemIndex = 6;
                         CURRENT_TAG = TAG_WISHLIST;
                         break;
+                    case R.id.nav_logout:
+                        navItemIndex=7;
+                        signOut();
+                        break;
                     default:
                         navItemIndex = 0;
                 }
@@ -271,7 +286,7 @@ public class HomeActivity extends AppCompatActivity {
                     menuItem.setChecked(true);
                 }
                 menuItem.setChecked(true);
-
+                if(navItemIndex!=7)
                 loadHomeFragment();
 
                 return true;
@@ -307,12 +322,13 @@ public class HomeActivity extends AppCompatActivity {
             return;
         }
 
+        Log.v("test","backpressed");
         // This code loads home fragment when back key is pressed
         // when user is in other fragment than home
         if (shouldLoadHomeFragOnBackPress) {
             // checking if user is on other navigation menu
             // rather than home
-            if (navItemIndex != 0) {
+            if (navItemIndex != 0&&navItemIndex!=7) {
                 navItemIndex = 0;
                 CURRENT_TAG = TAG_HOME;
                 loadHomeFragment();
@@ -334,9 +350,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -344,14 +357,23 @@ public class HomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // show or hide the fab
-   /* private void toggleFab() {
-        if (navItemIndex == 0)
-//            fab.show();
-        else
-  //          fab.hide();
-    }*/
 
 
 
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+    Log.v("test","connected in home");
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
 }

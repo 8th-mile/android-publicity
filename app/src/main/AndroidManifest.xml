@@ -3,7 +3,7 @@
     package="com.a8thmile.rvce.a8thmile">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <application xmlns:tools="http://schemas.android.com/tools"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

@@ -10,6 +10,7 @@
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
+    android:textColor="@color/cpb_blue"
     android:gravity="center"
     android:text="8th Mile 2017\nComing Soon....."/>
 </RelativeLayout>

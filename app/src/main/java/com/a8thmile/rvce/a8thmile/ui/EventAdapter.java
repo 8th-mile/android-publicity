@@ -2,6 +2,7 @@ package com.a8thmile.rvce.a8thmile.ui;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,9 @@ public class EventAdapter extends ArrayAdapter<EventItem> {
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Pacifico.ttf");
         holder.title.setTypeface(font);
         holder.linearLayout.setBackgroundResource(eventItem.getBackColId());
-        convertView.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT,500 ));
+        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, context.getResources().getDisplayMetrics());
+        convertView.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT,
+                (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, context.getResources().getDisplayMetrics() )));
         return  convertView;
     }
 }
