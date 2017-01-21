@@ -1,7 +1,11 @@
 # Add project specific ProGuard rules here.
 # By default, the flags in this file are appended to flags specified
 <<<<<<< HEAD
+<<<<<<< HEAD
+# in /home/vignesh/Android/Sdk/tools/proguard/proguard-android.txt
+=======
 # in C:\Android\sdk/tools/proguard/proguard-android.txt
+>>>>>>> 862ddfa35c1e4d946b27029db65cc592958065ca
 =======
 # in /home/ashwin/Android/Sdk/tools/proguard/proguard-android.txt
 >>>>>>> 6bf7d86b74ad902f1a10803c4bc16fdc7bd0434a

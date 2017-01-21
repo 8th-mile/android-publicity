@@ -1,5 +1,6 @@
 package com.a8thmile.rvce.a8thmile.ui;
 
+import android.graphics.Color;
 import android.os.Handler;
 
 
@@ -14,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a8thmile.rvce.a8thmile.login.LoginPresenter;
@@ -36,8 +38,6 @@ public class MainActivity extends AppCompatActivity implements LoginView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_main);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -102,12 +102,16 @@ public class MainActivity extends AppCompatActivity implements LoginView {
 
     @Override
     public void onValidationFailure() {
-        Toast.makeText(this,"Phone number not valid",Toast.LENGTH_LONG).show();
+
+       Toast toast= Toast.makeText(this,"Phone number not valid",Toast.LENGTH_LONG);
+        TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+        v.setTextColor(Color.RED);
+        toast.show();
     }
 
     @Override
     public void goToOtpActivity() {
-        Intent intent = new Intent(this,otp.class);
+        Intent intent = new Intent(this,homepage.class);
         startActivity(intent);
     }
 

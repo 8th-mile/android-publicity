@@ -17,9 +17,7 @@ import com.github.glomadrian.codeinputlib.model.Underline;
 
 import java.util.regex.Pattern;
 
-/**
- * @author Adrián García Lomas
- */
+
 public class CodeInput2 extends EditText {
 
     private static final int DEFAULT_CODES = 6;
@@ -209,32 +207,6 @@ public class CodeInput2 extends EditText {
         underlined = true;
     }
 
-//    /**
-//     * Detects the del key and delete the numbers
-//     */
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent keyevent) {
-//        if (keyCode == KeyEvent.KEYCODE_DEL && characters.size() != 0) {
-//            characters.pop();
-//        }
-//        return super.onKeyDown(keyCode, keyevent);
-//    }
-//
-//    /**
-//     * Capture the keyboard events but only if are A-Z 0-9
-//     */
-//    @Override
-//    public boolean onKeyUp(int keyCode, KeyEvent keyevent) {
-//        String text = KeyEvent.keyCodeToString(keyCode);
-//        Matcher matcher = KEYCODE_PATTERN.matcher(text);
-//        if (matcher.matches()) {
-//            char character = matcher.group(1).charAt(0);
-//            characters.push(character);
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
 
     @Override
     protected void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
