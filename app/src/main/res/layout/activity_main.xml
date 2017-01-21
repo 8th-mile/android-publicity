@@ -16,60 +16,17 @@
     android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
     >
 
-    <info.hoang8f.widget.FButton
-        android:layout_height="50dp"
-        android:layout_width="100dp"
-        fbutton:buttonColor="#0B9FCE"
-        fbutton:shadowColor="#15793f"
-        fbutton:shadowEnabled="false"
-        fbutton:shadowHeight="5dp"
-        fbutton:cornerRadius="35dp"
-        android:text="Signup"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/btnWithText"
-        android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        android:id="@+id/signupbtn"
-        />
-
     <ImageView
         android:layout_width="140dp"
-        android:layout_height="200dp"
+        android:layout_height="350dp"
         android:background="@drawable/logo"
-        android:layout_above="@+id/uname"
+        android:id="@+id/logo"
         android:layout_centerHorizontal="true" />
-
-    <com.github.florent37.materialtextfield.MaterialTextField
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-
-        android:id="@+id/uname"
-        app:mtf_image="@drawable/phone"
-        app:mtf_animationDuration="100"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-
-        >
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone number"
-            android:textColor="#333"
-            android:textColorHint="#666"
-            android:textSize="15sp"
-            android:inputType="number"
-            android:maxLines="1"
-            android:id="@+id/PhoneNumberLabel"/>
-
-    </com.github.florent37.materialtextfield.MaterialTextField>
 
 
 
     <com.dd.CircularProgressButton
-        android:id="@+id/btnWithText"
+        android:id="@+id/signin"
         android:layout_width="196dp"
         android:layout_height="64dp"
         app:cpb_cornerRadius="48dp"
@@ -77,15 +34,15 @@
         android:textSize="25sp"
 
         app:cpb_textError="Network Error"
-        app:cpb_textIdle="Get OTP"
+        app:cpb_textIdle="Gmail Sign in"
         app:cpb_colorProgress="#00ffffff"
         android:layout_marginTop="40dp"
         android:textStyle="bold"
 
-        android:layout_below="@+id/uname"
+        android:layout_below="@+id/logo"
         android:layout_centerHorizontal="true"
         app:cpb_iconComplete="@drawable/forward"
         />
-    
+
 
 </RelativeLayout>

@@ -56,11 +56,14 @@ public class LoginInteractorImpl implements LoginInteractor {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
-                LoginResponse mLoginResponse = response.body();
-                if(checkResponse(mLoginResponse)==true)
-                    listener.onSucess();
-                else
-                    listener.onFailure();
+
+                    LoginResponse mLoginResponse = response.body();
+                    if (checkResponse(mLoginResponse) == true)
+                        listener.onSucess();
+                    else
+                        listener.onFailure();
+
+
 
             }
 
@@ -79,6 +82,7 @@ public class LoginInteractorImpl implements LoginInteractor {
     }
 
     private boolean checkResponse(LoginResponse mLoginResponse){
+        Log.v("debug","response is " +mLoginResponse);
         if(mLoginResponse.getSuccess().equalsIgnoreCase("true"))
             return true;
         else

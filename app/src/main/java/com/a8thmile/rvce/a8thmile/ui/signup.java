@@ -68,7 +68,7 @@ public class signup extends AppCompatActivity implements SignUpView {
 
     @Override
     public void goToOtpActivity() {
-        Intent intent = new Intent(this,otp.class);
+        Intent intent = new Intent(this,HomeActivity.class);
         startActivity(intent);
 
     }
