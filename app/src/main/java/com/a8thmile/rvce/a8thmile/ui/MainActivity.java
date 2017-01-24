@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.a8thmile.rvce.a8thmile.login.LoginPresenter;
 import com.a8thmile.rvce.a8thmile.login.LoginPresenterImpl;
 import com.a8thmile.rvce.a8thmile.login.LoginView;
+import com.a8thmile.rvce.a8thmile.models.LoginResponse;
 import com.dd.CircularProgressButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -37,51 +38,48 @@ import com.google.gson.Gson;
 import java.io.Serializable;
 
 
-public class MainActivity extends AppCompatActivity implements LoginView, GoogleApiClient.OnConnectionFailedListener,View.OnClickListener,GoogleApiClient.ConnectionCallbacks {
+public class MainActivity extends AppCompatActivity implements LoginView,View.OnClickListener,GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener{
 
-private final String CLIENT_ID="498621765547-49g05468oaldcosvg61llfd29jdjrob7.apps.googleusercontent.com";
+    private final String CLIENT_ID="498621765547-49g05468oaldcosvg61llfd29jdjrob7.apps.googleusercontent.com";
+    private int RC_SIGN_IN = 100;
 
     private CircularProgressButton signin;
     private LoginPresenter mLoginPresenter;
-    private SignInButton signInButton;
     private  GoogleSignInOptions gso;
     private GoogleApiClient mGoogleApiClient;
-    private int RC_SIGN_IN = 100;
 
+    private String token;
+    private String name;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mLoginPresenter = new LoginPresenterImpl(this);
         signin=(CircularProgressButton)findViewById(R.id.signin);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        setGoogleApi();
 
+        signin.setOnClickListener(this);
+
+    }
+
+    public void setGoogleApi() {
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .requestIdToken(CLIENT_ID)
                 .build();
-        mGoogleApiClient= new GoogleApiClient.Builder(this)
+        mGoogleApiClient= new GoogleApiClient.Builder(getBaseContext())
                 .enableAutoManage(MainActivity.this, this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        // findViewById(R.id.sign_in_button).setSize(SignInButton.SIZE_STANDARD);
+    }
 
-        signin.setOnClickListener(this);
-        mLoginPresenter = new LoginPresenterImpl(this);
-    }
-    public void signOut() {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(Status status) {
-                        // ...
-                    }
-                });
-    }
     @Override
     public void startCircularProgressButton() {
         signin.setIndeterminateProgressMode(true);
@@ -93,30 +91,27 @@ private final String CLIENT_ID="498621765547-49g05468oaldcosvg61llfd29jdjrob7.ap
         signin.setProgress(value);
     }
 
-    @Override
-    public void onValidationFailure() {
 
-        Toast toast= Toast.makeText(this,"Phone number not valid",Toast.LENGTH_LONG);
-        TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
-        v.setTextColor(Color.RED);
-        toast.show();
+
+    @Override
+    public void goToHomeActivity(LoginResponse mLoginResponse /*String email,String name*/) {
+        Intent homeIntent = new Intent(this,HomeActivity.class);
+        homeIntent.putExtra("userName",name);
+        homeIntent.putExtra("id",mLoginResponse.getId());
+        homeIntent.putExtra("email",email);
+        homeIntent.putExtra("token",mLoginResponse.getToken());
+        startActivity(homeIntent);
     }
 
     @Override
-    public void goToOtpActivity() {
-        Intent intent = new Intent(this,HomeActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void displayFailureToast() {
-        Toast.makeText(this,"Login Failed",Toast.LENGTH_LONG).show();
+    public void displayFailureToast(String message) {
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-Log.v("test","faileed "+connectionResult);
+        Toast.makeText(getBaseContext(),"Update Google Play Services and try again",Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -124,12 +119,10 @@ Log.v("test","faileed "+connectionResult);
         switch (view.getId()) {
             case R.id.signin:
                 startCircularProgressButton();
+
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
                 break;
-
-
-
         }
 
 
@@ -139,17 +132,20 @@ Log.v("test","faileed "+connectionResult);
     {
         if(result.isSuccess())
         {
-            setCircularProgressStatus(100);
-            Intent homeIntent=new Intent(MainActivity.this,HomeActivity.class);
-            homeIntent.putExtra("userName",result.getSignInAccount().getIdToken());
-            homeIntent.putExtra("userEmail",result.getSignInAccount().getEmail());
-            Log.v("test","hey man "+result.getSignInAccount().getIdToken());
-            Log.v("test","hey man "+mGoogleApiClient.isConnected());
-            startActivity(homeIntent);
+            setCircularProgressStatus(50);
+
+            token=result.getSignInAccount().getIdToken();
+            email=result.getSignInAccount().getEmail();
+            name=result.getSignInAccount().getDisplayName();
+            mLoginPresenter.tokenLogin(email,token);
+
+            //goToHomeActivity(result.getSignInAccount().getDisplayName(),result.getSignInAccount().getEmail());
+
         }
         else
         {
-
+            setCircularProgressStatus(0);
+           Toast.makeText(this,"Failed to Sign in.Check Your Internet Connection",Toast.LENGTH_LONG).show();
         }
     }
 

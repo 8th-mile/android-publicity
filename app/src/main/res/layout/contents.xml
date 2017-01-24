@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/white"
+            android:background="#FDD1B7"
 
             app:popupTheme="@style/AppTheme.PopupOverlay" >
             <TextView
@@ -26,7 +26,7 @@
                 android:text="Events"
                 android:layout_marginLeft="65dp"
                 android:textSize="25sp"
-                android:textColor="@color/black"
+                android:textColor="#000000"
                 android:gravity = "center"
                 android:id="@+id/toolbar_title" />
 

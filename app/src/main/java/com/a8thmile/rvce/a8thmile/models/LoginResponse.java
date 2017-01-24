@@ -4,22 +4,31 @@ package com.a8thmile.rvce.a8thmile.models;
  * Created by ashwin on 13/1/17.
  */
 public class LoginResponse {
-    private String otp;
+    private String id;
+    private String name;
     private String success;
-    private String statuscode;
+    private String token;
+    private String status;
+    private String message;
 
-    public LoginResponse(String otp, String success, String statuscode){
-        this.otp = otp;
-        this.success = success;
-        this.statuscode = statuscode;
+    public LoginResponse(String id) {
+        this.id = id;
     }
 
-    public String getOtp() {
-        return otp;
+    public String getId() {
+        return id;
     }
 
-    public void setOtp(String otp) {
-        this.otp = otp;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSuccess() {
@@ -30,11 +39,27 @@ public class LoginResponse {
         this.success = success;
     }
 
-    public String getStatuscode() {
-        return statuscode;
+    public String getToken() {
+        return token;
     }
 
-    public void setStatuscode(String statuscode) {
-        this.statuscode = statuscode;
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

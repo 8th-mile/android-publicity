@@ -1,13 +1,10 @@
 package com.a8thmile.rvce.a8thmile.ui;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -24,8 +21,14 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.a8thmile.rvce.a8thmile.R;
+import com.a8thmile.rvce.a8thmile.events.EventPresenter;
+import com.a8thmile.rvce.a8thmile.events.EventPresenterImpl;
+import com.a8thmile.rvce.a8thmile.events.EventView;
+import com.a8thmile.rvce.a8thmile.models.EventFields;
+import com.a8thmile.rvce.a8thmile.models.EventResponse;
 import com.a8thmile.rvce.a8thmile.ui.fragments.ContactFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.EventFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.HomeFragment;
@@ -41,7 +44,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
-public class HomeActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener,GoogleApiClient.ConnectionCallbacks {
+import java.util.HashMap;
+import java.util.List;
+
+public class HomeActivity extends AppCompatActivity implements EventView,GoogleApiClient.OnConnectionFailedListener,GoogleApiClient.ConnectionCallbacks {
     public NavigationView navigationView;
     private DrawerLayout drawer;
     private View navHeader;
@@ -52,6 +58,8 @@ public class HomeActivity extends AppCompatActivity implements GoogleApiClient.O
     private FloatingActionButton fab;
     public static int navItemIndex = 0;
 
+    private String token;
+    private String id;
 
     private static final String TAG_HOME = "home";
     private static final String TAG_EVENTS = "events";
@@ -69,9 +77,16 @@ private String UserName;
     private String UserEmail;
     private String[] activityTitles;
     private GoogleApiClient mGoogleApiClient;
+    private EventPresenter eventPresenter;
+    private List<EventFields> eventFieldsList;
     public HomeActivity() {
     }
 
+    public List<EventFields> getEvents() {
+        return eventFieldsList;
+    }
+public String getId(){return id;}
+    public String getToken(){return token;}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,13 +94,19 @@ private String UserName;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         textView=(TextView)toolbar.findViewById(R.id.toolbar_title);
         UserName=getIntent().getStringExtra("userName");
-        UserEmail=getIntent().getStringExtra("userEmail");
+        UserEmail=getIntent().getStringExtra("email");
+        id=getIntent().getStringExtra("id");
+        token=getIntent().getStringExtra("token");
+        Log.v("test","token "+token);
+        Log.v("test","id "+id);
+
         mGoogleApiClient= new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
 
+        eventPresenter=new EventPresenterImpl(this);
         //mGoogleApiClient=getIntent().getStringExtra("apiclient");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -96,7 +117,7 @@ private String UserName;
 
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
-navigationView.setItemIconTintList(null);
+        navigationView.setItemIconTintList(null);
         txtName = (TextView) navHeader.findViewById(R.id.name);
        // txtEmail = (TextView) navHeader.findViewById(R.id.email);
         imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
@@ -113,6 +134,7 @@ navigationView.setItemIconTintList(null);
             CURRENT_TAG = TAG_HOME;
             loadHomeFragment();
         }
+        eventPresenter.eventRequest(token);
     }
 
     @Override
@@ -172,10 +194,11 @@ navigationView.setItemIconTintList(null);
         // refresh toolbar menu
         invalidateOptionsMenu();
     }
+
    private void signOut() {
        Log.v("test","signout");
-if(mGoogleApiClient.isConnected()) {
-    Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+        if(mGoogleApiClient.isConnected()) {
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
             new ResultCallback<Status>() {
                 @Override
                 public void onResult(Status status) {
@@ -185,7 +208,7 @@ if(mGoogleApiClient.isConnected()) {
                 }
             });
 
-}
+        }
        }
 
 
@@ -374,6 +397,18 @@ if(mGoogleApiClient.isConnected()) {
 
     @Override
     public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void showFailureMessage(String message) {
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void loadData(EventResponse eventResponse) {
+        this.eventFieldsList=eventResponse.getResults();
+        Log.v("test","events "+eventFieldsList);
 
     }
 }

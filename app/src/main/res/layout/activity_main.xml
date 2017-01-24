@@ -11,38 +11,31 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#223548"
+    android:background="@drawable/theme"
     tools:context="com.a8thmile.rvce.a8thmile.ui.MainActivity"
     android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
     >
 
-    <ImageView
-        android:layout_width="140dp"
-        android:layout_height="350dp"
-        android:background="@drawable/logo"
-        android:id="@+id/logo"
-        android:layout_centerHorizontal="true" />
-
-
 
     <com.dd.CircularProgressButton
         android:id="@+id/signin"
-        android:layout_width="196dp"
-        android:layout_height="64dp"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
         app:cpb_cornerRadius="48dp"
         android:textColor="#ffff"
-        android:textSize="25sp"
+        android:textSize="18sp"
 
         app:cpb_textError="Network Error"
-        app:cpb_textIdle="Gmail Sign in"
+        app:cpb_textIdle="Google Sign in"
         app:cpb_colorProgress="#00ffffff"
-        android:layout_marginTop="40dp"
         android:textStyle="bold"
 
-        android:layout_below="@+id/logo"
-        android:layout_centerHorizontal="true"
         app:cpb_iconComplete="@drawable/forward"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="100dp"
+        android:layout_marginEnd="100dp" />
 
 
 </RelativeLayout>
