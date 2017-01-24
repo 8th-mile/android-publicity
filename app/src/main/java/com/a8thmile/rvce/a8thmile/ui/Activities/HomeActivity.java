@@ -1,4 +1,4 @@
-package com.a8thmile.rvce.a8thmile.ui;
+package com.a8thmile.rvce.a8thmile.ui.Activities;
 
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -68,12 +68,11 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     private static final String TAG_CONTACT = "contact";
     private static final String TAG_TOUR = "tour";
     private static final String TAG_WISHLIST = "wishlist";
-    private static final String TAG_SUBEVENTS = "subevents";
     public static String CURRENT_TAG = TAG_HOME;
 
     private boolean shouldLoadHomeFragOnBackPress = true;
     private Handler mHandler;
-private String UserName;
+    private String UserName;
     private String UserEmail;
     private String[] activityTitles;
     private GoogleApiClient mGoogleApiClient;

@@ -6,22 +6,16 @@ import java.util.HashMap;
 import java.util.List;
 
 
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
-import android.widget.ExpandableListView.OnGroupCollapseListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
-import android.widget.Toast;
 
 import com.a8thmile.rvce.a8thmile.R;
-import com.a8thmile.rvce.a8thmile.ui.ExpandableListAdapter_Hospitality;
+import com.a8thmile.rvce.a8thmile.ui.Adapters.ExpandableListAdapter_Hospitality;
 
 public class Hospitality extends Fragment {
 

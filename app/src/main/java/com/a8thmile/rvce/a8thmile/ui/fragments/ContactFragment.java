@@ -5,22 +5,19 @@ import java.util.ArrayList;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Activity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupExpandListener;
-import android.widget.Toast;
 
 import com.a8thmile.rvce.a8thmile.R;
-import com.a8thmile.rvce.a8thmile.ui.ContactUsAdapter;
-import com.a8thmile.rvce.a8thmile.ui.Team_ContactUs;
+import com.a8thmile.rvce.a8thmile.ui.Adapters.ContactUsAdapter;
+import com.a8thmile.rvce.a8thmile.ui.Adapters.Team_ContactUs;
 
 public class ContactFragment extends Fragment {
     @Override

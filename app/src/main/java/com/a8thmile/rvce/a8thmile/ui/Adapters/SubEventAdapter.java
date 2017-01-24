@@ -1,8 +1,7 @@
-package com.a8thmile.rvce.a8thmile.ui;
+package com.a8thmile.rvce.a8thmile.ui.Adapters;
 
 import android.animation.Animator;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +17,8 @@ import android.widget.TextView;
 import com.a8thmile.rvce.a8thmile.R;
 import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenter;
 import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenterImpl;
-import com.a8thmile.rvce.a8thmile.events.register.RegisterView;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
-import com.a8thmile.rvce.a8thmile.models.EventResponse;
-import com.a8thmile.rvce.a8thmile.ui.fragments.WishListFragment;
+import com.a8thmile.rvce.a8thmile.ui.Activities.SubEventActivity;
 
 import java.util.List;
 
@@ -33,34 +30,18 @@ import static com.a8thmile.rvce.a8thmile.R.id.imageView;
  * Created by vignesh on 19/1/17.
  */
 
-public class WishListAdapter extends ArrayAdapter<EventFields>  implements RegisterView{
+public class SubEventAdapter extends ArrayAdapter<EventFields> {
     Context context;
     private String token;
     private String id;
-    WishListFragment wishListFragment;
 
-    public WishListAdapter(Context context, int resource, List<EventFields> rowItems, String token, String id,WishListFragment wishListFragment) {
+    public SubEventAdapter(Context context, int resource, List<EventFields> rowItems,String token,String id) {
         super(context, resource,rowItems);
         this.context=context;
         this.token=token;
         this.id=id;
-        this.wishListFragment=wishListFragment;
     }
 
-    @Override
-    public void registered(String message) {
-        wishListFragment.registered(message);
-    }
-
-    @Override
-    public void RegisterFailed(String message) {
-wishListFragment.RegisterFailed(message);
-    }
-
-    @Override
-    public void wishListGot(EventResponse eventResponse) {
-
-    }
 
 
     public class ViewHolder{
@@ -71,7 +52,7 @@ wishListFragment.RegisterFailed(message);
         ImageButton imageButton;
         Button registerButton;
         Button loc;
-
+        Button wishlist;
         LinearLayout revealView;
         LinearLayout  layoutButtons;
         Animation alphaAnimation;
@@ -82,13 +63,13 @@ wishListFragment.RegisterFailed(message);
     public View getView(int position, View convertView, ViewGroup parent){
         final ViewHolder holder;
         final EventFields rowItem = getItem(position);
-       final RegisterPresenter registerPresenter=  new RegisterPresenterImpl(this);
+       final RegisterPresenter registerPresenter=  new RegisterPresenterImpl((SubEventActivity)context);
 
 
 
         LayoutInflater mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null){
-            convertView = mInflater.inflate(R.layout.wishlist_card, null);
+            convertView = mInflater.inflate(R.layout.event_card, null);
             holder = new ViewHolder();
             holder.image = (ImageView)convertView.findViewById(imageView);
             holder.time = (TextView)convertView.findViewById(R.id.time);
@@ -97,27 +78,36 @@ wishListFragment.RegisterFailed(message);
             holder.imageButton = (ImageButton) convertView.findViewById(R.id.launchTwitterAnimation);
             holder.registerButton=(Button)convertView.findViewById(R.id.register);
             holder.loc=(Button)convertView.findViewById(R.id.loc);
+            holder.wishlist=(Button)convertView.findViewById(R.id.wishlist);
             holder.revealView = (LinearLayout) convertView.findViewById(R.id.linearView);
             holder.layoutButtons = (LinearLayout) convertView.findViewById(R.id.layoutButtons);
             holder.pixelDensity = context.getResources().getDisplayMetrics().density;
             convertView.setTag(holder);
         } else
             holder = (ViewHolder)convertView.getTag();
-            holder.image.setImageResource(R.drawable.event4);
-            holder.time.setText(rowItem.getDate());
-            holder.description.setText(rowItem.getName());
-            holder.price.setText(Integer.toString(rowItem.getPrice()));
 
-            holder.registerButton.setOnClickListener(new View.OnClickListener() {
+        holder.image.setImageResource(R.drawable.event4);
+        holder.time.setText(rowItem.getDate());
+
+        holder.description.setText(rowItem.getName());
+        holder.price.setText(Integer.toString(rowItem.getPrice()));
+
+        holder.registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v("test","price "+rowItem.getPrice());
                 registerPresenter.registerRequest(rowItem.getId(),id,token);
             }
         });
 
         //since the same adapter is used for events listing and wishlist listing and we do not need wishlist button
         //again in the wishlist events , we check if it null
+
+            holder.wishlist.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    registerPresenter.wishlistRequest(rowItem.getId(), id, token);
+                }
+            });
 
         holder.imageButton.setOnClickListener(new View.OnClickListener() {
 

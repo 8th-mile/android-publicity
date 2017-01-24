@@ -15,16 +15,14 @@ import android.widget.ListView;
 
 import com.a8thmile.rvce.a8thmile.R;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
-import com.a8thmile.rvce.a8thmile.ui.HomeActivity;
-import com.a8thmile.rvce.a8thmile.ui.SubEventActivity;
-import com.a8thmile.rvce.a8thmile.ui.EventAdapter;
+import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
+import com.a8thmile.rvce.a8thmile.ui.Activities.SubEventActivity;
+import com.a8thmile.rvce.a8thmile.ui.Adapters.EventAdapter;
 import com.a8thmile.rvce.a8thmile.ui.EventItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 
 public class EventFragment extends Fragment {

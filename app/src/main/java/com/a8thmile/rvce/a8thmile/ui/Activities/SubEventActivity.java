@@ -1,8 +1,7 @@
-package com.a8thmile.rvce.a8thmile.ui;
+package com.a8thmile.rvce.a8thmile.ui.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -11,8 +10,9 @@ import com.a8thmile.rvce.a8thmile.R;
 import com.a8thmile.rvce.a8thmile.events.register.RegisterView;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
 import com.a8thmile.rvce.a8thmile.models.EventResponse;
+import com.a8thmile.rvce.a8thmile.ui.RowItem;
+import com.a8thmile.rvce.a8thmile.ui.Adapters.SubEventAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SubEventActivity extends AppCompatActivity implements RegisterView {

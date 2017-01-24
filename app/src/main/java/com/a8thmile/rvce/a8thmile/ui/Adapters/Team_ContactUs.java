@@ -1,4 +1,4 @@
-package com.a8thmile.rvce.a8thmile.ui;
+package com.a8thmile.rvce.a8thmile.ui.Adapters;
 
 import java.util.ArrayList;
 public class Team_ContactUs {

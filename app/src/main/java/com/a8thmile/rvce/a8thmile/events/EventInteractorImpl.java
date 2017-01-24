@@ -2,12 +2,9 @@ package com.a8thmile.rvce.a8thmile.events;
 
 import android.util.Log;
 
-import com.a8thmile.rvce.a8thmile.api.EventClient;
+import com.a8thmile.rvce.a8thmile.api.EventsGetClient;
 import com.a8thmile.rvce.a8thmile.api.ServiceGenerator;
-import com.a8thmile.rvce.a8thmile.models.EventFields;
 import com.a8thmile.rvce.a8thmile.models.EventResponse;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,9 +18,9 @@ public class EventInteractorImpl implements EventInteractor{
 
     @Override
     public void callEventApi(String token,final onEventRequestFinishedListener listener) {
-        EventClient eventClient= ServiceGenerator.createService(EventClient.class);
+        EventsGetClient eventsGetClient = ServiceGenerator.createService(EventsGetClient.class);
 
-        Call<EventResponse> call= eventClient.getEvent(token);
+        Call<EventResponse> call= eventsGetClient.getEvent(token);
 
         call.enqueue(new Callback<EventResponse>() {
             @Override

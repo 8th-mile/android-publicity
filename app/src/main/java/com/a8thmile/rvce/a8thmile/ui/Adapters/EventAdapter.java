@@ -1,4 +1,4 @@
-package com.a8thmile.rvce.a8thmile.ui;
+package com.a8thmile.rvce.a8thmile.ui.Adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.a8thmile.rvce.a8thmile.R;
+import com.a8thmile.rvce.a8thmile.ui.EventItem;
 
 import java.util.List;
 

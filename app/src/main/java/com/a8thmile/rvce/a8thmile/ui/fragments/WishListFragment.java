@@ -17,10 +17,8 @@ import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenterImpl;
 import com.a8thmile.rvce.a8thmile.events.register.RegisterView;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
 import com.a8thmile.rvce.a8thmile.models.EventResponse;
-import com.a8thmile.rvce.a8thmile.models.EventWishListGetResponse;
-import com.a8thmile.rvce.a8thmile.ui.HomeActivity;
-import com.a8thmile.rvce.a8thmile.ui.SubEventAdapter;
-import com.a8thmile.rvce.a8thmile.ui.WishListAdapter;
+import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
+import com.a8thmile.rvce.a8thmile.ui.Adapters.WishListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +60,7 @@ public class WishListFragment extends Fragment implements RegisterView{
 
     @Override
     public void registered(String message) {
-        //Irrelevant to this fragment
+        Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -84,7 +82,8 @@ public class WishListFragment extends Fragment implements RegisterView{
         adapter = new WishListAdapter(getContext(), R.layout.wishlist_card, wishList,token,id,WishListFragment.this);
         lv.setAdapter(adapter);
 
-        Log.v("test","list "+wishList.get(0).getName());
+
+        Log.v("test","list "+wishList.size());
 
     }
 }

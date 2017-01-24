@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
-        <activity android:name=".ui.MainActivity"
+        <activity android:name=".ui.Activities.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.HomeActivity"
+            android:name=".ui.Activities.HomeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.SubEventActivity"
+        <activity android:name=".ui.Activities.SubEventActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"></activity>
     </application>
 

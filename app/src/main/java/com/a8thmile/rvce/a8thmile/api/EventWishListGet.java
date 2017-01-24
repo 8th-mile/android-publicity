@@ -12,7 +12,7 @@ import retrofit2.http.Query;
  * Created by vignesh on 24/1/17.
  */
 
-public interface EventWishGet {
+public interface EventWishListGet {
     @GET("/user/wish")
     Call<EventResponse> getWishList(@Header("token") String token, @Query("user_id") int user_id);
 }

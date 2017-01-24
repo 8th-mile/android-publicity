@@ -15,7 +15,7 @@ import retrofit2.http.Headers;
  * Created by vignesh on 23/1/17.
  */
 
-public interface EventClient {
+public interface EventsGetClient {
 
     @GET("/event")
     Call<EventResponse> getEvent(@Header("token") String token);

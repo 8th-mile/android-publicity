@@ -1,4 +1,4 @@
-package com.a8thmile.rvce.a8thmile.ui;
+package com.a8thmile.rvce.a8thmile.ui.Adapters;
 
 /**
  * Created by vignesh on 22/1/17.

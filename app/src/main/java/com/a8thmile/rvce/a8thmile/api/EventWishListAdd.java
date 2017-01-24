@@ -12,7 +12,7 @@ import retrofit2.http.POST;
  * Created by vignesh on 24/1/17.
  */
 
-public interface EventWishList {
+public interface EventWishListAdd {
     @POST("/user/wish")
     Call<EventRegisterResponse> register(@Body EventRegister eventRegister, @Header("token") String token);
 }

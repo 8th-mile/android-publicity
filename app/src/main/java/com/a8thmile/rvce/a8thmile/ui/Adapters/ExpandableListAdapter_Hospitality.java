@@ -1,4 +1,4 @@
-package com.a8thmile.rvce.a8thmile.ui;
+package com.a8thmile.rvce.a8thmile.ui.Adapters;
 
 import java.util.HashMap;
 import java.util.List;
