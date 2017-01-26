@@ -115,6 +115,12 @@ public String getId(){return id;}
         //fab = (FloatingActionButton) findViewById(R.id.fab);
 
         // Navigation view header
+
+        View headerLayout =
+                navigationView.inflateHeaderView(R.layout.nav_header_main);
+        navHeader = headerLayout.findViewById(R.id.view_container);
+        //navHeader = navigationView.getHeaderView(0); // DIDN'T WORK IN v23.0.0 SO DID ABOVE JUGAAD- ALEKH
+
         navHeader = navigationView.getHeaderView(0);
         navigationView.setItemIconTintList(null);
         txtName = (TextView) navHeader.findViewById(R.id.name);

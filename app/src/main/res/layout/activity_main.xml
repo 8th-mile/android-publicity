@@ -11,31 +11,35 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/theme"
+    android:background="@drawable/gradient"
     tools:context="com.a8thmile.rvce.a8thmile.ui.Activities.LoginActivity"
-    android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-    >
+    android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:id="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/logo"
+        android:layout_marginTop="30dp"
 
-    <com.dd.CircularProgressButton
-        android:id="@+id/signin"
-        android:layout_width="130dp"
-        android:layout_height="45dp"
-        app:cpb_cornerRadius="48dp"
-        android:textColor="#ffff"
-        android:textSize="18sp"
+        />
 
-        app:cpb_textError="Network Error"
-        app:cpb_textIdle="Google Sign in"
-        app:cpb_colorProgress="#00ffffff"
-        android:textStyle="bold"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:scaleX="0.8"
+        android:scaleY="0.85"
+        android:layout_height="wrap_content"
+        android:id="@+id/g_logo"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/g_logo_still"
+        android:layout_below="@+id/logo"
+        android:background="@drawable/border_img"
+        android:layout_marginTop="30dp"
+        />
 
-        app:cpb_iconComplete="@drawable/forward"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="100dp"
-        android:layout_marginEnd="100dp" />
 
 
 </RelativeLayout>

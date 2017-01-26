@@ -8,12 +8,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a8thmile.rvce.a8thmile.login.LoginPresenter;
 import com.a8thmile.rvce.a8thmile.login.LoginPresenterImpl;
 import com.a8thmile.rvce.a8thmile.login.LoginView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import com.a8thmile.rvce.a8thmile.models.LoginResponse;
+
 import com.dd.CircularProgressButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -22,22 +33,21 @@ import com.google.android.gms.common.ConnectionResult;
 import com.a8thmile.rvce.a8thmile.R;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 
-public class LoginActivity extends AppCompatActivity implements LoginView,View.OnClickListener,GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener{
+public class LoginActivity extends AppCompatActivity implements LoginView,GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener{
 
     private final String CLIENT_ID="498621765547-49g05468oaldcosvg61llfd29jdjrob7.apps.googleusercontent.com";
     private int RC_SIGN_IN = 100;
-
     private CircularProgressButton signin;
 
     //mvp presenter used for sending requests
     private LoginPresenter mLoginPresenter;
-
-    //For Google Api Requests
     private GoogleSignInOptions gso;
     private GoogleApiClient mGoogleApiClient;
-
+    public ImageView googLogo;
 
     //used store the data needed for sending further requests to the server. These are obtained by sending the login request
     // with the google api token . the server sends another permanent token unique to a user for using as headers
@@ -49,15 +59,28 @@ public class LoginActivity extends AppCompatActivity implements LoginView,View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mLoginPresenter = new LoginPresenterImpl(this);
-        signin=(CircularProgressButton)findViewById(R.id.signin);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        final ImageView googLogo = (ImageView) findViewById(R.id.g_logo);
+        Glide.with(getBaseContext()).load(R.drawable.g_anim).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).dontAnimate().into(googLogo);
+
+        mLoginPresenter = new LoginPresenterImpl(this);
+
+
         //initialize the google signin objects
         setGoogleApi();
+        googLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        signin.setOnClickListener(this);
+                Glide.with(getBaseContext()).load(R.drawable.g_anim).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade().into(googLogo);
+                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });
+
 
     }
 
@@ -66,12 +89,27 @@ public class LoginActivity extends AppCompatActivity implements LoginView,View.O
                 .requestEmail()
                 .requestIdToken(CLIENT_ID)
                 .build();
-        mGoogleApiClient= new GoogleApiClient.Builder(getBaseContext())
+        mGoogleApiClient = new GoogleApiClient.Builder(getBaseContext())
                 .enableAutoManage(LoginActivity.this, this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+        mLoginPresenter = new LoginPresenterImpl(this);
+    }
+
+
+    public void signOut() {
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+                        // ...
+                    }
+                });
+
+
     }
 
     @Override
@@ -95,6 +133,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,View.O
         homeIntent.putExtra("email",email);
         homeIntent.putExtra("token",mLoginResponse.getToken());
         startActivity(homeIntent);
+        Glide.with(getBaseContext()).load(R.drawable.g_anim).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).dontAnimate().into(googLogo);
     }
 
     @Override
@@ -110,24 +149,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView,View.O
         Toast.makeText(getBaseContext(),"Update Google Play Services and try again",Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.signin:
-                startCircularProgressButton();
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(signInIntent, RC_SIGN_IN);
-                break;
-        }
 
-
-    }
 
     public void handleSignInResult(GoogleSignInResult result)
     {
         if(result.isSuccess())
         {
-            setCircularProgressStatus(50);
+
             token=result.getSignInAccount().getIdToken();
             email=result.getSignInAccount().getEmail();
             name=result.getSignInAccount().getDisplayName();
@@ -140,7 +168,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,View.O
         }
         else
         {
-            setCircularProgressStatus(0);
+
            Toast.makeText(this,"Failed to Sign in.Check Your Internet Connection",Toast.LENGTH_LONG).show();
         }
     }
