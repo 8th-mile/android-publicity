@@ -1,5 +1,7 @@
 package com.a8thmile.rvce.a8thmile.login;
 
+import com.a8thmile.rvce.a8thmile.models.LoginResponse;
+
 /**
  * Created by ashwin on 13/1/17.
  */
@@ -7,45 +9,29 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
 
     private LoginView mLoginView;
     private LoginInteractor mLoginInteractor;
-   // private String phoneNumber;
 
     public LoginPresenterImpl(LoginView loginView){
         mLoginView = loginView;
         mLoginInteractor = new LoginInteractorImpl();
     }
 
-    @Override
-    public boolean checkStringLength(String phone) {
-        if(phone.length()==STRING_LENGTH)
-            return true;
-        else
-            return false;
-    }
 
     @Override
-    public void validatePhoneNUmber(String phone) {
-        mLoginView.startCircularProgressButton();
-        mLoginView.setCircularProgressStatus(INITIAL_PROGRESS);
-
-        if(checkStringLength(phone)) {
-            mLoginView.setCircularProgressStatus(VALIDATED_PROGRESS);
-            mLoginInteractor.callLoginApi(phone, this);
-        }
-        else{
-            mLoginView.setCircularProgressStatus(FAILED_PROGRESS);
-            mLoginView.onValidationFailure();
-        }
-    }
-
-    @Override
-    public void onSucess() {
+    public void onSucess(LoginResponse mLoginResponse) {
         mLoginView.setCircularProgressStatus(COMPLETED_PROGRESS);
-        mLoginView.goToOtpActivity();
+        mLoginView.goToHomeActivity(mLoginResponse /*email,String name*/);
     }
 
     @Override
-    public void onFailure() {
+    public void onFailure(String message) {
         mLoginView.setCircularProgressStatus(FAILED_PROGRESS);
+        mLoginView.displayFailureToast(message);
 
+    }
+
+
+    @Override
+    public void tokenLogin(String email,String token) {
+mLoginInteractor.callLoginApi(email,token,this);
     }
 }

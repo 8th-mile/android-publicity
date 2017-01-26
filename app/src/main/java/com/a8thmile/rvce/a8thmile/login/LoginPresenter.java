@@ -11,9 +11,8 @@ public interface LoginPresenter {
     public static int COMPLETED_PROGRESS = 100;
     public static int FAILED_PROGRESS = 0;
 
-    public boolean checkStringLength(String phone);
+    public void tokenLogin(String email,String token);
 
-    public void validatePhoneNUmber(String phone);
 
 
 

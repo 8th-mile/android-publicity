@@ -4,6 +4,7 @@
     <color name="colorPrimary">#2c3e50</color>
     <color name="colorPrimaryDark">#0D3746</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="timer4">#9fFF4081</color>
     <color name="TRANSPARENT">#00000000</color>
     <color name="twitter">#23C4FF</color>
     <color name="black">#000000</color>
@@ -11,7 +12,10 @@
     <color name="cultural">#B259EC</color>
     <color name="technical">#ECC449</color>
     <color name="proshows">#33AFFF</color>
+    <color name="timer1">#9f33AFFF</color>
     <color name="informal">#f442a4</color>
     <color name="flagship">#f45f42</color>
-    <color name="workshop">#7df442</color>
+    <color name="timer2">#9ff45f42</color>
+    <color name="workshop">#0e9133</color>
+    <color name="timer3">#9f7df442</color>
 </resources>

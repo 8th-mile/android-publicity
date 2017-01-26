@@ -14,8 +14,8 @@ import retrofit2.http.Query;
  */
 public interface LoginClient {
 
-    @GET("/user/login")
+    @POST("/user/signup")
     Call<LoginResponse> loginResponse(
-            @Query("phone") String phone
+            @Body LoginRequest mLoginRequest
             );
 }

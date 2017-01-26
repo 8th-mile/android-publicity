@@ -1,5 +1,7 @@
 package com.a8thmile.rvce.a8thmile.login;
 
+import com.a8thmile.rvce.a8thmile.models.LoginResponse;
+
 /**
  * Created by ashwin on 12/1/17.
  */
@@ -11,11 +13,11 @@ public interface LoginView {
 
     public void setCircularProgressStatus(int value);
 
-    public void onValidationFailure();
 
-    public void goToOtpActivity();
 
-    public void displayFailureToast();
+    public void goToHomeActivity(LoginResponse mLoginResponse/*String email,String name*/);
+
+    public void displayFailureToast(String message);
 
 
 }

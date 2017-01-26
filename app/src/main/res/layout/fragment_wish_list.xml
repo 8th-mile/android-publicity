@@ -1,13 +1,16 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+
+<LinearLayout android:background="#e5e5e5"
     android:layout_height="match_parent"
-    tools:context="com.a8thmile.rvce.a8thmile.ui.fragments.WishListFragment">
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/myList"
+        android:layout_height="0dp" android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:paddingTop="1dp">
 
-</FrameLayout>
+    </ListView>
+</LinearLayout>

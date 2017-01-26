@@ -54,17 +54,20 @@
 
                         <Button
                             style="@style/Button"
+                            android:id="@+id/register"
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
                             android:text="Register" />
 
                         <Button
                             style="@style/Button"
+                            android:id="@+id/loc"
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:text="Like" />
+                            android:text="Location" />
 
                         <Button
                             style="@style/Button"
-                            android:text="Details" />
+                            android:id="@+id/wishlist"
+                            android:text="WishList" />
 
 
                     </LinearLayout>
@@ -75,7 +78,7 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/frameLayout"
                 android:fontFamily="sans-serif-light"
@@ -86,13 +89,15 @@
                 android:paddingTop="12dp"
                 android:text="Description Here"
                 android:textColor="@color/black"
-                android:textSize="@dimen/dimen_16sp"
+                android:textSize="20sp"
+
                 android:textStyle="bold"
                 android:background="@android:color/white" />
 
+
             <TextView
                 android:id="@+id/time"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView"
                 android:fontFamily="sans-serif-medium"
@@ -105,6 +110,24 @@
                 android:textSize="@dimen/dimen_16sp"
                 android:textStyle="italic"
                 android:background="@android:color/white" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_below="@id/textView"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:id="@+id/price"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rupee_indian"
+                android:layout_below="@id/textView"
+                android:layout_toLeftOf="@+id/price"/>
 
 
             <ImageButton
@@ -120,7 +143,7 @@
                 android:contentDescription="Image"
                 android:elevation="@dimen/dimen_4dp"
                 android:onClick="launchTwitter"
-                android:src="@drawable/ic_event_white_24dp"
+                android:src="@drawable/ic_add_white_24dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/activity_vertical_margin" />
 
