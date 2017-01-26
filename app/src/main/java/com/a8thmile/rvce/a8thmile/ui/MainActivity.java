@@ -15,12 +15,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.a8thmile.rvce.a8thmile.login.LoginPresenter;
 import com.a8thmile.rvce.a8thmile.login.LoginPresenterImpl;
 import com.a8thmile.rvce.a8thmile.login.LoginView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.dd.CircularProgressButton;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -37,14 +40,14 @@ import com.google.gson.Gson;
 import java.io.Serializable;
 
 
-public class MainActivity extends AppCompatActivity implements LoginView, GoogleApiClient.OnConnectionFailedListener,View.OnClickListener,GoogleApiClient.ConnectionCallbacks {
+public class MainActivity extends AppCompatActivity implements LoginView, GoogleApiClient.OnConnectionFailedListener,GoogleApiClient.ConnectionCallbacks {
 
 private final String CLIENT_ID="498621765547-49g05468oaldcosvg61llfd29jdjrob7.apps.googleusercontent.com";
 
     private CircularProgressButton signin;
     private LoginPresenter mLoginPresenter;
     private SignInButton signInButton;
-    private  GoogleSignInOptions gso;
+    private GoogleSignInOptions gso;
     private GoogleApiClient mGoogleApiClient;
     private int RC_SIGN_IN = 100;
 
@@ -53,9 +56,13 @@ private final String CLIENT_ID="498621765547-49g05468oaldcosvg61llfd29jdjrob7.ap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        signin=(CircularProgressButton)findViewById(R.id.signin);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+
+        final ImageView googLogo = (ImageView) findViewById(R.id.g_logo);
+        Glide.with(getBaseContext()).load(R.drawable.g_anim).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).dontAnimate().into(googLogo);
+
 
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -68,11 +75,21 @@ private final String CLIENT_ID="498621765547-49g05468oaldcosvg61llfd29jdjrob7.ap
                 .addOnConnectionFailedListener(this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-        // findViewById(R.id.sign_in_button).setSize(SignInButton.SIZE_STANDARD);
 
-        signin.setOnClickListener(this);
+
+
         mLoginPresenter = new LoginPresenterImpl(this);
-    }
+
+        googLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Glide.with(getBaseContext()).load(R.drawable.g_anim).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade().into(googLogo);
+                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
+        });}
+
     public void signOut() {
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                 new ResultCallback<Status>() {
@@ -119,21 +136,7 @@ private final String CLIENT_ID="498621765547-49g05468oaldcosvg61llfd29jdjrob7.ap
 Log.v("test","faileed "+connectionResult);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.signin:
-                startCircularProgressButton();
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(signInIntent, RC_SIGN_IN);
-                break;
 
-
-
-        }
-
-
-    }
 
     public void handleSignInResult(GoogleSignInResult result)
     {

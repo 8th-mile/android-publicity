@@ -95,8 +95,12 @@ private String UserName;
         //fab = (FloatingActionButton) findViewById(R.id.fab);
 
         // Navigation view header
-        navHeader = navigationView.getHeaderView(0);
-navigationView.setItemIconTintList(null);
+
+        View headerLayout =
+                navigationView.inflateHeaderView(R.layout.nav_header_main);
+        navHeader = headerLayout.findViewById(R.id.view_container);
+        //navHeader = navigationView.getHeaderView(0); // DIDN'T WORK IN v23.0.0 SO DID ABOVE JUGAAD- ALEKH
+        navigationView.setItemIconTintList(null);
         txtName = (TextView) navHeader.findViewById(R.id.name);
        // txtEmail = (TextView) navHeader.findViewById(R.id.email);
         imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
