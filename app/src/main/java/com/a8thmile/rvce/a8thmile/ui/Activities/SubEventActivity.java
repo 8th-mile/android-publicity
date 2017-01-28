@@ -40,7 +40,11 @@ public class SubEventActivity extends AppCompatActivity implements RegisterView 
         setContentView(R.layout.activity_sub_event);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF702F64));
+        getSupportActionBar().setElevation(0);
         copyEventFields=new ArrayList<EventFields>();
         eventFields=getIntent().getExtras().getParcelableArrayList("subevents");
         for(int i=0;i<eventFields.size();i++)

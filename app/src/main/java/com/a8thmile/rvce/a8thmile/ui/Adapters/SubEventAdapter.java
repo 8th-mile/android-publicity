@@ -81,7 +81,7 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
             holder.description = (TextView)convertView.findViewById(R.id.textView);
             holder.imageButton = (ImageButton) convertView.findViewById(R.id.launchTwitterAnimation);
             holder.registerButton=(Button)convertView.findViewById(R.id.register);
-            holder.details=(Button)convertView.findViewById(R.id.det);
+            holder.details=(Button)convertView.findViewById(R.id.loc);
             holder.wishlist=(Button)convertView.findViewById(R.id.wishlist);
             holder.revealView = (LinearLayout) convertView.findViewById(R.id.linearView);
             holder.layoutButtons = (LinearLayout) convertView.findViewById(R.id.layoutButtons);
