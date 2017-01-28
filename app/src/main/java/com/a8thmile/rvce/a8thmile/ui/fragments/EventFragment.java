@@ -121,10 +121,10 @@ public class EventFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        /*eventFields=((HomeActivity)getActivity()).getEvents();
+        eventFields=((HomeActivity)getActivity()).getEvents();
         token=((HomeActivity)getActivity()).getToken();
         user_id=((HomeActivity)getActivity()).getId();
-        splitEventList(eventFields);*/
+        splitEventList(eventFields);
     }
     public void splitEventList(List<EventFields> eventFields) {
         for (EventFields event:eventFields)

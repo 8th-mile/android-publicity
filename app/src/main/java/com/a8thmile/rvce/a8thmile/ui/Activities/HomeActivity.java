@@ -141,15 +141,13 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
 
         View headerLayout =
                 navigationView.inflateHeaderView(R.layout.nav_header_main);
-<<<<<<< HEAD
-        navHeader =headerLayout.findViewById(R.id.view_container);
-=======
+
+
         navHeader = headerLayout.findViewById(R.id.view_container);
         //navHeader = navigationView.getHeaderView(0); // DIDN'T WORK IN v23.0.0 SO DID ABOVE JUGAAD- ALEKH
 
-        navHeader = navigationView.getHeaderView(0);
 
->>>>>>> f7e2ace25d179a65c182baadcb9f502e19f2e0c4
+
         navigationView.setItemIconTintList(null);
         txtName = (TextView) navHeader.findViewById(R.id.name);
         // txtEmail = (TextView) navHeader.findViewById(R.id.email);

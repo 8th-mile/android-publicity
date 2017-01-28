@@ -41,10 +41,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
 
     private final String CLIENT_ID="498621765547-49g05468oaldcosvg61llfd29jdjrob7.apps.googleusercontent.com";
     private int RC_SIGN_IN = 100;
-<<<<<<< HEAD
-=======
-
->>>>>>> f7e2ace25d179a65c182baadcb9f502e19f2e0c4
 
     //mvp presenter used for sending requests
     private LoginPresenter mLoginPresenter;
@@ -82,11 +78,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
 
-                //REMOVE
-                Intent homeIntent = new Intent(getBaseContext(), HomeActivity.class);
-
-                startActivity(homeIntent);
-                ///TILL HERE
+               
             }
         });
 
@@ -121,12 +113,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
 
     }
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> f7e2ace25d179a65c182baadcb9f502e19f2e0c4
 
     @Override
     public void goToHomeActivity(LoginResponse mLoginResponse /*String email,String name*/) {
