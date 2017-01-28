@@ -2,8 +2,10 @@ package com.a8thmile.rvce.a8thmile.ui.Adapters;
 
 import android.animation.Animator;
 import android.content.Context;
+
 import android.content.Intent;
 import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenterImpl;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
 import com.a8thmile.rvce.a8thmile.ui.Activities.EventActivity;
 import com.a8thmile.rvce.a8thmile.ui.Activities.SubEventActivity;
+import com.a8thmile.rvce.a8thmile.ui.RowItem;
 
 import java.util.List;
 
@@ -38,7 +41,7 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
     private String token;
     private String id;
 
-    public SubEventAdapter(Context context, int resource, List<EventFields> rowItems,String token,String id) {
+    public SubEventAdapter(Context context, int resource, List<EventFields> rowItems, String token, String id) {
         super(context, resource,rowItems);
         this.context=context;
         this.token=token;
@@ -94,12 +97,12 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
         holder.time.setText(rowItem.getDate());
 
         holder.description.setText(rowItem.getName());
-        holder.price.setText(Integer.toString(rowItem.getPrice()));
+        //holder.price.setText(Integer.toString(rowItem.get()));
 
         holder.registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerPresenter.registerRequest(rowItem.getId(),id,token);
+             registerPresenter.registerRequest(rowItem.getId(),id,token);
             }
         });
 
@@ -108,7 +111,7 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
             holder.wishlist.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    registerPresenter.wishlistRequest(rowItem.getId(), id, token);
+                  registerPresenter.wishlistRequest(rowItem.getId(), id, token);
                 }
             });
 

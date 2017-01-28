@@ -8,11 +8,14 @@ import com.a8thmile.rvce.a8thmile.models.LoginResponse;
 public interface LoginView {
 
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> f7e2ace25d179a65c182baadcb9f502e19f2e0c4
     public void goToHomeActivity(LoginResponse mLoginResponse/*String email,String name*/);
 
     public void displayFailureToast(String message);
