@@ -8,13 +8,6 @@ import com.a8thmile.rvce.a8thmile.models.LoginResponse;
 public interface LoginView {
 
 
-
-    public void startCircularProgressButton();
-
-    public void setCircularProgressStatus(int value);
-
-
-
     public void goToHomeActivity(LoginResponse mLoginResponse/*String email,String name*/);
 
     public void displayFailureToast(String message);

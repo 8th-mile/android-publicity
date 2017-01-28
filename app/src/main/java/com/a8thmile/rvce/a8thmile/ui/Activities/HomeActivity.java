@@ -122,6 +122,7 @@ public String getId(){return id;}
         //navHeader = navigationView.getHeaderView(0); // DIDN'T WORK IN v23.0.0 SO DID ABOVE JUGAAD- ALEKH
 
         navHeader = navigationView.getHeaderView(0);
+
         navigationView.setItemIconTintList(null);
         txtName = (TextView) navHeader.findViewById(R.id.name);
        // txtEmail = (TextView) navHeader.findViewById(R.id.email);

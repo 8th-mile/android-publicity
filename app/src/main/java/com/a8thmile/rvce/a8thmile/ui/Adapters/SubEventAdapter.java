@@ -2,6 +2,7 @@ package com.a8thmile.rvce.a8thmile.ui.Adapters;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.inputmethodservice.Keyboard;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenter;
 import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenterImpl;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
 import com.a8thmile.rvce.a8thmile.ui.Activities.SubEventActivity;
+import com.a8thmile.rvce.a8thmile.ui.RowItem;
 
 import java.util.List;
 
@@ -30,12 +32,12 @@ import static com.a8thmile.rvce.a8thmile.R.id.imageView;
  * Created by vignesh on 19/1/17.
  */
 
-public class SubEventAdapter extends ArrayAdapter<EventFields> {
+public class SubEventAdapter extends ArrayAdapter<RowItem> {
     Context context;
     private String token;
     private String id;
 
-    public SubEventAdapter(Context context, int resource, List<EventFields> rowItems,String token,String id) {
+    public SubEventAdapter(Context context, int resource, List<RowItem> rowItems, String token, String id) {
         super(context, resource,rowItems);
         this.context=context;
         this.token=token;
@@ -62,7 +64,7 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
 
     public View getView(int position, View convertView, ViewGroup parent){
         final ViewHolder holder;
-        final EventFields rowItem = getItem(position);
+        final RowItem rowItem = getItem(position);
        final RegisterPresenter registerPresenter=  new RegisterPresenterImpl((SubEventActivity)context);
 
 
@@ -87,15 +89,15 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
             holder = (ViewHolder)convertView.getTag();
 
         holder.image.setImageResource(R.drawable.event4);
-        holder.time.setText(rowItem.getDate());
+        holder.time.setText(rowItem.getTime());
 
-        holder.description.setText(rowItem.getName());
-        holder.price.setText(Integer.toString(rowItem.getPrice()));
+        holder.description.setText(rowItem.getDescText());
+        //holder.price.setText(Integer.toString(rowItem.get()));
 
         holder.registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerPresenter.registerRequest(rowItem.getId(),id,token);
+          //      registerPresenter.registerRequest(rowItem.getId(),id,token);
             }
         });
 
@@ -105,7 +107,7 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
             holder.wishlist.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    registerPresenter.wishlistRequest(rowItem.getId(), id, token);
+            //        registerPresenter.wishlistRequest(rowItem.getId(), id, token);
                 }
             });
 
