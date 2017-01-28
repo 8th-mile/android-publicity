@@ -30,5 +30,9 @@
         <item name="android:minWidth">@dimen/dimen_0dp</item>
 
     </style>
+    <style name="menuItem">
+        <item name="android:textSize">20dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
 
 </resources>

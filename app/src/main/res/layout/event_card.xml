@@ -4,22 +4,22 @@
     tools:context="com.a8thmile.rvce.a8thmile.ui.fragments.HomeFragment"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-
     >
 
     <android.support.v7.widget.CardView xmlns:cardview="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        cardview:cardCornerRadius="@dimen/dimen_8dp"
-        cardview:cardElevation="@dimen/dimen_4dp"
+        android:layout_height="match_parent"
+        cardview:cardCornerRadius="5dp"
+        cardview:cardElevation="3dp"
         cardview:cardUseCompatPadding="true"
-        >
 
+        >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#ffffff"
+            >
 
             <io.codetail.widget.RevealFrameLayout
                 android:id="@+id/frameLayout"
@@ -39,7 +39,7 @@
                     android:id="@+id/linearView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="@color/twitter"
+                    android:background="#FF702F64"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
                     android:visibility="gone">
@@ -60,7 +60,7 @@
 
                         <Button
                             style="@style/Button"
-                            android:id="@+id/loc"
+                            android:id="@+id/det"
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
                             android:text="Location" />
 
@@ -92,7 +92,7 @@
                 android:textSize="20sp"
 
                 android:textStyle="bold"
-                android:background="@android:color/white" />
+                android:background="@color/TRANSPARENT" />
 
 
             <TextView
@@ -109,7 +109,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/dimen_16sp"
                 android:textStyle="italic"
-                android:background="@android:color/white" />
+                android:background="@color/TRANSPARENT" />
 
 
             <TextView
@@ -151,5 +151,6 @@
 
 
     </android.support.v7.widget.CardView>
+
 
 </LinearLayout>

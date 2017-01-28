@@ -43,13 +43,15 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
+import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements EventView,GoogleApiClient.OnConnectionFailedListener,GoogleApiClient.ConnectionCallbacks {
     public NavigationView navigationView;
-    private DrawerLayout drawer;
+    //private DrawerLayout drawer;
     private View navHeader;
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtEmail;
@@ -80,11 +82,11 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     private List<EventFields> eventFieldsList;
     public HomeActivity() {
     }
-
+    private FlowingDrawer mDrawer;
     public List<EventFields> getEvents() {
         return eventFieldsList;
     }
-public String getId(){return id;}
+    public String getId(){return id;}
     public String getToken(){return token;}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,21 @@ public String getId(){return id;}
         token=getIntent().getStringExtra("token");
         Log.v("test","token "+token);
         Log.v("test","id "+id);
+        mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
+        mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
+        mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
+            @Override
+            public void onDrawerStateChange(int oldState, int newState) {
+                if (newState == ElasticDrawer.STATE_CLOSED) {
+                    Log.i("MainActivity", "Drawer STATE_CLOSED");
+                }
+            }
+
+            @Override
+            public void onDrawerSlide(float openRatio, int offsetPixels) {
+                Log.i("MainActivity", "openRatio=" + openRatio + " ,offsetPixels=" + offsetPixels);
+            }
+        });
 
         mGoogleApiClient= new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -109,23 +126,25 @@ public String getId(){return id;}
         //mGoogleApiClient=getIntent().getStringExtra("apiclient");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setNavigationIcon(R.drawable.ic_menu_black_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDrawer.toggleMenu();
+            }
+        });
         mHandler = new Handler();
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+      //  drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         //fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        // Navigation view header
-
         View headerLayout =
                 navigationView.inflateHeaderView(R.layout.nav_header_main);
-        navHeader = headerLayout.findViewById(R.id.view_container);
-        //navHeader = navigationView.getHeaderView(0); // DIDN'T WORK IN v23.0.0 SO DID ABOVE JUGAAD- ALEKH
-
-        navHeader = navigationView.getHeaderView(0);
+        navHeader =headerLayout.findViewById(R.id.view_container);
         navigationView.setItemIconTintList(null);
         txtName = (TextView) navHeader.findViewById(R.id.name);
-       // txtEmail = (TextView) navHeader.findViewById(R.id.email);
-        imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
+        // txtEmail = (TextView) navHeader.findViewById(R.id.email);
+        //imgNavHeaderBg = (ImageView) navHeader.findViewById(R.id.img_header_bg);
 
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
 
@@ -151,6 +170,7 @@ public String getId(){return id;}
     private void loadNavHeader(String UserName) {
         // name, website
         txtName.setText(UserName);
+        Log.v("test","name "+UserName);
 
 
 
@@ -165,10 +185,10 @@ public String getId(){return id;}
         // if user select the current navigation menu again, don't do anything
         // just close the navigation drawer
         if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
-            drawer.closeDrawers();
+            mDrawer.closeMenu();
 
             // show or hide the fab button
-           // toggleFab();
+            // toggleFab();
             return;
         }
         Runnable mPendingRunnable = new Runnable() {
@@ -191,30 +211,30 @@ public String getId(){return id;}
         }
 
         // show or hide the fab button
-      //  toggleFab();
+        //  toggleFab();
 
         //Closing drawer on item click
-        drawer.closeDrawers();
+        mDrawer.closeMenu();
 
         // refresh toolbar menu
         invalidateOptionsMenu();
     }
 
-   private void signOut() {
-       Log.v("test","signout");
+    private void signOut() {
+        Log.v("test","signout");
         if(mGoogleApiClient.isConnected()) {
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-            new ResultCallback<Status>() {
-                @Override
-                public void onResult(Status status) {
-                    // Get sign out result
-                    Log.v("test","signout2");
-                    finish();
-                }
-            });
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                            // Get sign out result
+                            Log.v("test","signout2");
+                            finish();
+                        }
+                    });
 
         }
-       }
+    }
 
 
     private Fragment getHomeFragment() {
@@ -252,7 +272,7 @@ public String getId(){return id;}
         }
     }
     private void setToolbarTitle() {
-      //  getSupportActionBar().setTitle(activityTitles[navItemIndex]);
+        //  getSupportActionBar().setTitle(activityTitles[navItemIndex]);
         textView.setText(activityTitles[navItemIndex]);
 
     }
@@ -315,13 +335,13 @@ public String getId(){return id;}
                 }
                 menuItem.setChecked(true);
                 if(navItemIndex!=7)
-                loadHomeFragment();
+                    loadHomeFragment();
 
                 return true;
             }
         });
 
-
+/*
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer) {
 
             @Override
@@ -338,15 +358,15 @@ public String getId(){return id;}
         };
 
         //Setting the actionbarToggle to drawer layout
-        drawer.setDrawerListener(actionBarDrawerToggle);
+        mDrawer.setDrawerListener(actionBarDrawerToggle);
 
         //calling sync state is necessary or else your hamburger icon wont show up
-        actionBarDrawerToggle.syncState();
+        actionBarDrawerToggle.syncState();*/
     }
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawers();
+        if (mDrawer.isMenuVisible()){
+            mDrawer.closeMenu();
             return;
         }
 
@@ -396,7 +416,7 @@ public String getId(){return id;}
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-    Log.v("test","connected in home");
+        Log.v("test","connected in home");
 
     }
 

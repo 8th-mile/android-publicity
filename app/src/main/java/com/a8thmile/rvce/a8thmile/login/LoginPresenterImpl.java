@@ -18,13 +18,13 @@ public class LoginPresenterImpl implements LoginPresenter, LoginInteractor.onLog
 
     @Override
     public void onSucess(LoginResponse mLoginResponse) {
-        mLoginView.setCircularProgressStatus(COMPLETED_PROGRESS);
+
         mLoginView.goToHomeActivity(mLoginResponse /*email,String name*/);
     }
 
     @Override
     public void onFailure(String message) {
-        mLoginView.setCircularProgressStatus(FAILED_PROGRESS);
+
         mLoginView.displayFailureToast(message);
 
     }

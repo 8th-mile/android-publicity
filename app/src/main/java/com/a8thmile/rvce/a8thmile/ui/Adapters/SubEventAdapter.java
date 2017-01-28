@@ -2,6 +2,8 @@ package com.a8thmile.rvce.a8thmile.ui.Adapters;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,7 @@ import com.a8thmile.rvce.a8thmile.R;
 import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenter;
 import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenterImpl;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
+import com.a8thmile.rvce.a8thmile.ui.Activities.EventActivity;
 import com.a8thmile.rvce.a8thmile.ui.Activities.SubEventActivity;
 
 import java.util.List;
@@ -51,11 +54,12 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
         TextView price;
         ImageButton imageButton;
         Button registerButton;
-        Button loc;
+
         Button wishlist;
         LinearLayout revealView;
         LinearLayout  layoutButtons;
         Animation alphaAnimation;
+        Button details;
         float pixelDensity;
         boolean flag = true;
     }
@@ -77,7 +81,7 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
             holder.description = (TextView)convertView.findViewById(R.id.textView);
             holder.imageButton = (ImageButton) convertView.findViewById(R.id.launchTwitterAnimation);
             holder.registerButton=(Button)convertView.findViewById(R.id.register);
-            holder.loc=(Button)convertView.findViewById(R.id.loc);
+            holder.details=(Button)convertView.findViewById(R.id.det);
             holder.wishlist=(Button)convertView.findViewById(R.id.wishlist);
             holder.revealView = (LinearLayout) convertView.findViewById(R.id.linearView);
             holder.layoutButtons = (LinearLayout) convertView.findViewById(R.id.layoutButtons);
@@ -99,8 +103,7 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
             }
         });
 
-        //since the same adapter is used for events listing and wishlist listing and we do not need wishlist button
-        //again in the wishlist events , we check if it null
+
 
             holder.wishlist.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -108,6 +111,19 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
                     registerPresenter.wishlistRequest(rowItem.getId(), id, token);
                 }
             });
+
+        holder.details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent detailsIntent=new Intent(context, EventActivity.class);
+                detailsIntent.putExtra("name",rowItem.getName());
+                detailsIntent.putExtra("price",Integer.toString(rowItem.getPrice()));
+                Log.v("test","price "+rowItem.getPrice());
+                detailsIntent.putExtra("date",rowItem.getDate());
+
+                context.startActivity(detailsIntent);
+            }
+        });
 
         holder.imageButton.setOnClickListener(new View.OnClickListener() {
 

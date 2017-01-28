@@ -9,9 +9,7 @@ public interface LoginView {
 
 
 
-    public void startCircularProgressButton();
 
-    public void setCircularProgressStatus(int value);
 
 
 

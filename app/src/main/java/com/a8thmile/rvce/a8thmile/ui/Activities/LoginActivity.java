@@ -41,7 +41,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
 
     private final String CLIENT_ID="498621765547-49g05468oaldcosvg61llfd29jdjrob7.apps.googleusercontent.com";
     private int RC_SIGN_IN = 100;
-    private CircularProgressButton signin;
 
     //mvp presenter used for sending requests
     private LoginPresenter mLoginPresenter;
@@ -63,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        final ImageView googLogo = (ImageView) findViewById(R.id.g_logo);
+         googLogo = (ImageView) findViewById(R.id.g_logo);
         Glide.with(getBaseContext()).load(R.drawable.g_anim).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).dontAnimate().into(googLogo);
 
         mLoginPresenter = new LoginPresenterImpl(this);
@@ -112,16 +111,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
 
     }
 
-    @Override
-    public void startCircularProgressButton() {
-        signin.setIndeterminateProgressMode(true);
 
-    }
-
-    @Override
-    public void setCircularProgressStatus(int value) {
-        signin.setProgress(value);
-    }
 
 
 
@@ -133,6 +123,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
         homeIntent.putExtra("email",email);
         homeIntent.putExtra("token",mLoginResponse.getToken());
         startActivity(homeIntent);
+        Log.v("test","testing "+R.drawable.g_anim+" "+DiskCacheStrategy.SOURCE+" "+googLogo);
         Glide.with(getBaseContext()).load(R.drawable.g_anim).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).dontAnimate().into(googLogo);
     }
 
@@ -193,7 +184,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            setCircularProgressStatus(50);
+
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }

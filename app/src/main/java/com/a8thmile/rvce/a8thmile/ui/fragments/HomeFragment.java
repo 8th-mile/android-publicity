@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.a8thmile.rvce.a8thmile.R;
 
+
 public class HomeFragment extends Fragment{
 
 
@@ -23,6 +24,9 @@ public class HomeFragment extends Fragment{
 
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+
+
 
         return view;
     }
