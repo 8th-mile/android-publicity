@@ -9,5 +9,6 @@ public void registerRequest(String event_id,String user_id,String token);
     public void wishlistRequest(String event_id,String user_id,String token);
 
     public void wishListGet(String user_id,String token);
+    public void myEventsListGet(String user_id,String token);
 
 }

@@ -57,9 +57,9 @@ public class EventAdapter extends ArrayAdapter<EventItem> {
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Pacifico.ttf");
         holder.title.setTypeface(font);
         holder.linearLayout.setBackgroundResource(eventItem.getBackColId());
-        TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, context.getResources().getDisplayMetrics());
+
         convertView.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT,
-                (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 300, context.getResources().getDisplayMetrics() )));
+                (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 350, context.getResources().getDisplayMetrics() )));
         return  convertView;
     }
 }

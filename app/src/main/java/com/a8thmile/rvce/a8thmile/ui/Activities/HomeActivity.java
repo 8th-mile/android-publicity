@@ -33,6 +33,7 @@ import com.a8thmile.rvce.a8thmile.ui.fragments.ContactFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.EventFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.HomeFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.Hospitality;
+import com.a8thmile.rvce.a8thmile.ui.fragments.MyEventsFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.SponserFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.TourFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.WishListFragment;
@@ -69,6 +70,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     private static final String TAG_HOSPITALITY = "hospitality";
     private static final String TAG_CONTACT = "contact";
     private static final String TAG_TOUR = "tour";
+    private static final String TAG_MYEVENTS = "myevents";
     private static final String TAG_WISHLIST = "wishlist";
     public static String CURRENT_TAG = TAG_HOME;
 
@@ -271,6 +273,9 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
                 TourFragment tourFragment=new TourFragment();
                 return tourFragment;
             case 6:
+                MyEventsFragment myEventsFragment=new MyEventsFragment();
+                return myEventsFragment;
+            case 7:
                 WishListFragment wishListFragment=new WishListFragment();
                 return wishListFragment;
 
@@ -322,12 +327,16 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
                         navItemIndex = 5;
                         CURRENT_TAG = TAG_TOUR;
                         break;
-                    case R.id.nav_wishlist:
+                    case R.id.nav_my_events:
                         navItemIndex = 6;
+                        CURRENT_TAG = TAG_MYEVENTS;
+                        break;
+                    case R.id.nav_wishlist:
+                        navItemIndex = 7;
                         CURRENT_TAG = TAG_WISHLIST;
                         break;
                     case R.id.nav_logout:
-                        navItemIndex=7;
+                        navItemIndex=8;
                         signOut();
                         break;
                     default:
@@ -341,7 +350,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
                     menuItem.setChecked(true);
                 }
                 menuItem.setChecked(true);
-                if(navItemIndex!=7)
+                if(navItemIndex!=8)
                     loadHomeFragment();
 
                 return true;
@@ -383,7 +392,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
         if (shouldLoadHomeFragOnBackPress) {
             // checking if user is on other navigation menu
             // rather than home
-            if (navItemIndex != 0&&navItemIndex!=7) {
+            if (navItemIndex != 0&&navItemIndex!=8) {
                 navItemIndex = 0;
                 CURRENT_TAG = TAG_HOME;
                 loadHomeFragment();

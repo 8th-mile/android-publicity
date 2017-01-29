@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
 
-               
+
             }
         });
 
@@ -129,6 +129,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
     @Override
     public void displayFailureToast(String message) {
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+        Glide.with(getBaseContext()).load(R.drawable.g_anim).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).dontAnimate().into(googLogo);
     }
 
 
@@ -160,6 +161,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
         {
 
            Toast.makeText(this,"Failed to Sign in.Check Your Internet Connection",Toast.LENGTH_LONG).show();
+            Glide.with(getBaseContext()).load(R.drawable.g_anim).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).dontAnimate().into(googLogo);
         }
     }
 

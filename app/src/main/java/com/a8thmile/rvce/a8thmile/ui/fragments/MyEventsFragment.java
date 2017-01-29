@@ -19,57 +19,51 @@ import com.a8thmile.rvce.a8thmile.models.EventFields;
 import com.a8thmile.rvce.a8thmile.models.EventResponse;
 import com.a8thmile.rvce.a8thmile.models.MyEventResponse;
 import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
+import com.a8thmile.rvce.a8thmile.ui.Adapters.MyEventsAdapter;
 import com.a8thmile.rvce.a8thmile.ui.Adapters.WishListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class WishListFragment extends Fragment implements RegisterView{
-   List<EventFields> wishList;
-    String token;
-    String id;
+public class MyEventsFragment extends Fragment implements RegisterView{
+    private List<Integer> responseEvents;
+    private List<EventFields> events;
+    private List<EventFields> myEvents;
+    private String token;
+    private String id;
+    private ListView listView;
+    private MyEventsAdapter myEventsAdapter;
+private RegisterPresenter registerPresenter;
 
-    ListView lv;
-    WishListAdapter adapter;
-    RegisterPresenter registerPresenter;
-
-
-    public WishListFragment() {
+    public MyEventsFragment() {
         // Required empty public constructor
     }
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        registerPresenter=new RegisterPresenterImpl(this);
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        wishList=new ArrayList<EventFields>();
-        View view= inflater.inflate(R.layout.fragment_wish_list, container, false);
-        lv= (ListView) view.findViewById(R.id.myList);
-
-        return view;
+        View view= inflater.inflate(R.layout.fragment_my_events, container, false);
+        responseEvents=new ArrayList<Integer>();
+        myEvents=new ArrayList<EventFields>();
+        listView=(ListView)view.findViewById(R.id.myList);
+        registerPresenter=new RegisterPresenterImpl(this);
+    return view;
     }
 
     @Override
     public void registered(String message) {
-        Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
+        //irrelevent to this fragment
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         token=((HomeActivity)getActivity()).getToken();
         id=((HomeActivity)getActivity()).getId();
-        registerPresenter.wishListGet(id,token);
+        events=((HomeActivity)getActivity()).getEvents();
+        registerPresenter.myEventsListGet(id,token);
     }
 
     @Override
@@ -79,17 +73,26 @@ public class WishListFragment extends Fragment implements RegisterView{
 
     @Override
     public void wishListGot(EventResponse eventResponse) {
-            wishList=eventResponse.getResults();
-        adapter = new WishListAdapter(getContext(), R.layout.wishlist_card, wishList,token,id,WishListFragment.this);
-        lv.setAdapter(adapter);
-
-
-        Log.v("test","list "+wishList.size());
-
+//irrelevent
     }
 
     @Override
     public void MyEventListGot(MyEventResponse eventResponse) {
+            responseEvents=eventResponse.getRegistered_events();
+        Log.v("test","list "+responseEvents);
+           for(EventFields e:events)
+           {
+               for(int i: responseEvents)
+               {
+                   if(Integer.parseInt(e.getId())==i)
+                   {
+                       myEvents.add(e);
+                       break;
+                   }
+               }
+           }
+        myEventsAdapter = new MyEventsAdapter(getContext(), R.layout.myevents_card, myEvents,token,id);
+        listView.setAdapter(myEventsAdapter);
 
     }
 }

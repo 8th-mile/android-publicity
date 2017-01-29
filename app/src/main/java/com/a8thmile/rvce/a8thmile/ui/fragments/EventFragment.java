@@ -31,9 +31,12 @@ public class EventFragment extends Fragment {
     private List<EventFields> cultural;
     private List<EventFields> technical;
     private List<EventFields> informal;
-    private List<EventFields> proshows;
+    private List<EventFields> photography;
+    private List<EventFields> engaging;
+    private List<EventFields> sports;
     private List<EventFields> flagship;
-    private List<EventFields> workshops;
+    private List<EventFields> fine_arts;
+    private List<EventFields> literary;
 
     private String token;
     private String user_id;
@@ -46,10 +49,13 @@ public class EventFragment extends Fragment {
 
             R.drawable.technical,
             R.drawable.cultural,
+                    R.drawable.sports,
             R.drawable.informal,
-            R.drawable.proshow,
+                    R.drawable.arts,
+                    R.drawable.literary,
+                    R.drawable.photography,
+            R.drawable.engaging,
             R.drawable.flagship,
-            R.drawable.workshops
     };
 
 
@@ -72,27 +78,36 @@ public class EventFragment extends Fragment {
         cultural=new ArrayList<EventFields>();
         informal=new ArrayList<EventFields>();
         flagship=new ArrayList<EventFields>();
-        workshops=new ArrayList<EventFields>();
-        proshows=new ArrayList<EventFields>();
+        sports=new ArrayList<EventFields>();
+        photography=new ArrayList<EventFields>();
+       literary =new ArrayList<EventFields>();
+        fine_arts=new ArrayList<EventFields>();
+        engaging=new ArrayList<EventFields>();
         eventCategory=new HashMap<Integer, String>();
         eventMap=new HashMap<Integer, List<EventFields>>();
         eventMap.put(0,technical);
         eventCategory.put(0,"Technical Events");
         eventMap.put(1,cultural);
         eventCategory.put(1,"Cultural Events");
-        eventMap.put(2,informal);
-        eventCategory.put(2,"Informal Events");
-        eventMap.put(3,proshows);
-        eventCategory.put(3,"Pro Shows");
-        eventMap.put(4,flagship);
-        eventCategory.put(4,"FlagShip Events");
-        eventMap.put(5,workshops);
-        eventCategory.put(5,"Workshops");
+        eventMap.put(2,sports);
+        eventCategory.put(2,"Sports and Gaming Events");
+        eventMap.put(3,informal);
+        eventCategory.put(3,"Informal Events");
+        eventMap.put(4,fine_arts);
+        eventCategory.put(4,"Fine Arts Events");
+        eventMap.put(5,literary);
+        eventCategory.put(5,"Literary Events");
+        eventMap.put(6,photography);
+        eventCategory.put(6,"Photography Events");
+        eventMap.put(7,engaging);
+        eventCategory.put(7,"Engaging Events");
+        eventMap.put(8,flagship);
+        eventCategory.put(8,"FlagShip Events");
 
         ListView lv = (ListView) view.findViewById(R.id.eventList);
         eventItems = new ArrayList<EventItem>();
-        int[] backColId = {R.color.cultural,R.color.flagship,R.color.proshows,R.color.informal,R.color.technical,R.color.workshop};
-        final String[] titles = {"TECHNICAL","CULTURAL","INFORMAL","PRO SHOWS","FLAGSHIP","WORKSHOPS"};
+        int[] backColId = {R.color.cultural,R.color.flagship,R.color.proshows,R.color.informal,R.color.technical,R.color.workshop,R.color.photography,R.color.fine_arts,R.color.engaging};
+        final String[] titles = {"TECHNICAL","CULTURAL","SPORTS AND GAMING","INFORMAL","FINE ARTS","LITERARY","PHOTOGRAPHY","ENGAGING","FLAGSHIP"};
         for(int i=0;i<titles.length;i++)
         {
             EventItem eventItem=new EventItem(backColId[i],images[i],titles[i]);
@@ -138,16 +153,25 @@ public class EventFragment extends Fragment {
                     cultural.add(event);
                     break;
                 case 3:
-                    informal.add(event);
+                    sports.add(event);
                     break;
                 case 4:
-                    proshows.add(event);
+                    informal.add(event);
                     break;
                 case 5:
-                    flagship.add(event);
+                    literary.add(event);
                     break;
                 case 6:
-                    workshops.add(event);
+                    photography.add(event);
+                    break;
+                case 7:
+                    fine_arts.add(event);
+                    break;
+                case 8:
+                    engaging.add(event);
+                    break;
+                case 9:
+                    flagship.add(event);
                     break;
 
             }

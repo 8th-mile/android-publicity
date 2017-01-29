@@ -29,7 +29,7 @@
             android:name=".ui.Activities.SubEventActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity android:name=".ui.Activities.EventActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.MyDialog"></activity>
     </application>
 
 </manifest>

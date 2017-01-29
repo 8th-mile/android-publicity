@@ -9,7 +9,8 @@
     <string name="nav_hospitality">Hospitality</string>
     <string name="nav_contact">Contact Us</string>
     <string name="nav_tour">Rvce Tour</string>
-    <string name="nav_wishlist">My Wish List</string>
+    <string name="nav_my_events">My Events</string>
+    <string name="nav_wishlist">Wish List</string>
     <string name="nav_logout">Logout</string>
     <string name="openDrawer">open_drawer</string>
     <string name="closeDrawer">close_drawer</string>
@@ -23,8 +24,8 @@
         <item>Hospitality</item>
         <item>Contact Us</item>
         <item>Rvce Tour</item>
-
-        <item>My Wish List</item>
+        <item>My Events</item>
+        <item>Wish List</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

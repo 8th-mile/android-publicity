@@ -2,7 +2,8 @@ package com.a8thmile.rvce.a8thmile.ui.Adapters;
 
 import android.animation.Animator;
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenterImpl;
 import com.a8thmile.rvce.a8thmile.events.register.RegisterView;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
 import com.a8thmile.rvce.a8thmile.models.EventResponse;
+import com.a8thmile.rvce.a8thmile.models.MyEventResponse;
+import com.a8thmile.rvce.a8thmile.ui.Activities.EventActivity;
 import com.a8thmile.rvce.a8thmile.ui.fragments.WishListFragment;
 
 import java.util.List;
@@ -62,6 +65,11 @@ wishListFragment.RegisterFailed(message);
 
     }
 
+    @Override
+    public void MyEventListGot(MyEventResponse eventResponse) {
+
+    }
+
 
     public class ViewHolder{
         ImageView image;
@@ -70,7 +78,7 @@ wishListFragment.RegisterFailed(message);
         TextView price;
         ImageButton imageButton;
         Button registerButton;
-        Button loc;
+        Button details;
 
         LinearLayout revealView;
         LinearLayout  layoutButtons;
@@ -96,7 +104,7 @@ wishListFragment.RegisterFailed(message);
             holder.description = (TextView)convertView.findViewById(R.id.textView);
             holder.imageButton = (ImageButton) convertView.findViewById(R.id.launchTwitterAnimation);
             holder.registerButton=(Button)convertView.findViewById(R.id.register);
-            holder.loc=(Button)convertView.findViewById(R.id.loc);
+            holder.details=(Button)convertView.findViewById(R.id.details);
             holder.revealView = (LinearLayout) convertView.findViewById(R.id.linearView);
             holder.layoutButtons = (LinearLayout) convertView.findViewById(R.id.layoutButtons);
             holder.pixelDensity = context.getResources().getDisplayMetrics().density;
@@ -111,11 +119,22 @@ wishListFragment.RegisterFailed(message);
             holder.registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v("test","price "+rowItem.getPrice());
-                registerPresenter.registerRequest(rowItem.getId(),id,token);
+
+                //registerPresenter.registerRequest(rowItem.getId(),id,token);
             }
         });
+        holder.details.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent detailsIntent=new Intent(context, EventActivity.class);
+                detailsIntent.putExtra("name",rowItem.getName());
+                detailsIntent.putExtra("price",Integer.toString(rowItem.getPrice()));
 
+                detailsIntent.putExtra("date",rowItem.getDate());
+
+                context.startActivity(detailsIntent);
+            }
+        });
         //since the same adapter is used for events listing and wishlist listing and we do not need wishlist button
         //again in the wishlist events , we check if it null
 

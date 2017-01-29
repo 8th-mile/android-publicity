@@ -17,6 +17,7 @@ import com.a8thmile.rvce.a8thmile.R;
 import com.a8thmile.rvce.a8thmile.events.register.RegisterView;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
 import com.a8thmile.rvce.a8thmile.models.EventResponse;
+import com.a8thmile.rvce.a8thmile.models.MyEventResponse;
 import com.a8thmile.rvce.a8thmile.ui.OnSwipeTouchListener;
 import com.a8thmile.rvce.a8thmile.ui.RowItem;
 import com.a8thmile.rvce.a8thmile.ui.Adapters.SubEventAdapter;
@@ -154,5 +155,10 @@ public class SubEventActivity extends AppCompatActivity implements RegisterView 
     @Override
     public void wishListGot(EventResponse eventResponse) {
         //Irrelevant to this activity
+    }
+
+    @Override
+    public void MyEventListGot(MyEventResponse eventResponse) {
+
     }
 }

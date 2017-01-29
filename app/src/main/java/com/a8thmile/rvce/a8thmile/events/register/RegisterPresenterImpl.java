@@ -2,12 +2,13 @@ package com.a8thmile.rvce.a8thmile.events.register;
 
 import com.a8thmile.rvce.a8thmile.models.EventResponse;
 import com.a8thmile.rvce.a8thmile.models.EventWishListGetResponse;
+import com.a8thmile.rvce.a8thmile.models.MyEventResponse;
 
 /**
  * Created by vignesh on 24/1/17.
  */
 
-public class RegisterPresenterImpl implements RegisterPresenter,RegisterInteractor.onRegisterCalledListener,RegisterInteractor.onWishListGotListener{
+public class RegisterPresenterImpl implements RegisterPresenter,RegisterInteractor.onMyEventListener,RegisterInteractor.onRegisterCalledListener,RegisterInteractor.onWishListGotListener{
     RegisterView registerView;
     RegisterInteractorImpl registerInteractor;
     public RegisterPresenterImpl(RegisterView registerView)
@@ -31,6 +32,11 @@ public class RegisterPresenterImpl implements RegisterPresenter,RegisterInteract
     }
 
     @Override
+    public void myEventsListGet(String user_id, String token) {
+        registerInteractor.callMyEventListApi(user_id,token,this);
+    }
+
+    @Override
     public void onSuccess(String message) {
         registerView.registered(message);
     }
@@ -43,6 +49,16 @@ public class RegisterPresenterImpl implements RegisterPresenter,RegisterInteract
     @Override
     public void onSuccess(EventResponse eventResponse) {
         registerView.wishListGot(eventResponse);
+    }
+
+    @Override
+    public void onSuccess(MyEventResponse eventResponse) {
+        registerView.MyEventListGot(eventResponse);
+    }
+
+    @Override
+    public void onMyEventFailure(String message) {
+
     }
 
     @Override

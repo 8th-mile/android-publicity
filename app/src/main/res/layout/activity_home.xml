@@ -9,7 +9,7 @@ android:clipChildren="false"
 android:clipToPadding="false"
 app:edPosition="1"
 app:edMenuSize="220dp"
-app:edMenuBackground="#cf8000FF">
+app:edMenuBackground="#0D3746">
 
 <include
     layout="@layout/contents"

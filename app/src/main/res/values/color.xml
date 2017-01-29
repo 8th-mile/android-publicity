@@ -10,8 +10,11 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="cultural">#B259EC</color>
+    <color name="photography">#33AFFF</color>
+    <color name="engaging">#ff5c33</color>
+    <color name="fine_arts">#ff4d4d</color>
     <color name="technical">#ECC449</color>
-    <color name="proshows">#33AFFF</color>
+    <color name="proshows">#4d4dff</color>
     <color name="timer1">#9f33AFFF</color>
     <color name="informal">#f442a4</color>
     <color name="flagship">#f45f42</color>

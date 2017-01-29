@@ -4,10 +4,12 @@ import android.util.Log;
 import com.a8thmile.rvce.a8thmile.api.EventRegisterApi;
 import com.a8thmile.rvce.a8thmile.api.EventWishListGet;
 import com.a8thmile.rvce.a8thmile.api.EventWishListAdd;
+import com.a8thmile.rvce.a8thmile.api.MyEventsGet;
 import com.a8thmile.rvce.a8thmile.api.ServiceGenerator;
 import com.a8thmile.rvce.a8thmile.models.EventRegister;
 import com.a8thmile.rvce.a8thmile.models.EventRegisterResponse;
 import com.a8thmile.rvce.a8thmile.models.EventResponse;
+import com.a8thmile.rvce.a8thmile.models.MyEventResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -107,5 +109,31 @@ public class RegisterInteractorImpl implements RegisterInteractor {
                     listener.onWishListFailure("Some Problem Occurred. Check Your Internet Connection");
             }
         });
+    }
+
+    @Override
+    public void callMyEventListApi(String user_id, String token, final onMyEventListener listener) {
+        MyEventsGet eventWishListGet = ServiceGenerator.createService(MyEventsGet.class);
+        Call<MyEventResponse> call= eventWishListGet.getMyEvents(token,Integer.parseInt(user_id));
+        call.enqueue(new Callback<MyEventResponse>() {
+                         @Override
+                         public void onResponse(Call<MyEventResponse> call, Response<MyEventResponse> response) {
+                             if(response.code()==200)
+                             {
+                                 listener.onSuccess(response.body());
+                             }
+                             else
+                             {
+                                 listener.onMyEventFailure("Server Error");
+                             }
+                         }
+
+                         @Override
+                         public void onFailure(Call<MyEventResponse> call, Throwable t) {
+                                listener.onMyEventFailure("Cant Connect to the Server. Check Your Internet Connection");
+                         }
+                     }
+        );
+
     }
 }

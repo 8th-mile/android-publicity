@@ -33,7 +33,7 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int screenWidth = (int) (metrics.widthPixels * 0.95);
-        int screenHeight = (int) (metrics.heightPixels * 0.80);
+        int screenHeight = (int) (metrics.heightPixels * 0.87);
         getWindow().setLayout(screenWidth, screenHeight);
         aboutText = (TextView) findViewById(R.id.about);
         dateText = (TextView) findViewById(R.id.date);

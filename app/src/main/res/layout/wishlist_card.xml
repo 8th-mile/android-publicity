@@ -60,9 +60,9 @@
 
                         <Button
                             style="@style/Button"
-                            android:id="@+id/loc"
+                            android:id="@+id/details"
                             android:layout_marginBottom="@dimen/activity_vertical_margin"
-                            android:text="Location" />
+                            android:text="Details" />
 
 
 
