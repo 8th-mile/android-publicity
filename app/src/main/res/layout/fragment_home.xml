@@ -13,7 +13,17 @@
         android:layout_weight="4"
         android:background="@drawable/gradient_home">
         <!--For Countdown timer-->
-
+        <com.xenione.digit.TabDigit
+            xmlns:digit="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/tabDigit1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            digit:backgroundColor="#000000"
+            digit:padding="10dp"
+            digit:textColor="#ffffff"
+            digit:textSize="60dp" />
 
     </RelativeLayout>
 

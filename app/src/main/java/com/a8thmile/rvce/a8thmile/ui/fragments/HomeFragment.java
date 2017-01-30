@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 import com.a8thmile.rvce.a8thmile.R;
 import com.a8thmile.rvce.a8thmile.ui.Adapters.SlidingNewsAdapter;
 import com.viewpagerindicator.CirclePageIndicator;
-
+import com.xenione.digit.TabDigit;
 
 
 public class HomeFragment extends Fragment{
@@ -30,8 +30,11 @@ public class HomeFragment extends Fragment{
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
 
+    public TabDigit tabDigit1;
+
     private static final String[] TEXTS={"Content1","Content2","Content3"};
     private static final Integer[] IMAGES= {R.drawable.event5,R.drawable.event1,R.drawable.event4};
+
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
     private ArrayList<String> TextsArray=new ArrayList<String>();
     @Override
@@ -40,7 +43,9 @@ public class HomeFragment extends Fragment{
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 init(view);
-
+        tabDigit1 = (TabDigit) view.findViewById(R.id.tabDigit1);
+        tabDigit1.start();
+        //ViewCompat.postOnAnimationDelayed(tabDigit1, this, 1000);
         return view;
     }
 
