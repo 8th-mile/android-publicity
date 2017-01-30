@@ -14,6 +14,34 @@ public class EventFields implements Parcelable{
     private String date;
     private int type;
     private int price;
+    private String about;
+    private String rules;
+    private int first_prize;
+    private int second_price;
+
+    protected EventFields(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        date = in.readString();
+        type = in.readInt();
+        price = in.readInt();
+        about = in.readString();
+        rules = in.readString();
+        first_prize = in.readInt();
+        second_price = in.readInt();
+    }
+
+    public static final Creator<EventFields> CREATOR = new Creator<EventFields>() {
+        @Override
+        public EventFields createFromParcel(Parcel in) {
+            return new EventFields(in);
+        }
+
+        @Override
+        public EventFields[] newArray(int size) {
+            return new EventFields[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -39,12 +67,16 @@ public class EventFields implements Parcelable{
         this.date = date;
     }
 
-    public EventFields(String id, String name, String date, int type, int price) {
+    public EventFields(String id, String name, String date, int type, int price, String about, String rules, int first_prize, int second_price) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.type = type;
         this.price = price;
+        this.about = about;
+        this.rules = rules;
+        this.first_prize = first_prize;
+        this.second_price = second_price;
     }
 
     public int getType() {
@@ -68,23 +100,37 @@ public class EventFields implements Parcelable{
         return 0;
     }
 
-    public EventFields(Parcel in) {
-        id = in.readString();
-        name = in.readString();
-        date=in.readString();
-        type=in.readInt();
-        price=in.readInt();
+    public String getAbout() {
+        return about;
     }
 
-    public static final Parcelable.Creator<EventFields> CREATOR = new Parcelable.Creator<EventFields>() {
-        public EventFields createFromParcel(Parcel in) {
-            return new EventFields(in);
-        }
+    public void setAbout(String about) {
+        this.about = about;
+    }
 
-        public EventFields[] newArray(int size) {
-            return new EventFields[size];
-        }
-    };
+    public String getRules() {
+        return rules;
+    }
+
+    public void setRules(String rules) {
+        this.rules = rules;
+    }
+
+    public int getFirst_prize() {
+        return first_prize;
+    }
+
+    public void setFirst_prize(int first_prize) {
+        this.first_prize = first_prize;
+    }
+
+    public int getSecond_price() {
+        return second_price;
+    }
+
+    public void setSecond_price(int second_price) {
+        this.second_price = second_price;
+    }
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
@@ -93,5 +139,10 @@ public class EventFields implements Parcelable{
         parcel.writeString(date);
         parcel.writeInt(type);
         parcel.writeInt(price);
+        parcel.writeString(about);
+        parcel.writeString(rules);
+        parcel.writeInt(first_prize);
+        parcel.writeInt(second_price);
+
     }
 }

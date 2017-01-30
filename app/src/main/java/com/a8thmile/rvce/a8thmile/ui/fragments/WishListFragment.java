@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -30,7 +31,7 @@ public class WishListFragment extends Fragment implements RegisterView{
    List<EventFields> wishList;
     String token;
     String id;
-
+    private LinearLayout empty;
     ListView lv;
     WishListAdapter adapter;
     RegisterPresenter registerPresenter;
@@ -58,7 +59,9 @@ public class WishListFragment extends Fragment implements RegisterView{
         wishList=new ArrayList<EventFields>();
 
         View view= inflater.inflate(R.layout.fragment_wish_list, container, false);
-        spinner=(ProgressBar)view.findViewById(R.id.progressBar);
+        empty=(LinearLayout)view.findViewById(R.id.empty);
+
+                spinner=(ProgressBar)view.findViewById(R.id.progressBar);
         spinner.setVisibility(View.VISIBLE);
         lv= (ListView) view.findViewById(R.id.myList);
 
@@ -67,6 +70,7 @@ public class WishListFragment extends Fragment implements RegisterView{
 
     @Override
     public void registered(String message) {
+        spinner.setVisibility(View.GONE);
         Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
     }
 
@@ -76,6 +80,8 @@ public class WishListFragment extends Fragment implements RegisterView{
         token=((HomeActivity)getActivity()).getToken();
         id=((HomeActivity)getActivity()).getId();
         registerPresenter.wishListGet(id,token);
+
+
     }
 
     @Override
@@ -89,6 +95,8 @@ public class WishListFragment extends Fragment implements RegisterView{
 
         spinner.setVisibility(View.GONE);
             wishList=eventResponse.getResults();
+        if(wishList.size()!=0)
+            empty.setVisibility(View.VISIBLE);
         adapter = new WishListAdapter(getContext(), R.layout.wishlist_card, wishList,token,id,WishListFragment.this,spinner);
         lv.setAdapter(adapter);
 

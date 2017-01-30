@@ -149,6 +149,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
         {
 
             token=result.getSignInAccount().getIdToken();
+            Log.v("test","token "+token);
             email=result.getSignInAccount().getEmail();
             name=result.getSignInAccount().getDisplayName();
 

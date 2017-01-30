@@ -8,7 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.a8thmile.rvce.a8thmile.R;
@@ -34,7 +37,9 @@ public class MyEventsFragment extends Fragment implements RegisterView{
     private String id;
     private ListView listView;
     private MyEventsAdapter myEventsAdapter;
+    private LinearLayout empty;
 private RegisterPresenter registerPresenter;
+    private ProgressBar spinner;
 
     public MyEventsFragment() {
         // Required empty public constructor
@@ -48,7 +53,10 @@ private RegisterPresenter registerPresenter;
         View view= inflater.inflate(R.layout.fragment_my_events, container, false);
         responseEvents=new ArrayList<Integer>();
         myEvents=new ArrayList<EventFields>();
+        empty=(LinearLayout) view.findViewById(R.id.empty);
         listView=(ListView)view.findViewById(R.id.myList);
+        spinner=(ProgressBar)view.findViewById(R.id.progressBar);
+        spinner.setVisibility(View.VISIBLE);
         registerPresenter=new RegisterPresenterImpl(this);
     return view;
     }
@@ -64,10 +72,11 @@ private RegisterPresenter registerPresenter;
         id=((HomeActivity)getActivity()).getId();
         events=((HomeActivity)getActivity()).getEvents();
         registerPresenter.myEventsListGet(id,token);
+
     }
 
     @Override
-    public void RegisterFailed(String message) {
+    public void RegisterFailed(String message) {  spinner.setVisibility(View.GONE);
         Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
     }
 
@@ -78,8 +87,12 @@ private RegisterPresenter registerPresenter;
 
     @Override
     public void MyEventListGot(MyEventResponse eventResponse) {
+        spinner.setVisibility(View.GONE);
             responseEvents=eventResponse.getRegistered_events();
-
+        if(responseEvents.size()!=0)
+        {
+            empty.setVisibility(View.GONE);
+        }
 
            for(EventFields e:events)
            {

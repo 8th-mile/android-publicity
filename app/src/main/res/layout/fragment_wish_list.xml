@@ -1,5 +1,5 @@
 
-<LinearLayout android:background="#e5e5e5"
+<LinearLayout android:background="@drawable/gradient"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -18,9 +18,32 @@
         android:layout_alignLeft="@+id/textview"
         android:layout_alignStart="@+id/textview"
         android:layout_alignParentBottom="true" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/empty"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            android:src="@drawable/ic_shopping_cart_black_48dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="Empty Wish List"/>
+    </LinearLayout>
     <ListView
         android:id="@+id/myList"
-        android:layout_height="0dp" android:layout_weight="1"
+        android:layout_height="fill_parent"
         android:layout_width="fill_parent"
         android:paddingTop="1dp">
 

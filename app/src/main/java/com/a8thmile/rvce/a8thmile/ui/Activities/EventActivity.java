@@ -40,10 +40,12 @@ public class EventActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         priceText = (TextView) findViewById(R.id.price);
         rulesText = (TextView) findViewById(R.id.rules);
+        firstPrizeText=(TextView)findViewById(R.id.first);
+        secondPrizeText=(TextView)findViewById(R.id.second);
 
 
         eventName = getIntent().getStringExtra("name");
-        eventDesc = getIntent().getStringExtra("desc");
+        eventDesc = getIntent().getStringExtra("about");
         eventRules = getIntent().getStringExtra("rules");
         eventDate = getIntent().getStringExtra("date");
         eventFees = getIntent().getStringExtra("price");
@@ -54,13 +56,15 @@ public class EventActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(eventName);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        aboutText.setText("Come show us the best way to disguise yourself with the perfect blend of colours. Let the world see how you can transform a face canvas into a piece of art.");
-        rulesText.setText("1. Theme will be given on spot.\n" +
-                "2. Only two members allowed per team (One member will paint on the other member's face). \n" +
-                "3. The participant gets 2 hours in total to finish the design.\n" +
-                "4. The basic required items like brush and paint(basic colours) will be provided . ");
+        if(eventDesc==null)
+            eventDesc="-";
+        aboutText.setText(eventDesc);
+        if(eventRules==null)
+            eventRules="-";
+        rulesText.setText(eventRules);
         dateText.setText(eventDate);
-
+        firstPrizeText.setText(eventPrize1);
+        secondPrizeText.setText(eventPrize2);
         priceText.setText(eventFees);
 
 
