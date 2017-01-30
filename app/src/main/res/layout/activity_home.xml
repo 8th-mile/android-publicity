@@ -14,7 +14,7 @@
 <include
     layout="@layout/contents"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="fill_parent" />
 <!--menu-->
 <com.mxn.soul.flowingdrawer_core.FlowingMenuLayout
     android:id="@+id/menulayout"

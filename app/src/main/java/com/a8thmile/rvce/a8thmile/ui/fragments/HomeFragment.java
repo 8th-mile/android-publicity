@@ -29,9 +29,12 @@ public class HomeFragment extends Fragment{
     private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
+
     public TabDigit tabDigit1;
-    private static final String[] TEXTS={"News1","News2","News3"};
-    private static final Integer[] IMAGES= {R.drawable.event1,R.drawable.event3,R.drawable.event4};
+
+    private static final String[] TEXTS={"Content1","Content2","Content3"};
+    private static final Integer[] IMAGES= {R.drawable.event5,R.drawable.event1,R.drawable.event4};
+
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
     private ArrayList<String> TextsArray=new ArrayList<String>();
     @Override
@@ -42,7 +45,7 @@ public class HomeFragment extends Fragment{
 init(view);
         tabDigit1 = (TabDigit) view.findViewById(R.id.tabDigit1);
         tabDigit1.start();
-        ViewCompat.postOnAnimationDelayed(tabDigit1, this, 1000);
+        //ViewCompat.postOnAnimationDelayed(tabDigit1, this, 1000);
         return view;
     }
 

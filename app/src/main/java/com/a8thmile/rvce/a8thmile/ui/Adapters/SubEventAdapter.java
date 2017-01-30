@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.a8thmile.rvce.a8thmile.R;
@@ -40,12 +41,14 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
     Context context;
     private String token;
     private String id;
+    private ProgressBar spinner;
 
-    public SubEventAdapter(Context context, int resource, List<EventFields> rowItems, String token, String id) {
+    public SubEventAdapter(Context context, int resource, List<EventFields> rowItems, String token, String id, ProgressBar spinner) {
         super(context, resource,rowItems);
         this.context=context;
         this.token=token;
         this.id=id;
+        this.spinner=spinner;
     }
 
 
@@ -57,7 +60,6 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
         TextView price;
         ImageButton imageButton;
         Button registerButton;
-
         Button wishlist;
         LinearLayout revealView;
         LinearLayout  layoutButtons;
@@ -95,6 +97,7 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
 
         holder.image.setImageResource(R.drawable.event4);
         holder.time.setText(rowItem.getDate());
+        holder.price.setText(Integer.toString(rowItem.getPrice()));
 
         holder.description.setText(rowItem.getName());
         //holder.price.setText(Integer.toString(rowItem.get()));
@@ -113,6 +116,7 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
                 @Override
                 public void onClick(View view) {
                   registerPresenter.wishlistRequest(rowItem.getId(), id, token);
+                    spinner.setVisibility(View.VISIBLE);
                 }
             });
 
@@ -184,7 +188,8 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
             anim.start();
 
             holder.flag = false;
-        } else {
+        }
+        else {
 
             holder.imageButton.setBackgroundResource(R.drawable.rounded_button);
             holder.imageButton.setImageResource(R.drawable.ic_add_white_24dp);

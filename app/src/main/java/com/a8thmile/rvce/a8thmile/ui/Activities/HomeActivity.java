@@ -22,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,16 +53,27 @@ import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 import java.util.HashMap;
 import java.util.List;
 
+import static android.view.View.VISIBLE;
+
 public class HomeActivity extends AppCompatActivity implements EventView,GoogleApiClient.OnConnectionFailedListener,GoogleApiClient.ConnectionCallbacks {
     public NavigationView navigationView;
     //private DrawerLayout drawer;
     private View navHeader;
-    private ImageView imgNavHeaderBg, imgProfile;
-    private TextView txtName, txtEmail;
-    public Toolbar toolbar;
+
+    private TextView txtName;
+    private Toolbar toolbar;
+
     private TextView textView;
-    private FloatingActionButton fab;
     public static int navItemIndex = 0;
+    private ProgressBar spinner;
+    private boolean shouldLoadHomeFragOnBackPress = true;
+    private Handler mHandler;
+    private String UserName;
+    private String UserEmail;
+    private String[] activityTitles;
+    private GoogleApiClient mGoogleApiClient;
+    private EventPresenter eventPresenter;
+    private List<EventFields> eventFieldsList;
 
     private String token;
     private String id;
@@ -76,14 +88,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     private static final String TAG_WISHLIST = "wishlist";
     public static String CURRENT_TAG = TAG_HOME;
 
-    private boolean shouldLoadHomeFragOnBackPress = true;
-    private Handler mHandler;
-    private String UserName;
-    private String UserEmail;
-    private String[] activityTitles;
-    private GoogleApiClient mGoogleApiClient;
-    private EventPresenter eventPresenter;
-    private List<EventFields> eventFieldsList;
+
     public HomeActivity() {
     }
     private FlowingDrawer mDrawer;
@@ -104,13 +109,11 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        textView=(TextView)toolbar.findViewById(R.id.toolbar_title);
-        UserName=getIntent().getStringExtra("userName");
-        UserEmail=getIntent().getStringExtra("email");
-        id=getIntent().getStringExtra("id");
-        token=getIntent().getStringExtra("token");
-        Log.v("test","token "+token);
-        Log.v("test","id "+id);
+        textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        UserName = getIntent().getStringExtra("userName");
+        UserEmail = getIntent().getStringExtra("email");
+        id = getIntent().getStringExtra("id");
+        token = getIntent().getStringExtra("token");
         mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
         mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
         mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
@@ -127,15 +130,16 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
             }
         });
 
+        spinner = (ProgressBar) findViewById(R.id.progressBar);
+        spinner.setVisibility(VISIBLE);
 
-
-        mGoogleApiClient= new GoogleApiClient.Builder(this)
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
 
-        eventPresenter=new EventPresenterImpl(this);
+        eventPresenter = new EventPresenterImpl(this);
         //mGoogleApiClient=getIntent().getStringExtra("apiclient");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -149,7 +153,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
             }
         });
         mHandler = new Handler();
-      //  drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //  drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         //fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -159,7 +163,6 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
 
         navHeader = headerLayout.findViewById(R.id.view_container);
         //navHeader = navigationView.getHeaderView(0); // DIDN'T WORK IN v23.0.0 SO DID ABOVE JUGAAD- ALEKH
-
 
 
         navigationView.setItemIconTintList(null);
@@ -181,12 +184,19 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
         }
         eventPresenter.eventRequest(token);
 
-    }
+        spinner.setVisibility(View.VISIBLE);
 
+    }
     @Override
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mGoogleApiClient.disconnect();
     }
 
     private void loadNavHeader(String UserName) {
@@ -452,6 +462,8 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
 
     @Override
     public void showFailureMessage(String message) {
+
+        spinner.setVisibility(View.GONE);
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
@@ -459,40 +471,43 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     public void loadData(EventResponse eventResponse) {
         this.eventFieldsList=eventResponse.getResults();
 
+        spinner.setVisibility(View.GONE);
+
 
     }
 
     public void changeActionbar(int position) {
 
         switch (position){
-            case 1:
+            case 0:
                 toolbar.setBackground(new ColorDrawable(0xFF0D3746));
                 break;
-            case 2:
+            case 1:
                 toolbar.setBackground(new ColorDrawable(0xFF072866));
                 break;
-            case 3:
+            case 2:
                 toolbar.setBackground(new ColorDrawable(0xFF221d45));
                 break;
-            case 4:
+            case 3:
                 toolbar.setBackground(new ColorDrawable(0xFF7f1404));
                 break;
-            case 5:
+            case 4:
                 toolbar.setBackground(new ColorDrawable(0xFF132a41));
                 break;
-            case 6:
+            case 5:
                 toolbar.setBackground(new ColorDrawable(0xFF144f5e));
                 break;
-            case 7:
+            case 6:
                 toolbar.setBackground(new ColorDrawable(0xFFce2e00));
                 break;
-            case 8:
+            case 7:
                 toolbar.setBackground(new ColorDrawable(0xFF1b0a05));
                 break;
-            case 9:
+            case 8:
                 toolbar.setBackground(new ColorDrawable(0xFFff8008));
                 break;
             default:
+                toolbar.setBackground(new ColorDrawable(0xFFffffff));
 
         }
 

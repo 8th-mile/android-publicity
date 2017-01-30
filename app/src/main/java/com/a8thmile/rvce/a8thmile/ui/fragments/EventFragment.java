@@ -1,6 +1,7 @@
 package com.a8thmile.rvce.a8thmile.ui.fragments;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -11,7 +12,9 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -30,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-
+import android.widget.Toast;
 
 
 public class EventFragment extends Fragment {
@@ -54,6 +57,7 @@ public class EventFragment extends Fragment {
     private static final int NUM_PAGES = 5;
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
+    SpringIndicator springIndicator;
 
 
     private static int[] images=
@@ -89,6 +93,7 @@ public  void changeToolbarColor(int position)
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_event, container, false);
+
         technical=new ArrayList<EventFields>();
         cultural=new ArrayList<EventFields>();
         informal=new ArrayList<EventFields>();
@@ -121,7 +126,7 @@ public  void changeToolbarColor(int position)
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
         //ListView lv = (ListView) view.findViewById(R.id.eventList);
         mPager = (ViewPager) view.findViewById(R.id.pager);
-        SpringIndicator springIndicator = (SpringIndicator) view.findViewById(R.id.indicator);
+        springIndicator = (SpringIndicator) view.findViewById(R.id.indicator);
         eventItems = new ArrayList<EventItem>();
         int[] backColId = {R.drawable.gradient,R.drawable.gradient3,R.drawable.gradient4,R.drawable.gradient5,R.drawable.gradient6,R.drawable.gradient7,R.drawable.gradient8,R.drawable.gradient9,R.drawable.gradient10};
         final String[] titles = {"TECHNICAL","CULTURAL","SPORTS AND GAMING","INFORMAL","FINE ARTS","LITERARY","PHOTOGRAPHY","ENGAGING","FLAGSHIP"};
@@ -130,18 +135,14 @@ public  void changeToolbarColor(int position)
             EventItem eventItem=new EventItem(backColId[i],images[i],titles[i]);
             eventItems.add(eventItem);
         }
-        mPagerAdapter = new EventAdapter(getContext(),getChildFragmentManager(),R.layout.event_list_item,
-                eventItems,eventMap,token,user_id,eventCategory,this);
-        mPager.setAdapter(mPagerAdapter);
 
-        //mPager.setPageTransformer(true, new ZoomOutPageTransformer());
-        springIndicator.setViewPager(mPager);
+
         //springIndicator.bringToFront();
         //mPager.setAdapter(mPagerAdapter);
       /*  mPager.setOnClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               Log.v("test","hey "+i+" "+l);
+
                Intent subIntent=new Intent(getActivity(), SubEventActivity.class);
                 Bundle bundle=new Bundle();
                bundle.putParcelableArrayList("subevents", (ArrayList<? extends Parcelable>) eventMap.get(i));
@@ -161,7 +162,14 @@ public  void changeToolbarColor(int position)
      eventFields=((HomeActivity)getActivity()).getEvents();
      token=((HomeActivity)getActivity()).getToken();
         user_id=((HomeActivity)getActivity()).getId();
-        splitEventList(eventFields);
+        if(eventFields!=null)
+       splitEventList(eventFields);
+      mPagerAdapter = new EventAdapter(getContext(),getChildFragmentManager(),R.layout.event_list_item,
+                eventItems,eventMap,token,user_id,eventCategory,this);
+        mPager.setAdapter(mPagerAdapter);
+
+        //mPager.setPageTransformer(true, new ZoomOutPageTransformer());
+        springIndicator.setViewPager(mPager);
     }
     public void splitEventList(List<EventFields> eventFields) {
         for (EventFields event:eventFields)
@@ -197,21 +205,6 @@ public  void changeToolbarColor(int position)
                     break;
 
             }
-        }
-    }
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return new SliderFragment();
-        }
-
-        @Override
-        public int getCount() {
-            return NUM_PAGES;
         }
     }
 
@@ -254,4 +247,5 @@ public  void changeToolbarColor(int position)
             }
         }
     }
+
 }

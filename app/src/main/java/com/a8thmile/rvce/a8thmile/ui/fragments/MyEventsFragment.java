@@ -79,7 +79,8 @@ private RegisterPresenter registerPresenter;
     @Override
     public void MyEventListGot(MyEventResponse eventResponse) {
             responseEvents=eventResponse.getRegistered_events();
-        Log.v("test","list "+responseEvents);
+
+
            for(EventFields e:events)
            {
                for(int i: responseEvents)

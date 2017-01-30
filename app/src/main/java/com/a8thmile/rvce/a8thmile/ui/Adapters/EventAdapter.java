@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,15 +52,18 @@ public class EventAdapter extends FragmentPagerAdapter {
         this.eventFragment=eventFragment;
     }
 
+    public void changeToolbarColor(int position)
+    {
+        eventFragment.changeToolbarColor(position);
+
+    }
 
 
     @Override
     public Fragment getItem(int position) {
       //  ViewHolder holder;
 
-        eventFragment.changeToolbarColor(position);
-
-        return(SliderFragment.newInstance(position,eventList.get(position),eventFields.get(position),
+        return(SliderFragment.newInstance(this,position,eventList.get(position),eventFields.get(position),
                 token,user_id,category.get(position)));
       /*  if (convertView == null){
             convertView = mInflater.inflate(R.layout.event_list_item, null);
