@@ -1,5 +1,7 @@
 package com.a8thmile.rvce.a8thmile.ui.Activities;
 
+import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -57,8 +59,10 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     public NavigationView navigationView;
     //private DrawerLayout drawer;
     private View navHeader;
+
     private TextView txtName;
     private Toolbar toolbar;
+
     private TextView textView;
     public static int navItemIndex = 0;
     private ProgressBar spinner;
@@ -93,16 +97,23 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     }
     public String getId(){return id;}
     public String getToken(){return token;}
+
+    public static Context context;
+    public HomeActivity(Context c) {
+        context = c;
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        textView=(TextView)toolbar.findViewById(R.id.toolbar_title);
-        UserName=getIntent().getStringExtra("userName");
-        UserEmail=getIntent().getStringExtra("email");
-        id=getIntent().getStringExtra("id");
-        token=getIntent().getStringExtra("token");
+        textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        UserName = getIntent().getStringExtra("userName");
+        UserEmail = getIntent().getStringExtra("email");
+        id = getIntent().getStringExtra("id");
+        token = getIntent().getStringExtra("token");
         mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
         mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
         mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
@@ -118,19 +129,22 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
                 Log.i("MainActivity", "openRatio=" + openRatio + " ,offsetPixels=" + offsetPixels);
             }
         });
-        spinner=(ProgressBar)findViewById(R.id.progressBar);
+
+        spinner = (ProgressBar) findViewById(R.id.progressBar);
         spinner.setVisibility(VISIBLE);
-        mGoogleApiClient= new GoogleApiClient.Builder(this)
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
 
-        eventPresenter=new EventPresenterImpl(this);
+        eventPresenter = new EventPresenterImpl(this);
         //mGoogleApiClient=getIntent().getStringExtra("apiclient");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setElevation(0);
+        //getSupportActionBar().setIcon(R.drawable.ic_menu_black_24dp);
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,7 +153,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
             }
         });
         mHandler = new Handler();
-      //  drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //  drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         //fab = (FloatingActionButton) findViewById(R.id.fab);
 
@@ -149,7 +163,6 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
 
         navHeader = headerLayout.findViewById(R.id.view_container);
         //navHeader = navigationView.getHeaderView(0); // DIDN'T WORK IN v23.0.0 SO DID ABOVE JUGAAD- ALEKH
-
 
 
         navigationView.setItemIconTintList(null);
@@ -170,9 +183,10 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
             loadHomeFragment();
         }
         eventPresenter.eventRequest(token);
-        spinner.setVisibility(View.VISIBLE);
-    }
 
+        spinner.setVisibility(View.VISIBLE);
+
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -430,10 +444,6 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
@@ -460,7 +470,47 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     @Override
     public void loadData(EventResponse eventResponse) {
         this.eventFieldsList=eventResponse.getResults();
+
         spinner.setVisibility(View.GONE);
+
+
+    }
+
+    public void changeActionbar(int position) {
+
+        switch (position){
+            case 0:
+                toolbar.setBackground(new ColorDrawable(0xFF0D3746));
+                break;
+            case 1:
+                toolbar.setBackground(new ColorDrawable(0xFF072866));
+                break;
+            case 2:
+                toolbar.setBackground(new ColorDrawable(0xFF221d45));
+                break;
+            case 3:
+                toolbar.setBackground(new ColorDrawable(0xFF7f1404));
+                break;
+            case 4:
+                toolbar.setBackground(new ColorDrawable(0xFF132a41));
+                break;
+            case 5:
+                toolbar.setBackground(new ColorDrawable(0xFF144f5e));
+                break;
+            case 6:
+                toolbar.setBackground(new ColorDrawable(0xFFce2e00));
+                break;
+            case 7:
+                toolbar.setBackground(new ColorDrawable(0xFF1b0a05));
+                break;
+            case 8:
+                toolbar.setBackground(new ColorDrawable(0xFFff8008));
+                break;
+            default:
+                toolbar.setBackground(new ColorDrawable(0xFFffffff));
+
+        }
+
 
     }
 }

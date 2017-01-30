@@ -153,7 +153,7 @@ public class SubEventActivity extends AppCompatActivity implements RegisterView 
     @Override
     public void RegisterFailed(String message) {
         spinner.setVisibility(View.GONE);
-        Toast.makeText(this,"Registration Failed. "+message,Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Failed. "+message,Toast.LENGTH_LONG).show();
     }
 
     @Override

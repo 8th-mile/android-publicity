@@ -7,7 +7,7 @@
         android:layout_height="match_parent">
 
         <gradient
-            android:endColor="#0D3746"
+            android:endColor="#0d3746"
             android:centerColor="#1F5057"
             android:startColor="#3F7B70"
             android:type="radial"

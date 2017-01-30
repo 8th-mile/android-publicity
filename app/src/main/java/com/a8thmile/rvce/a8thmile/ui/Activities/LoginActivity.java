@@ -77,6 +77,8 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
                 Glide.with(getBaseContext()).load(R.drawable.g_anim).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade().into(googLogo);
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
+                //Intent homeIntent = new Intent(getBaseContext(),HomeActivity.class);
+                //startActivity(homeIntent);
 
 
             }
@@ -122,7 +124,6 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
         homeIntent.putExtra("email",email);
         homeIntent.putExtra("token",mLoginResponse.getToken());
         startActivity(homeIntent);
-        Log.v("test","testing "+R.drawable.g_anim+" "+DiskCacheStrategy.SOURCE+" "+googLogo);
         Glide.with(getBaseContext()).load(R.drawable.g_anim).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).dontAnimate().into(googLogo);
     }
 

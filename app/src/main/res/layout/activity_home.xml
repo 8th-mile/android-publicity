@@ -1,15 +1,15 @@
 
 <com.mxn.soul.flowingdrawer_core.FlowingDrawer
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:android="http://schemas.android.com/apk/res/android"
-android:id="@+id/drawerlayout"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:clipChildren="false"
-android:clipToPadding="false"
-app:edPosition="1"
-app:edMenuSize="220dp"
-app:edMenuBackground="#0D3746">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    app:edPosition="1"
+    app:edMenuSize="220dp"
+    app:edMenuBackground="#0D3746">
 
 <include
     layout="@layout/contents"
@@ -27,7 +27,7 @@ app:edMenuBackground="#0D3746">
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-android:background="@android:color/transparent"
+        android:background="@android:color/transparent"
         app:theme="@style/menuItem"
         app:itemTextColor="@color/black"
         app:menu="@menu/activity_main_drawer" />
