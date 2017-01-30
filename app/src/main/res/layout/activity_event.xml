@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-
+       app:titleTextColor="@color/black"
         android:background="@drawable/layout_bg" />
 
 
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"

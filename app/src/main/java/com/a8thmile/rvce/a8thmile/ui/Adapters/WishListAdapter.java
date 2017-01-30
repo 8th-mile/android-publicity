@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.a8thmile.rvce.a8thmile.R;
@@ -32,6 +33,7 @@ import io.codetail.animation.ViewAnimationUtils;
 
 import static com.a8thmile.rvce.a8thmile.R.id.imageView;
 
+
 /**
  * Created by vignesh on 19/1/17.
  */
@@ -41,23 +43,30 @@ public class WishListAdapter extends ArrayAdapter<EventFields>  implements Regis
     private String token;
     private String id;
     WishListFragment wishListFragment;
+    ProgressBar spinner;
 
-    public WishListAdapter(Context context, int resource, List<EventFields> rowItems, String token, String id,WishListFragment wishListFragment) {
+    public WishListAdapter(Context context, int resource, List<EventFields> rowItems, String token,
+                           String id, WishListFragment wishListFragment, ProgressBar spinner) {
         super(context, resource,rowItems);
         this.context=context;
         this.token=token;
         this.id=id;
         this.wishListFragment=wishListFragment;
+        this.spinner=spinner;
     }
 
     @Override
     public void registered(String message) {
+
+        spinner.setVisibility(View.GONE);
         wishListFragment.registered(message);
     }
 
     @Override
     public void RegisterFailed(String message) {
-wishListFragment.RegisterFailed(message);
+
+        spinner.setVisibility(View.GONE);
+        wishListFragment.RegisterFailed(message);
     }
 
     @Override
@@ -119,7 +128,7 @@ wishListFragment.RegisterFailed(message);
             holder.registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //spinner.setVisibility(View.VISIBLE);
                 //registerPresenter.registerRequest(rowItem.getId(),id,token);
             }
         });

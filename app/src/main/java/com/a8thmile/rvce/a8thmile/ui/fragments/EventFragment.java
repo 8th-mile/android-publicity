@@ -119,7 +119,7 @@ public class EventFragment extends Fragment {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-               Log.v("test","hey "+i+" "+l);
+
                Intent subIntent=new Intent(getActivity(), SubEventActivity.class);
                 Bundle bundle=new Bundle();
                bundle.putParcelableArrayList("subevents", (ArrayList<? extends Parcelable>) eventMap.get(i));
@@ -139,6 +139,7 @@ public class EventFragment extends Fragment {
         eventFields=((HomeActivity)getActivity()).getEvents();
         token=((HomeActivity)getActivity()).getToken();
         user_id=((HomeActivity)getActivity()).getId();
+        if(eventFields!=null)
         splitEventList(eventFields);
     }
     public void splitEventList(List<EventFields> eventFields) {

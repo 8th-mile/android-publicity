@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,16 +51,25 @@ import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 import java.util.HashMap;
 import java.util.List;
 
+import static android.view.View.VISIBLE;
+
 public class HomeActivity extends AppCompatActivity implements EventView,GoogleApiClient.OnConnectionFailedListener,GoogleApiClient.ConnectionCallbacks {
     public NavigationView navigationView;
     //private DrawerLayout drawer;
     private View navHeader;
-    private ImageView imgNavHeaderBg, imgProfile;
-    private TextView txtName, txtEmail;
+    private TextView txtName;
     private Toolbar toolbar;
     private TextView textView;
-    private FloatingActionButton fab;
     public static int navItemIndex = 0;
+    private ProgressBar spinner;
+    private boolean shouldLoadHomeFragOnBackPress = true;
+    private Handler mHandler;
+    private String UserName;
+    private String UserEmail;
+    private String[] activityTitles;
+    private GoogleApiClient mGoogleApiClient;
+    private EventPresenter eventPresenter;
+    private List<EventFields> eventFieldsList;
 
     private String token;
     private String id;
@@ -74,14 +84,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     private static final String TAG_WISHLIST = "wishlist";
     public static String CURRENT_TAG = TAG_HOME;
 
-    private boolean shouldLoadHomeFragOnBackPress = true;
-    private Handler mHandler;
-    private String UserName;
-    private String UserEmail;
-    private String[] activityTitles;
-    private GoogleApiClient mGoogleApiClient;
-    private EventPresenter eventPresenter;
-    private List<EventFields> eventFieldsList;
+
     public HomeActivity() {
     }
     private FlowingDrawer mDrawer;
@@ -100,8 +103,6 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
         UserEmail=getIntent().getStringExtra("email");
         id=getIntent().getStringExtra("id");
         token=getIntent().getStringExtra("token");
-        Log.v("test","token "+token);
-        Log.v("test","id "+id);
         mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
         mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
         mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
@@ -117,7 +118,8 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
                 Log.i("MainActivity", "openRatio=" + openRatio + " ,offsetPixels=" + offsetPixels);
             }
         });
-
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(VISIBLE);
         mGoogleApiClient= new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -168,12 +170,19 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
             loadHomeFragment();
         }
         eventPresenter.eventRequest(token);
+        spinner.setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mGoogleApiClient.disconnect();
     }
 
     private void loadNavHeader(String UserName) {
@@ -443,13 +452,15 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
 
     @Override
     public void showFailureMessage(String message) {
+
+        spinner.setVisibility(View.GONE);
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void loadData(EventResponse eventResponse) {
         this.eventFieldsList=eventResponse.getResults();
-        Log.v("test","events "+eventFieldsList);
+        spinner.setVisibility(View.GONE);
 
     }
 }

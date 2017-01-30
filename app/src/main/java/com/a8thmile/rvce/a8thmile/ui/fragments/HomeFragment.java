@@ -30,8 +30,8 @@ public class HomeFragment extends Fragment{
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
 
-    private static final String[] TEXTS={"News1","News2","News3"};
-    private static final Integer[] IMAGES= {R.drawable.event1,R.drawable.event3,R.drawable.event4};
+    private static final String[] TEXTS={"Content1","Content2","Content3"};
+    private static final Integer[] IMAGES= {R.drawable.event5,R.drawable.event1,R.drawable.event4};
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
     private ArrayList<String> TextsArray=new ArrayList<String>();
     @Override

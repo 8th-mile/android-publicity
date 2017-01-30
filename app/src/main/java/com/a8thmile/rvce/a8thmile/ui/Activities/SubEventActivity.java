@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.a8thmile.rvce.a8thmile.R;
@@ -40,7 +41,7 @@ public class SubEventActivity extends AppCompatActivity implements RegisterView 
     private String token;
     private SwipeDeck cardStack;
     private String id;
-
+    private ProgressBar spinner;
 
 
     /*public SubEventAdapter adapter;
@@ -57,7 +58,8 @@ public class SubEventActivity extends AppCompatActivity implements RegisterView 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         copyEventFields=new ArrayList<EventFields>();
-
+        spinner=(ProgressBar)findViewById(R.id.progressBar);
+        spinner.setVisibility(View.GONE);
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0xFF702F64));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -85,7 +87,7 @@ public class SubEventActivity extends AppCompatActivity implements RegisterView 
             RowItem item = new RowItem(images[i], times[i], descriptions[i]);
             rowItems.add(item);
         }*/
-        SubEventAdapter adapter = new SubEventAdapter(this, R.layout.event_card, eventFields,token,id);
+        SubEventAdapter adapter = new SubEventAdapter(this, R.layout.event_card, eventFields,token,id,spinner);
        // lv.setAdapter(adapter);
         cardStack.setAdapter(adapter);
         cardStack.bringToFront();
@@ -93,7 +95,7 @@ public class SubEventActivity extends AppCompatActivity implements RegisterView 
         cardStack.setCallback(new SwipeDeck.SwipeDeckCallback() {
             @Override
             public void cardSwipedLeft(long stableId) {
-                Log.i("MainActivity", "card was swiped left, position in adapter: " );
+
 
               /*  for (int i = 0; i < times.length; i++) {
                     RowItem item = new RowItem(images[i], times[i], descriptions[i]);
@@ -111,7 +113,7 @@ public class SubEventActivity extends AppCompatActivity implements RegisterView 
 
             @Override
             public void cardSwipedRight(long stableId) {
-                Log.i("MainActivity", "card was swiped right, position in adapter: " );
+
 
             /*    for (int i = 0; i < times.length; i++) {
                     RowItem item = new RowItem(images[i], times[i], descriptions[i]);
@@ -144,11 +146,13 @@ public class SubEventActivity extends AppCompatActivity implements RegisterView 
 
     @Override
     public void registered(String message) {
+        spinner.setVisibility(View.GONE);
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void RegisterFailed(String message) {
+        spinner.setVisibility(View.GONE);
         Toast.makeText(this,"Registration Failed. "+message,Toast.LENGTH_LONG).show();
     }
 

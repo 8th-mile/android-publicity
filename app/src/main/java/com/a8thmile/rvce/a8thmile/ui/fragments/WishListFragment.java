@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.a8thmile.rvce.a8thmile.R;
@@ -35,6 +36,7 @@ public class WishListFragment extends Fragment implements RegisterView{
     RegisterPresenter registerPresenter;
 
 
+    private ProgressBar spinner;
     public WishListFragment() {
         // Required empty public constructor
     }
@@ -43,6 +45,7 @@ public class WishListFragment extends Fragment implements RegisterView{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         registerPresenter=new RegisterPresenterImpl(this);
 
@@ -53,7 +56,10 @@ public class WishListFragment extends Fragment implements RegisterView{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         wishList=new ArrayList<EventFields>();
+
         View view= inflater.inflate(R.layout.fragment_wish_list, container, false);
+        spinner=(ProgressBar)view.findViewById(R.id.progressBar);
+        spinner.setVisibility(View.VISIBLE);
         lv= (ListView) view.findViewById(R.id.myList);
 
         return view;
@@ -74,17 +80,20 @@ public class WishListFragment extends Fragment implements RegisterView{
 
     @Override
     public void RegisterFailed(String message) {
+        spinner.setVisibility(View.GONE);
         Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void wishListGot(EventResponse eventResponse) {
+
+        spinner.setVisibility(View.GONE);
             wishList=eventResponse.getResults();
-        adapter = new WishListAdapter(getContext(), R.layout.wishlist_card, wishList,token,id,WishListFragment.this);
+        adapter = new WishListAdapter(getContext(), R.layout.wishlist_card, wishList,token,id,WishListFragment.this,spinner);
         lv.setAdapter(adapter);
 
 
-        Log.v("test","list "+wishList.size());
+
 
     }
 

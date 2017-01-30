@@ -26,7 +26,10 @@ public class EventInteractorImpl implements EventInteractor{
             @Override
             public void onResponse(Call<EventResponse> call, Response<EventResponse> response) {
                 Log.v("test","response "+response);
+                if(response.code()==200)
                 listener.onSucess(response.body());
+                else
+                    listener.onFailure("Server Error.Try Again After some time");
             }
 
             @Override
