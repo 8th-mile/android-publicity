@@ -20,6 +20,9 @@ settings.gradle
 .idea/runConfigurations.xml
 import-summary.txt
 viewpageindicator/
+.idea/inspectionProfiles/Project_Default.xml
+.idea/.name
+.idea/encodings.xml
 
 
 

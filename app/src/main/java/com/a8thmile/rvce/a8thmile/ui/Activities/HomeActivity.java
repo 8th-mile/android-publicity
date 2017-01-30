@@ -1,5 +1,7 @@
 package com.a8thmile.rvce.a8thmile.ui.Activities;
 
+import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -56,7 +58,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     private View navHeader;
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtEmail;
-    private Toolbar toolbar;
+    public Toolbar toolbar;
     private TextView textView;
     private FloatingActionButton fab;
     public static int navItemIndex = 0;
@@ -90,6 +92,13 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     }
     public String getId(){return id;}
     public String getToken(){return token;}
+
+    public static Context context;
+    public HomeActivity(Context c) {
+        context = c;
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +127,8 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
             }
         });
 
+
+
         mGoogleApiClient= new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -129,6 +140,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setElevation(0);
+        //getSupportActionBar().setIcon(R.drawable.ic_menu_black_24dp);
         toolbar.setNavigationIcon(R.drawable.ic_menu_black_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,6 +180,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
             loadHomeFragment();
         }
         eventPresenter.eventRequest(token);
+
     }
 
     @Override
@@ -421,10 +434,6 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
         return super.onOptionsItemSelected(item);
     }
 
-
-
-
-
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
@@ -449,7 +458,44 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     @Override
     public void loadData(EventResponse eventResponse) {
         this.eventFieldsList=eventResponse.getResults();
-        Log.v("test","events "+eventFieldsList);
+
+
+    }
+
+    public void changeActionbar(int position) {
+
+        switch (position){
+            case 1:
+                toolbar.setBackground(new ColorDrawable(0xFF0D3746));
+                break;
+            case 2:
+                toolbar.setBackground(new ColorDrawable(0xFF072866));
+                break;
+            case 3:
+                toolbar.setBackground(new ColorDrawable(0xFF221d45));
+                break;
+            case 4:
+                toolbar.setBackground(new ColorDrawable(0xFF7f1404));
+                break;
+            case 5:
+                toolbar.setBackground(new ColorDrawable(0xFF132a41));
+                break;
+            case 6:
+                toolbar.setBackground(new ColorDrawable(0xFF144f5e));
+                break;
+            case 7:
+                toolbar.setBackground(new ColorDrawable(0xFFce2e00));
+                break;
+            case 8:
+                toolbar.setBackground(new ColorDrawable(0xFF1b0a05));
+                break;
+            case 9:
+                toolbar.setBackground(new ColorDrawable(0xFFff8008));
+                break;
+            default:
+
+        }
+
 
     }
 }

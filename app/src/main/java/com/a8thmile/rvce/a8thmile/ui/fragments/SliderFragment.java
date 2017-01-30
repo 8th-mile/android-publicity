@@ -1,0 +1,73 @@
+package com.a8thmile.rvce.a8thmile.ui.fragments;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.a8thmile.rvce.a8thmile.R;
+import com.a8thmile.rvce.a8thmile.models.EventFields;
+import com.a8thmile.rvce.a8thmile.models.EventRegister;
+import com.a8thmile.rvce.a8thmile.ui.Activities.SubEventActivity;
+import com.a8thmile.rvce.a8thmile.ui.EventItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SliderFragment extends Fragment {
+    private static final String KEY_POSITION="position";
+
+    public static SliderFragment newInstance(int position, EventItem list, List<EventFields> eventList,String token,String user_id,String category) {
+        SliderFragment frag=new SliderFragment();
+        Bundle args=new Bundle();
+
+        args.putInt(KEY_POSITION, position);
+        args.putParcelableArrayList("sublist", (ArrayList<? extends Parcelable>) eventList);
+        args.putParcelable("list", list);
+        args.putString("token",token);
+        args.putString("user_id",user_id);
+        args.putString("category",category);
+        frag.setArguments(args);
+
+        return(frag);
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
+        EventItem eventItem=getArguments().getParcelable("list");
+        View result=inflater.inflate(R.layout.event_list_item, container, false);
+        TextView title=(TextView) result.findViewById(R.id.eventTitle);
+        ImageView imageView=(ImageView)result.findViewById(R.id.eventImage);
+        LinearLayout linearLayout=(LinearLayout)result.findViewById(R.id.eventLayout);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent subIntent=new Intent(getActivity(), SubEventActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putParcelableArrayList("subevents", (ArrayList<? extends Parcelable>) getArguments().getParcelableArrayList("sublist"));
+                subIntent.putExtras(bundle);
+                subIntent.putExtra("category",getArguments().getString("category"));
+                subIntent.putExtra("user_id",getArguments().getString("user_id"));
+                subIntent.putExtra("token",getArguments().getString("token"));
+                startActivity(subIntent);
+            }
+        });
+        int position=getArguments().getInt(KEY_POSITION, -1);
+        title.setText(eventItem.getTitle());
+        imageView.setImageResource(eventItem.getIconId());
+        linearLayout.setBackgroundResource(eventItem.getBackColId());
+        return(result);
+    }
+}
