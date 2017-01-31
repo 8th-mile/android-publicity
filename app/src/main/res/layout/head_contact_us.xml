@@ -12,10 +12,10 @@
             android:id="@+id/textView1"
             android:textColor="@color/black"
             android:layout_width="match_parent"
-              android:layout_height="80dp"
-          
+            android:layout_height="80dp"
+
             android:gravity="center"
             android:text="Team"
-    android:textSize="25dip"
+            android:textSize="25dip"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </LinearLayout>

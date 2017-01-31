@@ -43,8 +43,8 @@ public class HomeFragment extends Fragment{
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 init(view);
-        tabDigit1 = (TabDigit) view.findViewById(R.id.tabDigit1);
-        tabDigit1.start();
+        //tabDigit1 = (TabDigit) view.findViewById(R.id.tabDigit1);
+        //tabDigit1.start();
         //ViewCompat.postOnAnimationDelayed(tabDigit1, this, 1000);
         return view;
     }

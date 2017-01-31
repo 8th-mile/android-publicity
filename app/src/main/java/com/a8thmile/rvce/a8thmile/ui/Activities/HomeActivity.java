@@ -501,7 +501,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
                 toolbar.setBackground(new ColorDrawable(0xFFce2e00));
                 break;
             case 7:
-                toolbar.setBackground(new ColorDrawable(0xFF1b0a05));
+                toolbar.setBackground(new ColorDrawable(0xFF36150b));
                 break;
             case 8:
                 toolbar.setBackground(new ColorDrawable(0xFFff8008));
