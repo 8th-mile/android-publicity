@@ -108,25 +108,28 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
+
         UserName = getIntent().getStringExtra("userName");
         UserEmail = getIntent().getStringExtra("email");
         id = getIntent().getStringExtra("id");
         token = getIntent().getStringExtra("token");
+
         mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
         mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
         mDrawer.setOnDrawerStateChangeListener(new ElasticDrawer.OnDrawerStateChangeListener() {
             @Override
             public void onDrawerStateChange(int oldState, int newState) {
                 if (newState == ElasticDrawer.STATE_CLOSED) {
-                    Log.i("MainActivity", "Drawer STATE_CLOSED");
+
                 }
             }
 
             @Override
             public void onDrawerSlide(float openRatio, int offsetPixels) {
-                Log.i("MainActivity", "openRatio=" + openRatio + " ,offsetPixels=" + offsetPixels);
+
             }
         });
 
@@ -202,7 +205,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     private void loadNavHeader(String UserName) {
         // name, website
         txtName.setText(UserName);
-        Log.v("test","name "+UserName);
+
 
 
 
@@ -253,14 +256,14 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     }
 
     private void signOut() {
-        Log.v("test","signout");
+
         if(mGoogleApiClient.isConnected()) {
             Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                     new ResultCallback<Status>() {
                         @Override
                         public void onResult(Status status) {
                             // Get sign out result
-                            Log.v("test","signout2");
+
                             finish();
                         }
                     });
@@ -281,26 +284,31 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
                 return eventFragment;
             case 2:
                 // movies fragment
-                SponserFragment sponserFragment = new SponserFragment();
-                return sponserFragment;
+                MyEventsFragment myEventsFragment=new MyEventsFragment();
+                return myEventsFragment;
+
             case 3:
                 // notifications fragment
-                Hospitality hospitality = new Hospitality();
-                return hospitality;
+                WishListFragment wishListFragment=new WishListFragment();
+                return wishListFragment;
+
 
             case 4:
                 // settings fragment
                 ContactFragment contactFragment = new ContactFragment();
                 return contactFragment;
             case 5:
+                SponserFragment sponserFragment = new SponserFragment();
+                return sponserFragment;
+
+            case 6:
+                Hospitality hospitality = new Hospitality();
+                return hospitality;
+
+            case 7:
                 TourFragment tourFragment=new TourFragment();
                 return tourFragment;
-            case 6:
-                MyEventsFragment myEventsFragment=new MyEventsFragment();
-                return myEventsFragment;
-            case 7:
-                WishListFragment wishListFragment=new WishListFragment();
-                return wishListFragment;
+
 
             default:
                 return new HomeFragment();
@@ -334,29 +342,29 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
                         navItemIndex = 1;
                         CURRENT_TAG = TAG_EVENTS;
                         break;
-                    case R.id.nav_sponsers:
+                    case R.id.nav_my_events:
                         navItemIndex = 2;
-                        CURRENT_TAG = TAG_SPONSERS;
+                        CURRENT_TAG = TAG_MYEVENTS;
                         break;
-                    case R.id.nav_hospitality:
+                    case R.id.nav_wishlist:
                         navItemIndex = 3;
-                        CURRENT_TAG = TAG_HOSPITALITY;
+                        CURRENT_TAG = TAG_WISHLIST;
                         break;
                     case R.id.nav_contact:
                         navItemIndex = 4;
                         CURRENT_TAG = TAG_CONTACT;
                         break;
-                    case R.id.nav_tour:
+                    case R.id.nav_sponsers:
                         navItemIndex = 5;
-                        CURRENT_TAG = TAG_TOUR;
+                        CURRENT_TAG = TAG_SPONSERS;
                         break;
-                    case R.id.nav_my_events:
+                    case R.id.nav_hospitality:
                         navItemIndex = 6;
-                        CURRENT_TAG = TAG_MYEVENTS;
+                        CURRENT_TAG = TAG_HOSPITALITY;
                         break;
-                    case R.id.nav_wishlist:
+                    case R.id.nav_tour:
                         navItemIndex = 7;
-                        CURRENT_TAG = TAG_WISHLIST;
+                        CURRENT_TAG = TAG_TOUR;
                         break;
                     case R.id.nav_logout:
                         navItemIndex=8;
@@ -409,7 +417,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
             return;
         }
 
-        Log.v("test","backpressed");
+
         // This code loads home fragment when back key is pressed
         // when user is in other fragment than home
         if (shouldLoadHomeFragOnBackPress) {
@@ -451,7 +459,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Log.v("test","connected in home");
+
 
     }
 
@@ -501,13 +509,13 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
                 toolbar.setBackground(new ColorDrawable(0xFFce2e00));
                 break;
             case 7:
-                toolbar.setBackground(new ColorDrawable(0xFF1b0a05));
+                toolbar.setBackground(new ColorDrawable(0xFF36150b));
                 break;
             case 8:
                 toolbar.setBackground(new ColorDrawable(0xFFff8008));
                 break;
             default:
-                toolbar.setBackground(new ColorDrawable(0xFFffffff));
+                toolbar.setBackground(new ColorDrawable(0xFF0D3746));
 
         }
 

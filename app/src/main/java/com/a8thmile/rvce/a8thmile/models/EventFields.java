@@ -17,7 +17,7 @@ public class EventFields implements Parcelable{
     private String about;
     private String rules;
     private int first_prize;
-    private int second_price;
+    private int second_prize;
 
     protected EventFields(Parcel in) {
         id = in.readString();
@@ -28,7 +28,7 @@ public class EventFields implements Parcelable{
         about = in.readString();
         rules = in.readString();
         first_prize = in.readInt();
-        second_price = in.readInt();
+        second_prize = in.readInt();
     }
 
     public static final Creator<EventFields> CREATOR = new Creator<EventFields>() {
@@ -67,7 +67,8 @@ public class EventFields implements Parcelable{
         this.date = date;
     }
 
-    public EventFields(String id, String name, String date, int type, int price, String about, String rules, int first_prize, int second_price) {
+    public EventFields(String id, String name, String date, int type, int price, String about, String rules,
+                       int first_prize, int second_prize) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -76,7 +77,7 @@ public class EventFields implements Parcelable{
         this.about = about;
         this.rules = rules;
         this.first_prize = first_prize;
-        this.second_price = second_price;
+        this.second_prize = second_prize;
     }
 
     public int getType() {
@@ -124,12 +125,12 @@ public class EventFields implements Parcelable{
         this.first_prize = first_prize;
     }
 
-    public int getSecond_price() {
-        return second_price;
+    public int getSecond_prize() {
+        return second_prize;
     }
 
-    public void setSecond_price(int second_price) {
-        this.second_price = second_price;
+    public void setSecond_prize(int second_prize) {
+        this.second_prize = second_prize;
     }
 
     @Override
@@ -142,7 +143,7 @@ public class EventFields implements Parcelable{
         parcel.writeString(about);
         parcel.writeString(rules);
         parcel.writeInt(first_prize);
-        parcel.writeInt(second_price);
+        parcel.writeInt(second_prize);
 
     }
 }

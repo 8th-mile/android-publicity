@@ -15,6 +15,7 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 
 import com.a8thmile.rvce.a8thmile.R;
+import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
 import com.a8thmile.rvce.a8thmile.ui.Adapters.ExpandableListAdapter_Hospitality;
 
 public class Hospitality extends Fragment {
@@ -31,7 +32,7 @@ public class Hospitality extends Fragment {
         super.onCreate(savedInstanceState);
         // get the listview
         expListView = (ExpandableListView)view.findViewById(R.id.lvExp);
-
+        ((HomeActivity)getActivity()).changeActionbar(30);
         // preparing list data
         prepareListData();
 

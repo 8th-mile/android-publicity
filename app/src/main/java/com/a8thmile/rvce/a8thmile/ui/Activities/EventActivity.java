@@ -62,6 +62,8 @@ public class EventActivity extends AppCompatActivity {
         if(eventRules==null)
             eventRules="-";
         rulesText.setText(eventRules);
+        if(eventDate==null)
+            eventDate="Not yet announced";
         dateText.setText(eventDate);
         firstPrizeText.setText(eventPrize1);
         secondPrizeText.setText(eventPrize2);

@@ -60,7 +60,7 @@ public class WishListFragment extends Fragment implements RegisterView{
 
         View view= inflater.inflate(R.layout.fragment_wish_list, container, false);
         empty=(LinearLayout)view.findViewById(R.id.empty);
-
+        ((HomeActivity)getActivity()).changeActionbar(30);
                 spinner=(ProgressBar)view.findViewById(R.id.progressBar);
         spinner.setVisibility(View.VISIBLE);
         lv= (ListView) view.findViewById(R.id.myList);
@@ -96,7 +96,7 @@ public class WishListFragment extends Fragment implements RegisterView{
         spinner.setVisibility(View.GONE);
             wishList=eventResponse.getResults();
         if(wishList.size()!=0)
-            empty.setVisibility(View.VISIBLE);
+            empty.setVisibility(View.GONE);
         adapter = new WishListAdapter(getContext(), R.layout.wishlist_card, wishList,token,id,WishListFragment.this,spinner);
         lv.setAdapter(adapter);
 

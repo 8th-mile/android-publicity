@@ -56,15 +56,30 @@
 
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:id="@+id/date"
-                android:text="Sun, 26 Mar 2017 11.00"/>
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:text="When?"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   android:layout_marginLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:id="@+id/date"
+                    android:text="Sun, 26 Mar 2017 11.00"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -86,7 +101,7 @@
                     android:layout_marginLeft="20dp"
                     android:textColor="@color/black"
                     android:textSize="20sp"
-                    android:text="200"
+
                     />
 
             </LinearLayout>

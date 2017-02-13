@@ -121,7 +121,10 @@ public class WishListAdapter extends ArrayAdapter<EventFields>  implements Regis
         } else
             holder = (ViewHolder)convertView.getTag();
             holder.image.setImageResource(R.drawable.event4);
-            holder.time.setText(rowItem.getDate());
+            if(rowItem.getDate()==null)
+              holder.time.setText("24 Mar @11am");
+            else
+              holder.time.setText(rowItem.getDate());
             holder.description.setText(rowItem.getName());
             holder.price.setText(Integer.toString(rowItem.getPrice()));
 
@@ -140,6 +143,10 @@ public class WishListAdapter extends ArrayAdapter<EventFields>  implements Regis
                 detailsIntent.putExtra("price",Integer.toString(rowItem.getPrice()));
 
                 detailsIntent.putExtra("date",rowItem.getDate());
+                detailsIntent.putExtra("about",rowItem.getAbout());
+                detailsIntent.putExtra("rules",rowItem.getRules());
+                detailsIntent.putExtra("first",Integer.toString(rowItem.getFirst_prize()));
+                detailsIntent.putExtra("second",Integer.toString(rowItem.getSecond_prize()));
 
                 context.startActivity(detailsIntent);
             }

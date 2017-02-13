@@ -30,6 +30,19 @@
             android:layout_height="wrap_content"
             android:id="@+id/eventTitle" />
 
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height= "50dp"
+                android:src="@drawable/swipeup"
+        android:layout_alignParentBottom="true"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+               />
+
+
+
+
 
     </RelativeLayout>
 

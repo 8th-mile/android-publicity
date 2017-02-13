@@ -31,7 +31,9 @@ import java.util.List;
 
 import io.codetail.animation.ViewAnimationUtils;
 
+import static com.a8thmile.rvce.a8thmile.R.id.det;
 import static com.a8thmile.rvce.a8thmile.R.id.imageView;
+import static com.a8thmile.rvce.a8thmile.R.id.rules;
 
 /**
  * Created by vignesh on 19/1/17.
@@ -102,7 +104,10 @@ public class MyEventsAdapter extends ArrayAdapter<EventFields>  {
                 Intent detailsIntent=new Intent(context, EventActivity.class);
                 detailsIntent.putExtra("name",rowItem.getName());
                 detailsIntent.putExtra("price",Integer.toString(rowItem.getPrice()));
-                Log.v("test","price "+rowItem.getPrice());
+                detailsIntent.putExtra("about",rowItem.getAbout());
+                detailsIntent.putExtra("rules",rowItem.getRules());
+                detailsIntent.putExtra("first",Integer.toString(rowItem.getFirst_prize()));
+                detailsIntent.putExtra("second",Integer.toString(rowItem.getSecond_prize()));
                 detailsIntent.putExtra("date",rowItem.getDate());
 
                 context.startActivity(detailsIntent);

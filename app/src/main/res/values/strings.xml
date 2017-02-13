@@ -20,12 +20,13 @@
     <string-array name="nav_item_activity_titles">
         <item>Home</item>
         <item>Events</item>
-        <item>Sponsors</item>
-        <item>Hospitality</item>
-        <item>Contact Us</item>
-        <item>Rvce Tour</item>
         <item>My Events</item>
         <item>Wish List</item>
+        <item>Contact Us</item>
+        <item>Sponsors</item>
+        <item>Hospitality</item>
+        <item>Rvce Tour</item>
+
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

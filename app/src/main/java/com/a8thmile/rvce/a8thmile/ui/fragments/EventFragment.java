@@ -3,6 +3,8 @@ package com.a8thmile.rvce.a8thmile.ui.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
@@ -159,17 +161,17 @@ public  void changeToolbarColor(int position)
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-     eventFields=((HomeActivity)getActivity()).getEvents();
-     token=((HomeActivity)getActivity()).getToken();
+        eventFields=((HomeActivity)getActivity()).getEvents();
+        token=((HomeActivity)getActivity()).getToken();
         user_id=((HomeActivity)getActivity()).getId();
         if(eventFields!=null)
-       splitEventList(eventFields);
-      mPagerAdapter = new EventAdapter(getContext(),getChildFragmentManager(),R.layout.event_list_item,
-                eventItems,eventMap,token,user_id,eventCategory,this);
+        splitEventList(eventFields);
+        mPagerAdapter = new EventAdapter(getContext(),getChildFragmentManager(),R.layout.event_list_item,eventItems,eventMap,token,user_id,eventCategory,this);
         mPager.setAdapter(mPagerAdapter);
 
         //mPager.setPageTransformer(true, new ZoomOutPageTransformer());
         springIndicator.setViewPager(mPager);
+
     }
     public void splitEventList(List<EventFields> eventFields) {
         for (EventFields event:eventFields)
@@ -221,7 +223,8 @@ public  void changeToolbarColor(int position)
                 // This page is way off-screen to the left.
                 view.setAlpha(0);
 
-            } else if (position <= 1) { // [-1,1]
+            }
+            else if (position <= 1) { // [-1,1]
                 // Modify the default slide transition to shrink the page as well
                 float scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position));
                 float vertMargin = pageHeight * (1 - scaleFactor) / 2;
@@ -241,11 +244,14 @@ public  void changeToolbarColor(int position)
                         (scaleFactor - MIN_SCALE) /
                                 (1 - MIN_SCALE) * (1 - MIN_ALPHA));
 
-            } else { // (1,+Infinity]
+            }
+            else { // (1,+Infinity]
                 // This page is way off-screen to the right.
                 view.setAlpha(0);
             }
         }
     }
+
+
 
 }

@@ -97,6 +97,8 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
             holder = (ViewHolder)convertView.getTag();
 
         holder.image.setImageResource(R.drawable.event4);
+        if(rowItem.getDate()==null)
+            rowItem.setDate("24 March @11am");
         holder.time.setText(rowItem.getDate());
         holder.price.setText(Integer.toString(rowItem.getPrice()));
 
@@ -127,8 +129,8 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
                 Intent detailsIntent=new Intent(context, EventActivity.class);
                 detailsIntent.putExtra("name",rowItem.getName());
                 detailsIntent.putExtra("price",Integer.toString(rowItem.getPrice()));
-                detailsIntent.putExtra("first",rowItem.getFirst_prize());
-                detailsIntent.putExtra("second",rowItem.getSecond_price());
+                detailsIntent.putExtra("first",Integer.toString(rowItem.getFirst_prize()));
+                detailsIntent.putExtra("second",Integer.toString(rowItem.getSecond_prize()));
                 detailsIntent.putExtra("about",rowItem.getAbout());
                 detailsIntent.putExtra("rules",rowItem.getRules());
                 detailsIntent.putExtra("date",rowItem.getDate());

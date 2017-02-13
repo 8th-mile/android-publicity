@@ -9,7 +9,7 @@
     android:clipToPadding="false"
     app:edPosition="1"
     app:edMenuSize="220dp"
-    app:edMenuBackground="#0D3746">
+    app:edMenuBackground="#03212b">
 
 <include
     layout="@layout/contents"
@@ -29,7 +29,7 @@
         android:fitsSystemWindows="true"
         android:background="@android:color/transparent"
         app:theme="@style/menuItem"
-        app:itemTextColor="@color/black"
+        app:itemTextColor="@color/white"
         app:menu="@menu/activity_main_drawer" />
 
 </com.mxn.soul.flowingdrawer_core.FlowingMenuLayout>

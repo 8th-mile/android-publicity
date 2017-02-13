@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.a8thmile.rvce.a8thmile.R;
+import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
 
 
 public class TourFragment extends Fragment {
@@ -28,8 +29,10 @@ public class TourFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((HomeActivity)getActivity()).changeActionbar(30);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tour, container, false);
+
     }
 
 }

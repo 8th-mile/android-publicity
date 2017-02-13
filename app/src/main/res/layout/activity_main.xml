@@ -29,17 +29,29 @@
 
     <ImageView
         android:layout_width="120dp"
-
         android:layout_height="80dp"
         android:id="@+id/g_logo"
         android:layout_centerHorizontal="true"
+        android:layout_below="@+id/signin"
+android:layout_marginTop="5dp"
+        android:background="@drawable/border_img"
         android:scaleType="fitXY"
         android:src="@drawable/g_logo_still"
-        android:layout_below="@+id/logo"
-        android:background="@drawable/border_img"
-        android:layout_marginTop="30dp"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in using"
+      android:gravity="center"
+        android:id="@+id/signin"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/logo"
+        android:layout_alignLeft="@+id/g_logo"
+        android:layout_alignStart="@+id/g_logo" />
 
 
 </RelativeLayout>

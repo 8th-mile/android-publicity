@@ -51,6 +51,7 @@ private RegisterPresenter registerPresenter;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_my_events, container, false);
+        ((HomeActivity)getActivity()).changeActionbar(30);
         responseEvents=new ArrayList<Integer>();
         myEvents=new ArrayList<EventFields>();
         empty=(LinearLayout) view.findViewById(R.id.empty);
@@ -76,7 +77,9 @@ private RegisterPresenter registerPresenter;
     }
 
     @Override
-    public void RegisterFailed(String message) {  spinner.setVisibility(View.GONE);
+    public void RegisterFailed(String message) {
+
+        spinner.setVisibility(View.GONE);
         Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
     }
 
@@ -89,6 +92,7 @@ private RegisterPresenter registerPresenter;
     public void MyEventListGot(MyEventResponse eventResponse) {
         spinner.setVisibility(View.GONE);
             responseEvents=eventResponse.getRegistered_events();
+        Log.v("test","ne "+responseEvents);
         if(responseEvents.size()!=0)
         {
             empty.setVisibility(View.GONE);

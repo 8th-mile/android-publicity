@@ -3,6 +3,7 @@ package com.a8thmile.rvce.a8thmile.ui.fragments;
 
 import java.util.ArrayList;
 
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -18,13 +19,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.a8thmile.rvce.a8thmile.R;
+import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
 import com.a8thmile.rvce.a8thmile.ui.Adapters.SlidingNewsAdapter;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import cn.iwgang.countdownview.CountdownView;
 
 
 public class HomeFragment extends Fragment{
-
+    private long count;
+    private long EVENT_SECONDS_IN_MILLIS=Long.parseLong("1490346000000");
 
     private static ViewPager mPager;
     private static int currentPage = 0;
@@ -32,7 +36,7 @@ public class HomeFragment extends Fragment{
 
 
 
-    private static final String[] TEXTS={"Content1","Content2","Content3"};
+    private static final String[] TEXTS={"Concert1","Concert2","Concert3"};
     private static final Integer[] IMAGES= {R.drawable.event5,R.drawable.event1,R.drawable.event4};
 
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
@@ -43,7 +47,16 @@ public class HomeFragment extends Fragment{
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 init(view);
-
+        final CountdownView mCvCountdownView = (CountdownView)view.findViewById(R.id.count);
+        count=(EVENT_SECONDS_IN_MILLIS- Calendar.getInstance().getTimeInMillis());
+        mCvCountdownView.start((count));
+        ((HomeActivity)getActivity()).changeActionbar(30);
+        mCvCountdownView.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
+            @Override
+            public void onEnd(CountdownView cv) {
+                mCvCountdownView.setVisibility(View.GONE);
+            }
+        });
         //ViewCompat.postOnAnimationDelayed(tabDigit1, this, 1000);
         return view;
     }

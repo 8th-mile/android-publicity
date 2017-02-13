@@ -3,16 +3,49 @@
     xmlns:clock="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:weightSum="8"
-    xmlns:app="http://schemas.android.com/tools"
-
+    android:weightSum="10"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:background="@drawable/gradient_home">
+
         <!--For Countdown timer-->
+        <cn.iwgang.countdownview.CountdownView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:isHideTimeBackground="false"
+            android:layout_marginTop="10dp"
+            digit:timeBgSize="40dp"
+            app:isShowDay="true"
+            app:isShowHour="true"
+            digit:timeBgColor="@color/black"
+
+            digit:suffixDayRightMargin="10dp"
+            digit:suffixHourRightMargin="10dp"
+            digit:suffixMinuteRightMargin="10dp"
+            android:id="@+id/count"
+            app:isShowMinute="true"
+            app:isShowSecond="true"
+            app:timeTextColor="#ffffff"
+            app:timeTextSize="22sp"
+            app:isTimeTextBold="true"
+            app:suffixGravity="bottom"
+            app:suffixTextColor="#ffffff"
+            app:suffixTextSize="12sp"
+            digit:suffixDay="Days"
+            app:suffixHour="Hrs"
+            app:suffixMinute="Mins"
+            app:suffixSecond="Secs"
+             />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_below="@id/count"
+            android:src="@drawable/logo"
+            android:layout_height="fill_parent" />
+
 
 
     </RelativeLayout>
@@ -26,6 +59,7 @@
             android:id="@+id/pager"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
+            android:background="@drawable/gradient"
             android:layout_alignParentTop="true" />
 
         <com.viewpagerindicator.CirclePageIndicator
@@ -37,8 +71,8 @@
             android:gravity="bottom"
             android:padding="10dip"
             app:centered="true"
-            app:fillColor="#ff0099"
-            app:pageColor="#FF0000"
+            app:fillColor="#ffffff"
+            app:pageColor="#000000"
             app:snap="false" />
     </RelativeLayout>
 

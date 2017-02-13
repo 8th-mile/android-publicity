@@ -4,42 +4,45 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/ic_home_white_24dp"
             android:title="@string/nav_home" />
         <item
             android:id="@+id/nav_events"
-            android:icon="@drawable/ic_event_black_24dp"
+            android:icon="@drawable/ic_event_white_24dp"
             android:title="@string/nav_events" />
+
+        <item
+            android:id="@+id/nav_my_events"
+            android:icon="@drawable/ic_shopping_cart_white_24dp"
+            android:title="@string/nav_my_events" />
+        <item
+            android:id="@+id/nav_wishlist"
+            android:icon="@drawable/ic_view_list_white_24dp"
+            android:title="@string/nav_wishlist" />
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_contact_phone_white_24dp"
+            android:title="@string/nav_contact" />
         <item
             android:id="@+id/nav_sponsers"
-            android:icon="@drawable/ic_attach_money_black_24dp"
+            android:icon="@drawable/ic_attach_money_white_24dp"
             android:title="@string/nav_sponsers" />
 
         <item
             android:id="@+id/nav_hospitality"
-            android:icon="@drawable/ic_home_black_24dp"
+            android:icon="@drawable/ic_home_white_24dp"
             android:title="@string/nav_hospitality" />
 
 
-        <item
-            android:id="@+id/nav_contact"
-            android:icon="@drawable/ic_contact_phone_black_24dp"
-            android:title="@string/nav_contact" />
+
         <item
             android:id="@+id/nav_tour"
-            android:icon="@drawable/ic_map_black_24dp"
+            android:icon="@drawable/ic_map_white_24dp"
             android:title="@string/nav_tour" />
-        <item
-            android:id="@+id/nav_my_events"
-            android:icon="@drawable/ic_map_black_24dp"
-            android:title="@string/nav_my_events" />
-        <item
-            android:id="@+id/nav_wishlist"
-            android:icon="@drawable/ic_view_list_black_24dp"
-            android:title="@string/nav_wishlist" />
+
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_keyboard_backspace_black_24dp"
+            android:icon="@drawable/ic_keyboard_backspace_white_24dp"
             android:title="@string/nav_logout" />
     </group>
 

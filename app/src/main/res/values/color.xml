@@ -20,15 +20,15 @@
     <color name="flagship">#f45f42</color>
     <color name="timer2">#9ff45f42</color>
     <color name="workshop">#0e9133</color>
-    <color name="c1">#7df442</color>
-    <color name="c2">#32b4e2</color>
-    <color name="c3">#2e73f5</color>
-    <color name="c4">#221d45</color>
-    <color name="c5">#c430ff</color>
-    <color name="c6">#6e5aff</color>
-    <color name="c7">#ce844b</color>
-    <color name="c8">#74e469</color>
-    <color name="c9">#eda175</color>
-    <color name="c10">#5c5c61</color>
+    <color name="c1">#3F7B70</color>
+    <color name="c2">#763369</color>
+    <color name="c3">#e84c1f</color>
+    <color name="c4">#4e667e</color>
+    <color name="c5">#4e667e</color>
+    <color name="c6">#70b180</color>
+    <color name="c7">#fe8b00</color>
+    <color name="c8">#850000</color>
+    <color name="c9">#ffc736</color>
+    <color name="c10">#ffc736</color>
     <color name="TEXTCOLOR">#FFFFFF</color>
 </resources>

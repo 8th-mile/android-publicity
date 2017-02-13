@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.a8thmile.rvce.a8thmile.R;
+import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
 
 public class SponserFragment extends Fragment implements OnClickListener{
     Button boracle,bpaytm,bfreecgarge,bamazon,bjio,bidea;
@@ -28,7 +29,7 @@ public class SponserFragment extends Fragment implements OnClickListener{
         bamazon=(Button)view.findViewById(R.id.bamaz);
         bjio=(Button)view.findViewById(R.id.bjio);
         bidea=(Button)view.findViewById(R.id.bidea);
-
+        ((HomeActivity)getActivity()).changeActionbar(30);
         boracle.setOnClickListener(this);
         bpaytm.setOnClickListener(this);
         bfreecgarge.setOnClickListener(this);

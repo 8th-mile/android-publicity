@@ -58,6 +58,7 @@ public class RegisterPresenterImpl implements RegisterPresenter,RegisterInteract
 
     @Override
     public void onMyEventFailure(String message) {
+        registerView.RegisterFailed(message);
 
     }
 
