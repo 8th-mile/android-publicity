@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import com.a8thmile.rvce.a8thmile.ui.RowItem;
 import java.util.List;
 
 import io.codetail.animation.ViewAnimationUtils;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 import static com.a8thmile.rvce.a8thmile.R.id.det;
 import static com.a8thmile.rvce.a8thmile.R.id.imageView;
@@ -74,8 +76,8 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
         final ViewHolder holder;
         final EventFields rowItem = getItem(position);
        final RegisterPresenter registerPresenter=  new RegisterPresenterImpl((SubEventActivity)context);
-
-
+        Typeface face = Typeface.createFromAsset(context.getAssets(),
+                "fonts/Exo2-Bold.otf");
 
         LayoutInflater mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null){
@@ -85,10 +87,16 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
             holder.time = (TextView)convertView.findViewById(R.id.time);
             holder.price=(TextView)convertView.findViewById(R.id.price);
             holder.description = (TextView)convertView.findViewById(R.id.textView);
+            holder.description.setTypeface(face);
+            holder.price.setTypeface(face);
+            holder.time.setTypeface(face);
             holder.imageButton = (ImageButton) convertView.findViewById(R.id.launchTwitterAnimation);
             holder.registerButton=(Button)convertView.findViewById(R.id.register);
             holder.details=(Button)convertView.findViewById(R.id.loc);
             holder.wishlist=(Button)convertView.findViewById(R.id.wishlist);
+            holder.details.setTypeface(face);
+            holder.registerButton.setTypeface(face);
+            holder.wishlist.setTypeface(face);
             holder.revealView = (LinearLayout) convertView.findViewById(R.id.linearView);
             holder.layoutButtons = (LinearLayout) convertView.findViewById(R.id.layoutButtons);
             holder.pixelDensity = context.getResources().getDisplayMetrics().density;
@@ -98,8 +106,11 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
 
         holder.image.setImageResource(R.drawable.event4);
         if(rowItem.getDate()==null)
-            rowItem.setDate("24 March @11am");
+            rowItem.setDate("Timings : Not Yet Confirmed");
         holder.time.setText(rowItem.getDate());
+        if(rowItem.getPrice()==0)
+            holder.price.setText("-");
+        else
         holder.price.setText(Integer.toString(rowItem.getPrice()));
 
         holder.description.setText(rowItem.getName());

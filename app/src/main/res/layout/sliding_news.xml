@@ -10,7 +10,7 @@
         android:layout_height="fill_parent"
         android:adjustViewBounds="true"
         android:layout_gravity="center"
-        android:src="@drawable/theme"
+
         android:scaleType="fitXY" />
     <TextView
         android:layout_width="wrap_content"

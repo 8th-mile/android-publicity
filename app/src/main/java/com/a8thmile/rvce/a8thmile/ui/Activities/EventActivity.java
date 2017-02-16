@@ -1,5 +1,6 @@
 package com.a8thmile.rvce.a8thmile.ui.Activities;
 
+import android.content.Context;
 import android.content.pm.ProviderInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.a8thmile.rvce.a8thmile.R;
+
+import org.w3c.dom.Text;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class EventActivity extends AppCompatActivity {
     private String eventName;
@@ -24,7 +30,9 @@ public class EventActivity extends AppCompatActivity {
     private TextView rulesText;
     private TextView dateText;
     private TextView firstPrizeText;
+    private TextView firstPrizeLabel;
     private TextView secondPrizeText;
+    private TextView secondPrizeLabel;
     private TextView priceText;
 
     @Override
@@ -42,6 +50,8 @@ public class EventActivity extends AppCompatActivity {
         rulesText = (TextView) findViewById(R.id.rules);
         firstPrizeText=(TextView)findViewById(R.id.first);
         secondPrizeText=(TextView)findViewById(R.id.second);
+        firstPrizeLabel=(TextView)findViewById(R.id.firstText) ;
+        secondPrizeLabel=(TextView)findViewById(R.id.secondText);
 
 
         eventName = getIntent().getStringExtra("name");
@@ -51,6 +61,16 @@ public class EventActivity extends AppCompatActivity {
         eventFees = getIntent().getStringExtra("price");
         eventPrize1 = getIntent().getStringExtra("first");
         eventPrize2 = getIntent().getStringExtra("second");
+
+        if(eventName.equals("Mr. and Ms. 8th mile")) {
+            firstPrizeLabel.setText("Mr 8th Mile");
+            secondPrizeLabel.setText("Ms 8th Mile");
+        }
+            CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Exo2-Bold.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(eventName);
@@ -67,9 +87,17 @@ public class EventActivity extends AppCompatActivity {
         dateText.setText(eventDate);
         firstPrizeText.setText(eventPrize1);
         secondPrizeText.setText(eventPrize2);
+        if(eventFees.equals("0"))
+            priceText.setText("Not yet confirmed");
+        else
         priceText.setText(eventFees);
 
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
     @Override
@@ -84,3 +112,5 @@ public class EventActivity extends AppCompatActivity {
 
         }
     }
+
+

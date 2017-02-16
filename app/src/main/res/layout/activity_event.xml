@@ -21,7 +21,9 @@
         android:layout_width="match_parent"
         android:layout_below="@+id/toolbar"
         android:id="@+id/trans_text"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        />
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
@@ -38,25 +40,37 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:orientation="vertical">
-            <TextView
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal"
+                >
+                <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginLeft="10dp"
+                android:textColor="@color/texcol"
+
                 android:text="About"
                 android:textStyle="bold"
+                android:id="@+id/abouts"
                 android:textSize="20sp"/>
-            <TextView
+
+                <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/about"
                 android:text="About"
+                android:layout_below="@+id/abouts"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
+                android:textColor="@color/texcol"
+                    fontPath="fonts/Exo2-Light.otf"
+                android:textSize="16sp"/>
+            </RelativeLayout>
 
-                android:textColor="@color/black"
-                android:textSize="20sp"/>
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -67,113 +81,132 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="When?"
-                    android:textColor="@color/black"
+                    android:text="Timings"
+                    android:textColor="@color/texcol"
+                    android:id="@+id/timings"
                     />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                   android:layout_marginLeft="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:layout_below="@+id/timings"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/texcol"
+                    android:textSize="16sp"
+                    fontPath="fonts/Exo2-Light.otf"
                     android:id="@+id/date"
                     android:text="Sun, 26 Mar 2017 11.00"/>
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/priceText"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/black"
+
+                    android:textColor="@color/texcol"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:text="Entry Fees:"/>
+                    android:text="Entry Fees"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/price"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
+                    android:layout_below="@+id/priceText"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/texcol"
+                    android:textSize="16sp"
+                    fontPath="fonts/Exo2-Light.otf"
+
 
                     />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+
                 android:orientation="vertical"
               >
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="10dp">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+
+                    >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="1st Prize :"
+                        android:text="1st Prize"
                         android:id="@+id/firstText"
                         android:textStyle="bold"
                         android:textSize="20sp"
 
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/texcol"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:id="@+id/first"
-
-                        android:textSize="20sp"
-
-                        android:textColor="@color/black"
+                        android:layout_below="@+id/firstText"
+                        android:textSize="16sp"
+                        fontPath="fonts/Exo2-Light.otf"
+                        android:textColor="@color/texcol"
                         android:text="1000"/>
-                </LinearLayout>
-                <LinearLayout
+                </RelativeLayout>
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="10dp">
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="2nd Prize :"
+                        android:text="2nd Prize"
                         android:textStyle="bold"
                         android:textSize="20sp"
-
-                        android:textColor="@color/black"/>
+                        android:id="@+id/secondText"
+                        android:textColor="@color/texcol"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="10dp"
                         android:id="@+id/second"
-
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
+                        fontPath="fonts/Exo2-Light.otf"
+                        android:layout_below="@+id/secondText"
+                        android:textSize="16sp"
+                        android:textColor="@color/texcol"
                         android:text="500"/>
-                </LinearLayout>
+                </RelativeLayout>
 
             </LinearLayout>
 
-
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                >
             <TextView
                 android:layout_width="wrap_content"
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
+                android:textColor="@color/texcol"
+
                 android:textSize="20sp"
                 android:layout_height="wrap_content"
-                android:text="Rules :"
+                android:text="Rules"
                 android:textStyle="bold"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="10dp"/>
+                android:id="@+id/rule"
+                />
 
 
 
@@ -183,11 +216,12 @@
                   android:id="@+id/rules"
                   android:layout_marginLeft="10dp"
                   android:text="Rules"
-                  android:layout_marginRight="5dp"
-                  android:textColor="@color/black"
-                  android:textSize="20sp"/>
+                  android:layout_below="@+id/rule"
+                  android:textColor="@color/texcol"
+                  fontPath="fonts/Exo2-Light.otf"
+                  android:textSize="16sp"/>
 
-
+                </RelativeLayout>
 
 
 

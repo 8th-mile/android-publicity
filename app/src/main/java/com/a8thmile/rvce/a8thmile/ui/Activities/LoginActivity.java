@@ -20,10 +20,12 @@ import com.a8thmile.rvce.a8thmile.login.LoginPresenter;
 import com.a8thmile.rvce.a8thmile.login.LoginPresenterImpl;
 import com.a8thmile.rvce.a8thmile.login.LoginView;
 
+import com.a8thmile.rvce.a8thmile.ui.GifImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import com.a8thmile.rvce.a8thmile.models.LoginResponse;
+
 
 
 import com.google.android.gms.auth.api.Auth;
@@ -35,6 +37,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 
 public class LoginActivity extends AppCompatActivity implements LoginView,GoogleApiClient.ConnectionCallbacks,GoogleApiClient.OnConnectionFailedListener{
@@ -53,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
     private String token;
     private String name;
     private String email;
+    private GifImageView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +66,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView,Google
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-
+        logo=(GifImageView) findViewById(R.id.logo);
+        logo.setGifImageResource(R.drawable.logos2);
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                .setDefaultFontPath("fonts/Exo2-Bold.otf")
+                .setFontAttrId(R.attr.fontPath)
+                .build()
+        );
          googLogo = (ImageView) findViewById(R.id.g_logo);
         Glide.with(getBaseContext()).load(R.drawable.g_anim).asBitmap().diskCacheStrategy(DiskCacheStrategy.SOURCE).dontAnimate().into(googLogo);
 

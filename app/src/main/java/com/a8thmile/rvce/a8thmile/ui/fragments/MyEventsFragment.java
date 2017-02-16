@@ -92,7 +92,7 @@ private RegisterPresenter registerPresenter;
     public void MyEventListGot(MyEventResponse eventResponse) {
         spinner.setVisibility(View.GONE);
             responseEvents=eventResponse.getRegistered_events();
-        Log.v("test","ne "+responseEvents);
+
         if(responseEvents.size()!=0)
         {
             empty.setVisibility(View.GONE);

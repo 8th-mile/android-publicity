@@ -10,7 +10,7 @@
     <com.ramotion.foldingcell.FoldingCell
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/folding_cell"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
@@ -23,16 +23,108 @@
             android:layout_height="wrap_content"
             android:background="#5fb1a2"
             android:visibility="gone">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/technical"
-                />
-            <TextView
+            <LinearLayout
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:text="Phone No"
-                />
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:layout_height="40dp"
+                    android:weightSum="15">
+                    <TextView
+
+                        android:layout_width="0dp"
+                        android:layout_weight="12"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"
+                        android:text="Amrit Ashu"
+                        />
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:id="@+id/cOne"
+                        android:src="@drawable/ic_call_white_24dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:weightSum="15">
+                    <TextView
+
+                        android:layout_width="0dp"
+                        android:layout_weight="12"
+                        android:layout_height="match_parent"
+                        android:textSize="20sp"
+                        android:textColor="@color/white"
+                        android:text="Shantanu Pandey"
+                        />
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:id="@+id/cTwo"
+                        android:src="@drawable/ic_call_white_24dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:weightSum="15">
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:layout_height="match_parent"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:text="Deepak Bhat"
+                    />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:id="@+id/cThree"
+                    android:src="@drawable/ic_call_white_24dp"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+                android:weightSum="15">
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_weight="12"
+                    android:layout_height="match_parent"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    android:text="Amogh Shetty"
+                    />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:id="@+id/cFour"
+                    android:src="@drawable/ic_call_white_24dp"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+</LinearLayout>
+
         </FrameLayout>
         ​
         <FrameLayout
@@ -55,7 +147,7 @@
     <com.ramotion.foldingcell.FoldingCell
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/folding_cell2"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/folding_cell"
         android:layout_centerHorizontal="true"
@@ -69,16 +161,59 @@
             android:layout_height="wrap_content"
             android:background="#5fb1a2"
             android:visibility="gone">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/technical"
-                />
-            <TextView
+            <LinearLayout
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:text="Phone No"
-                />
+                android:layout_height="200dp"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:weightSum="15">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="12"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        android:textColor="@color/white"
+                        android:text="Sudha Kamath"
+                        />
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:id="@+id/fOne"
+                        android:src="@drawable/ic_call_white_24dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="15">
+                    <TextView
+
+                        android:layout_width="0dp"
+                        android:layout_weight="12"
+                        android:layout_height="match_parent"
+                        android:textSize="30sp"
+                        android:textColor="@color/white"
+                        android:text="D N Awadhani"
+                        />
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:id="@+id/fTwo"
+                        android:src="@drawable/ic_call_white_24dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+
+            </LinearLayout>
         </FrameLayout>
         ​
         <FrameLayout
@@ -89,7 +224,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="#FF3F7B70"
-                android:text="EVENT HEADS"
+                android:text="FACULTY COORDINATORS"
                 android:textSize="25sp"
                 android:gravity="center"
                 android:textStyle="bold"
@@ -101,7 +236,7 @@
     <com.ramotion.foldingcell.FoldingCell
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/folding_cell3"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/folding_cell2"
         android:layout_centerHorizontal="true"

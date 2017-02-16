@@ -31,7 +31,7 @@ public class Hospitality extends Fragment {
         View view= inflater.inflate(R.layout.fragment_hospitality, container,false);
         super.onCreate(savedInstanceState);
         // get the listview
-        expListView = (ExpandableListView)view.findViewById(R.id.lvExp);
+       /* expListView = (ExpandableListView)view.findViewById(R.id.lvExp);
         ((HomeActivity)getActivity()).changeActionbar(30);
         // preparing list data
         prepareListData();
@@ -49,7 +49,7 @@ public class Hospitality extends Fragment {
                     expListView.collapseGroup(previousGroup);
                 previousGroup = groupPosition;
             }
-        });
+        });*/
         return view;
     }
 

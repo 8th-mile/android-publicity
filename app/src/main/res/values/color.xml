@@ -20,6 +20,7 @@
     <color name="flagship">#f45f42</color>
     <color name="timer2">#9ff45f42</color>
     <color name="workshop">#0e9133</color>
+    <color name="action_bar">#03212b</color>
     <color name="c1">#3F7B70</color>
     <color name="c2">#763369</color>
     <color name="c3">#e84c1f</color>
@@ -31,4 +32,5 @@
     <color name="c9">#ffc736</color>
     <color name="c10">#ffc736</color>
     <color name="TEXTCOLOR">#FFFFFF</color>
+    <color name="texcol">#ffffff</color>
 </resources>

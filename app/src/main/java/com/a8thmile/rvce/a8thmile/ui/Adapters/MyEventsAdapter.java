@@ -3,6 +3,7 @@ package com.a8thmile.rvce.a8thmile.ui.Adapters;
 import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.a8thmile.rvce.a8thmile.ui.fragments.WishListFragment;
 import java.util.List;
 
 import io.codetail.animation.ViewAnimationUtils;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 import static com.a8thmile.rvce.a8thmile.R.id.det;
 import static com.a8thmile.rvce.a8thmile.R.id.imageView;
@@ -96,6 +98,9 @@ public class MyEventsAdapter extends ArrayAdapter<EventFields>  {
             holder.image.setImageResource(R.drawable.event4);
             holder.time.setText(rowItem.getDate());
             holder.description.setText(rowItem.getName());
+        if(rowItem.getPrice()==0)
+            holder.price.setText("-");
+        else
             holder.price.setText(Integer.toString(rowItem.getPrice()));
 
         holder.details.setOnClickListener(new View.OnClickListener() {

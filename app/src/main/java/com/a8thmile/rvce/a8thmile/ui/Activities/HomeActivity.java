@@ -1,6 +1,7 @@
 package com.a8thmile.rvce.a8thmile.ui.Activities;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -52,6 +53,9 @@ import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 
 import java.util.HashMap;
 import java.util.List;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import static android.view.View.VISIBLE;
 
@@ -111,11 +115,18 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
-
+        Typeface face = Typeface.createFromAsset(getAssets(),
+                "fonts/Exo2-Bold.otf");
+        textView.setTypeface(face);
         UserName = getIntent().getStringExtra("userName");
         UserEmail = getIntent().getStringExtra("email");
         id = getIntent().getStringExtra("id");
         token = getIntent().getStringExtra("token");
+        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
+                        .setDefaultFontPath("fonts/Exo2-Bold.otf")
+                        .setFontAttrId(R.attr.fontPath)
+                        .build()
+        );
 
         mDrawer = (FlowingDrawer) findViewById(R.id.drawerlayout);
         mDrawer.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
@@ -148,7 +159,8 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setElevation(0);
         //getSupportActionBar().setIcon(R.drawable.ic_menu_black_24dp);
-        toolbar.setNavigationIcon(R.drawable.ic_menu_black_24dp);
+        toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -484,6 +496,12 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
 
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase)
+
+        );}
+
     public void changeActionbar(int position) {
 
         switch (position){
@@ -515,7 +533,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
                 toolbar.setBackground(new ColorDrawable(0xFFff8008));
                 break;
             default:
-                toolbar.setBackground(new ColorDrawable(0xFF0D3746));
+                toolbar.setBackgroundResource(R.color.action_bar);
 
         }
 

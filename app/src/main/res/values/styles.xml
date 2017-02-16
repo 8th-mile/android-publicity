@@ -7,15 +7,24 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="android:textViewStyle">@style/AppTheme.Widget.TextView</item>
+
     </style>
+
+    <style name="AppTheme.Widget.TextView" parent="android:Widget.Holo.Light.TextView">
+
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/black</item>
 
-
     </style>
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:colorBackground">@color/colorPrimary</item>
+
     </style>
+
     <style name="Button" parent="android:Widget.Material.Button.Borderless">
 
         <item name="android:layout_width">match_parent</item>
@@ -30,14 +39,17 @@
         <item name="android:minWidth">@dimen/dimen_0dp</item>
 
     </style>
+
     <style name="menuItem">
         <item name="android:textSize">20dp</item>
         <item name="android:layout_marginTop">10dp</item>
-    </style>
-    <style name="Theme.MyDialog" parent="Theme.AppCompat.Dialog">
 
+    </style>
+
+    <style name="Theme.MyDialog" parent="Theme.AppCompat.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
     </style>
 </resources>
