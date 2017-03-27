@@ -22,7 +22,6 @@
             app:isShowDay="true"
             app:isShowHour="true"
             digit:timeBgColor="@color/black"
-
             digit:suffixDayRightMargin="10dp"
             digit:suffixHourRightMargin="10dp"
             digit:suffixMinuteRightMargin="10dp"
@@ -39,12 +38,46 @@
             app:suffixHour="Hrs"
             app:suffixMinute="Mins"
             app:suffixSecond="Secs"
-             />
-        <ImageView
-            android:layout_width="wrap_content"
+            />
+        <LinearLayout
             android:layout_below="@id/count"
-            android:src="@drawable/logo"
-            android:layout_height="fill_parent" />
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:weightSum="20"
+            android:layout_height="fill_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+
+                android:src="@drawable/logo"
+                android:layout_height="0dp"
+                android:layout_weight="18"
+                android:padding="10dp"
+                />
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:id="@+id/fb"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/fab"/>
+                <ImageView
+                    android:id="@+id/twitter"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/twi"/>
+                <ImageView
+                    android:id="@+id/youtube"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/youtube"/>
+            </LinearLayout>
+        </LinearLayout>
+
 
 
 
@@ -59,7 +92,7 @@
             android:id="@+id/pager"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:background="@drawable/gradient"
+            android:background="@color/black"
             android:layout_alignParentTop="true" />
 
         <com.viewpagerindicator.CirclePageIndicator

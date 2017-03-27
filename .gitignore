@@ -23,6 +23,9 @@ viewpageindicator/
 .idea/inspectionProfiles/Project_Default.xml
 .idea/.name
 .idea/encodings.xml
+app/google-services.json
+.idea/vcs.xml
+
 
 
 

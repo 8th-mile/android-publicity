@@ -1,41 +1,32 @@
 package com.a8thmile.rvce.a8thmile.ui.fragments;
 
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+import android.database.SQLException;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.Toast;
+
 import github.chenupt.springindicator.SpringIndicator;
 
 import com.a8thmile.rvce.a8thmile.R;
+import com.a8thmile.rvce.a8thmile.models.EventDb;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
 import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
-import com.a8thmile.rvce.a8thmile.ui.Activities.SubEventActivity;
 import com.a8thmile.rvce.a8thmile.ui.Adapters.EventAdapter;
 import com.a8thmile.rvce.a8thmile.ui.EventItem;
+import com.a8thmile.rvce.a8thmile.ui.ExtraDetails;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.widget.Toast;
 
 
 public class EventFragment extends Fragment {
@@ -45,11 +36,32 @@ public class EventFragment extends Fragment {
     private List<EventFields> technical;
     private List<EventFields> informal;
     private List<EventFields> photography;
-    private List<EventFields> engaging;
+    private List<EventFields> engaging=new ArrayList<EventFields>()
+    {
+        {
+
+            add(new EventFields("123","INDI-GENIOUS QUIZ","",8,"Rs 50 per team","-","1 to 3 members per team","9000 Rs"
+                    ,"7500 Rs \n3rd Prize\n 6000 Rs","Anirudh S R","Siddharth Achar","8762688994","9972471897",R.drawable.utpt));
+            add(new EventFields("124","SCI-TECH QUIZ","",8,"Rs 50 per team","-","1 to 3 members per team","9000 Rs"
+                    ,"7500 Rs \n3rd Prize\n 6000 Rs","Anirudh S R","Siddharth Achar","8762688994","9972471897",R.drawable.utpt));
+            add(new EventFields("125","SPORTS QUIZ","",8,"Rs 50 per team","-","1 to 3 members per team","9000 Rs"
+                    ,"7500 Rs \n3rd Prize\n 6000 Rs","Anirudh S R","Siddharth Achar","8762688994","9972471897",R.drawable.utpt));
+            add(new EventFields("126","LIEUT-EN-ENT QUIZ","",8,"Rs 50 per team","-","1 to 3 members per team","9000 Rs"
+                    ,"7500 Rs \n3rd Prize\n 6000 Rs","Anirudh S R","Siddharth Achar","8762688994","9972471897",R.drawable.utpt));
+            add(new EventFields("127","GENERAL QUIZ","",8,"Rs 50 per team","-","1 to 3 members per team","11000 Rs"
+                    ,"9500 Rs \n3rd Prize\n 8000 Rs","Anirudh S R","Siddharth Achar","8762688994","9972471897",R.drawable.utpt));
+            add(new EventFields("128","OPEN QUIZ","",8,"Rs 50 per team","-","1 to 3 members per team","18000 Rs"
+                    ,"15000 Rs \n3rd Prize\n 12000 Rs","Anirudh S R","Siddharth Achar","8762688994","9972471897",R.drawable.utpt));
+
+
+
+        }
+    };
     private List<EventFields> sports;
     private List<EventFields> flagship;
     private List<EventFields> fine_arts;
     private List<EventFields> literary;
+
 
     private String token;
     private String user_id;
@@ -72,7 +84,7 @@ public class EventFragment extends Fragment {
             R.drawable.arts,
             R.drawable.literary,
             R.drawable.photography,
-            R.drawable.engaging,
+            R.drawable.utpt,
             R.drawable.flagship,
             };
 
@@ -96,6 +108,7 @@ public  void changeToolbarColor(int position)
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_event, container, false);
 
+        Log.v("test","hetere");
         technical=new ArrayList<EventFields>();
         cultural=new ArrayList<EventFields>();
         informal=new ArrayList<EventFields>();
@@ -104,7 +117,7 @@ public  void changeToolbarColor(int position)
         photography=new ArrayList<EventFields>();
         literary =new ArrayList<EventFields>();
         fine_arts=new ArrayList<EventFields>();
-        engaging=new ArrayList<EventFields>();
+
         eventCategory=new HashMap<Integer, String>();
         eventMap=new HashMap<Integer, List<EventFields>>();
         eventMap.put(0,technical);
@@ -122,7 +135,7 @@ public  void changeToolbarColor(int position)
         eventMap.put(6,photography);
         eventCategory.put(6,"Photography Events");
         eventMap.put(7,engaging);
-        eventCategory.put(7,"Engaging Events");
+        eventCategory.put(7,"Under the Peepal Tree");
         eventMap.put(8,flagship);
         eventCategory.put(8,"FlagShip Events");
         //toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -131,7 +144,7 @@ public  void changeToolbarColor(int position)
         springIndicator = (SpringIndicator) view.findViewById(R.id.indicator);
         eventItems = new ArrayList<EventItem>();
         int[] backColId = {R.drawable.gradient,R.drawable.gradient3,R.drawable.gradient4,R.drawable.gradient5,R.drawable.gradient6,R.drawable.gradient7,R.drawable.gradient8,R.drawable.gradient9,R.drawable.gradient10};
-        final String[] titles = {"TECHNICAL","CULTURAL","SPORTS AND GAMING","INFORMAL","FINE ARTS","LITERARY","PHOTOGRAPHY","ENGAGING","FLAGSHIP"};
+        final String[] titles = {"TECHNICAL","CULTURAL","SPORTS AND GAMING","INFORMAL","FINE ARTS","LITERARY","PHOTOGRAPHY","","FLAGSHIP"};
         for(int i=0;i<titles.length;i++)
         {
             EventItem eventItem=new EventItem(backColId[i],images[i],titles[i]);
@@ -139,33 +152,47 @@ public  void changeToolbarColor(int position)
         }
 
 
-        //springIndicator.bringToFront();
-        //mPager.setAdapter(mPagerAdapter);
-      /*  mPager.setOnClickListener(new AdapterView.OnItemClickListener() {
-           @Override
-           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-               Intent subIntent=new Intent(getActivity(), SubEventActivity.class);
-                Bundle bundle=new Bundle();
-               bundle.putParcelableArrayList("subevents", (ArrayList<? extends Parcelable>) eventMap.get(i));
-               subIntent.putExtras(bundle);
-               subIntent.putExtra("category",eventCategory.get(i));
-               subIntent.putExtra("user_id",user_id);
-               subIntent.putExtra("token",token);
-               startActivity(subIntent);
-           }
-       });*/
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        eventFields=((HomeActivity)getActivity()).getEvents();
+
+        //eventFields=((HomeActivity)getActivity()).getEvents();
         token=((HomeActivity)getActivity()).getToken();
         user_id=((HomeActivity)getActivity()).getId();
+        EventDb eventDb=new EventDb(getContext());
+        try {
+
+            eventDb.createDataBase();
+
+        } catch (IOException ioe) {
+
+            throw new Error("Unable to create database");
+
+        }
+
+        try {
+
+            eventDb.openDataBase();
+
+        }catch(SQLException sqle){
+
+            throw sqle;
+
+        }
+        Log.v("newone","start");
+        eventFields=eventDb.getEvents();
+        for(EventFields e : eventFields)
+        {
+           Log.v("newone",e.getName());
+        }
+
+
         if(eventFields!=null)
         splitEventList(eventFields);
+
         mPagerAdapter = new EventAdapter(getContext(),getChildFragmentManager(),R.layout.event_list_item,eventItems,eventMap,token,user_id,eventCategory,this);
         mPager.setAdapter(mPagerAdapter);
 
@@ -176,33 +203,45 @@ public  void changeToolbarColor(int position)
     public void splitEventList(List<EventFields> eventFields) {
         for (EventFields event:eventFields)
         {
+            Log.v("test","id "+event.getId());
             switch (event.getType())
             {
                 case 1:
-                    technical.add(event);
+
+
+
+                        technical.add(event);
                     break;
                 case 2:
+
                     cultural.add(event);
                     break;
                 case 3:
+
                     sports.add(event);
                     break;
                 case 4:
+
                     informal.add(event);
                     break;
                 case 5:
+
                     literary.add(event);
                     break;
                 case 6:
+
                     photography.add(event);
                     break;
                 case 7:
+
                     fine_arts.add(event);
                     break;
                 case 8:
+
                     engaging.add(event);
                     break;
                 case 9:
+
                     flagship.add(event);
                     break;
 

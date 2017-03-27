@@ -3,17 +3,11 @@ package com.a8thmile.rvce.a8thmile.ui.Activities;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 
-import android.support.v4.content.ContextCompat;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +17,9 @@ import com.a8thmile.rvce.a8thmile.events.register.RegisterView;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
 import com.a8thmile.rvce.a8thmile.models.EventResponse;
 import com.a8thmile.rvce.a8thmile.models.MyEventResponse;
-import com.a8thmile.rvce.a8thmile.ui.OnSwipeTouchListener;
 import com.a8thmile.rvce.a8thmile.ui.RowItem;
 import com.a8thmile.rvce.a8thmile.ui.Adapters.SubEventAdapter;
 import com.daprlabs.aaron.swipedeck.SwipeDeck;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +30,10 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 public class SubEventActivity extends AppCompatActivity implements RegisterView {
     private List<RowItem> rowItems;
     private static Integer[] images={
-            R.drawable.event1,
-            R.drawable.event2,
-            R.drawable.event3,
-            R.drawable.event4
+            R.drawable.proshow1,
+            R.drawable.proshow2,
+            R.drawable.proshow3,
+            R.drawable.proshow3
     };
     private List<EventFields> eventFields;
     private List<EventFields> copyEventFields;

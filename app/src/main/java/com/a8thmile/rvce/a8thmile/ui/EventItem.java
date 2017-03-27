@@ -2,7 +2,6 @@ package com.a8thmile.rvce.a8thmile.ui;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.ImageView;
 
 /**
  * Created by vignesh on 19/1/17.

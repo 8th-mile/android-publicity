@@ -3,7 +3,6 @@ package com.a8thmile.rvce.a8thmile.login;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import com.a8thmile.rvce.a8thmile.api.LoginClient;
 import com.a8thmile.rvce.a8thmile.api.ServiceGenerator;
@@ -24,11 +23,7 @@ public class LoginInteractorImpl implements LoginInteractor,GoogleApiClient.OnCo
     @Override
     public void callLoginApi(String email,String token, final onLoginFinishedListener listener) {
         LoginRequest mLoginRequest = createLoginRequestObject(email,token);
-        // Create a very simple REST adapter which points the GitHub API endpoint.
         LoginClient client = ServiceGenerator.createService(LoginClient.class);
-
-        // Fetch and print a list of the contributors to this library.
-        Log.v("test","calling");
         Call<LoginResponse> call =
                 client.loginResponse(mLoginRequest);
 
@@ -37,6 +32,7 @@ public class LoginInteractorImpl implements LoginInteractor,GoogleApiClient.OnCo
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
+
                 if(response.code()==200) {
 
                     LoginResponse mLoginResponse = response.body();
@@ -44,7 +40,7 @@ public class LoginInteractorImpl implements LoginInteractor,GoogleApiClient.OnCo
                 }
                 else if(response.code()==400)
                 {
-                        Log.v("test","error "+response.errorBody().toString());
+
                     listener.onFailure("Server Validation Failed. Try again");
                 }
                 else
@@ -59,6 +55,7 @@ public class LoginInteractorImpl implements LoginInteractor,GoogleApiClient.OnCo
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                     listener.onFailure("Failed connecting to the server");
+
             }
         });
 

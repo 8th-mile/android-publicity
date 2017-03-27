@@ -1,37 +1,24 @@
 package com.a8thmile.rvce.a8thmile.ui.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.a8thmile.rvce.a8thmile.R;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
-import com.a8thmile.rvce.a8thmile.models.EventRegister;
 import com.a8thmile.rvce.a8thmile.ui.Activities.SubEventActivity;
 import com.a8thmile.rvce.a8thmile.ui.Adapters.EventAdapter;
 import com.a8thmile.rvce.a8thmile.ui.EventItem;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
-import com.nineoldandroids.animation.Animator;
-
-import org.w3c.dom.Text;
 
 public class SliderFragment extends Fragment {
     private static final String KEY_POSITION="position";

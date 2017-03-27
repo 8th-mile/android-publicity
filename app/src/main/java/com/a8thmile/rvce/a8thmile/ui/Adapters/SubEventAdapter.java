@@ -7,6 +7,7 @@ import android.content.Intent;
 
 
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,14 +27,11 @@ import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenterImpl;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
 import com.a8thmile.rvce.a8thmile.ui.Activities.EventActivity;
 import com.a8thmile.rvce.a8thmile.ui.Activities.SubEventActivity;
-import com.a8thmile.rvce.a8thmile.ui.RowItem;
 
 import java.util.List;
 
 import io.codetail.animation.ViewAnimationUtils;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-import static com.a8thmile.rvce.a8thmile.R.id.det;
 import static com.a8thmile.rvce.a8thmile.R.id.imageView;
 
 /**
@@ -104,14 +102,14 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
         } else
             holder = (ViewHolder)convertView.getTag();
 
-        holder.image.setImageResource(R.drawable.event4);
+        holder.image.setImageResource(rowItem.getImgid());
         if(rowItem.getDate()==null)
             rowItem.setDate("Timings : Not Yet Confirmed");
         holder.time.setText(rowItem.getDate());
-        if(rowItem.getPrice()==0)
+        if(rowItem.getPrice()==null)
             holder.price.setText("-");
         else
-        holder.price.setText(Integer.toString(rowItem.getPrice()));
+        holder.price.setText(rowItem.getPrice());
 
         holder.description.setText(rowItem.getName());
         //holder.price.setText(Integer.toString(rowItem.get()));
@@ -121,6 +119,9 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
             public void onClick(View view) {
                 //Not sure of this feature as of now so uncomment if needed
             // registerPresenter.registerRequest(rowItem.getId(),id,token);
+                Intent registerIntent=new Intent(Intent.ACTION_VIEW);
+                registerIntent.setData(Uri.parse("https://www.goeventz.com/event/8th-mile-r-v-college-of-engineering/40985"));
+                context.startActivity(registerIntent);
             }
         });
 
@@ -139,12 +140,16 @@ public class SubEventAdapter extends ArrayAdapter<EventFields> {
             public void onClick(View view) {
                 Intent detailsIntent=new Intent(context, EventActivity.class);
                 detailsIntent.putExtra("name",rowItem.getName());
-                detailsIntent.putExtra("price",Integer.toString(rowItem.getPrice()));
-                detailsIntent.putExtra("first",Integer.toString(rowItem.getFirst_prize()));
-                detailsIntent.putExtra("second",Integer.toString(rowItem.getSecond_prize()));
+                detailsIntent.putExtra("price",rowItem.getPrice());
+                detailsIntent.putExtra("first",rowItem.getFirst_prize());
+                detailsIntent.putExtra("second",rowItem.getSecond_prize());
                 detailsIntent.putExtra("about",rowItem.getAbout());
                 detailsIntent.putExtra("rules",rowItem.getRules());
                 detailsIntent.putExtra("date",rowItem.getDate());
+                detailsIntent.putExtra("c1",rowItem.getCoord1());
+                detailsIntent.putExtra("c2",rowItem.getCoord2());
+                detailsIntent.putExtra("cph1",rowItem.getCphone1());
+                detailsIntent.putExtra("cph2",rowItem.getCphone2());
 
 
                 context.startActivity(detailsIntent);

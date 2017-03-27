@@ -1,25 +1,15 @@
 package com.a8thmile.rvce.a8thmile.ui.Adapters;
 
-import android.app.FragmentManager;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.a8thmile.rvce.a8thmile.R;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
-import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
 import com.a8thmile.rvce.a8thmile.ui.EventItem;
 import com.a8thmile.rvce.a8thmile.ui.fragments.EventFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.SliderFragment;
@@ -65,26 +55,7 @@ public class EventAdapter extends FragmentPagerAdapter {
 
         return(SliderFragment.newInstance(this,position,eventList.get(position),eventFields.get(position),
                 token,user_id,category.get(position)));
-      /*  if (convertView == null){
-            convertView = mInflater.inflate(R.layout.event_list_item, null);
-            //Log.v("test","hey "+holder);
-            holder=new ViewHolder();
-            holder.image=(ImageView) convertView.findViewById(R.id.eventImage);
-            holder.title=(TextView) convertView.findViewById(R.id.eventTitle) ;
-            holder.linearLayout=(LinearLayout)convertView.findViewById(R.id.eventLayout);
-            convertView.setTag(holder);
-        } else
-            holder = (ViewHolder)convertView.getTag();
 
-        holder.image.setImageResource(eventItem.getIconId());
-        holder.title.setText(eventItem.getTitle());
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "fonts/Pacifico.ttf");
-        holder.title.setTypeface(font);
-        holder.linearLayout.setBackgroundResource(eventItem.getBackColId());
-
-        convertView.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT,
-                (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 350, context.getResources().getDisplayMetrics() )));
-        return null;*/
     }
 
     @Override

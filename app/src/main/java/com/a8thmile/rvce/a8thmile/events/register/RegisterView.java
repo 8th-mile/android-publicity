@@ -1,7 +1,6 @@
 package com.a8thmile.rvce.a8thmile.events.register;
 
 import com.a8thmile.rvce.a8thmile.models.EventResponse;
-import com.a8thmile.rvce.a8thmile.models.EventWishListGetResponse;
 import com.a8thmile.rvce.a8thmile.models.MyEventResponse;
 
 /**

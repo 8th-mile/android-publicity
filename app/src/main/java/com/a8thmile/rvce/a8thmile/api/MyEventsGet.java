@@ -1,6 +1,5 @@
 package com.a8thmile.rvce.a8thmile.api;
 
-import com.a8thmile.rvce.a8thmile.models.EventResponse;
 import com.a8thmile.rvce.a8thmile.models.MyEventResponse;
 
 import retrofit2.Call;

@@ -1,18 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/gradient"
     tools:context="com.a8thmile.rvce.a8thmile.ui.fragments.TourFragment">
 
 
-    <TextView
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Coming Soon..."
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-       />
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-</FrameLayout>
+    <!-- View pager to swipe views -->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"/>
+
+</LinearLayout>

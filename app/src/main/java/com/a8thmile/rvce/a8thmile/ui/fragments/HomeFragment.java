@@ -7,16 +7,16 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.a8thmile.rvce.a8thmile.R;
 import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
@@ -34,10 +34,10 @@ public class HomeFragment extends Fragment{
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
 
+    private ImageView fb,twitter,youtube;
 
-
-    private static final String[] TEXTS={"Concert1","Concert2","Concert3"};
-    private static final Integer[] IMAGES= {R.drawable.event5,R.drawable.event1,R.drawable.event4};
+    private static final String[] TEXTS={"","","",""};
+    private static final Integer[] IMAGES= {R.drawable.proshow3,R.drawable.proshow2,R.drawable.proshow1,R.drawable.sprite};
 
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
     private ArrayList<String> TextsArray=new ArrayList<String>();
@@ -47,8 +47,29 @@ public class HomeFragment extends Fragment{
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 init(view);
+        fb=(ImageView)view.findViewById(R.id.fb);
+        twitter=(ImageView)view.findViewById(R.id.twitter);
+        youtube=(ImageView)view.findViewById(R.id.youtube);
+        fb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToWebsite("https://www.facebook.com/8thmile/");
+            }
+        });
+        twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToWebsite("https://twitter.com/8thmilervce");
+            }
+        });
+        youtube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToWebsite("https://www.youtube.com/watch?v=1nxCqmBj3u0");
+            }
+        });
         final CountdownView mCvCountdownView = (CountdownView)view.findViewById(R.id.count);
-        count=(EVENT_SECONDS_IN_MILLIS- Calendar.getInstance().getTimeInMillis());
+        count=((EVENT_SECONDS_IN_MILLIS-19800000)- Calendar.getInstance().getTimeInMillis());
         mCvCountdownView.start((count));
         ((HomeActivity)getActivity()).changeActionbar(30);
         mCvCountdownView.setOnCountdownEndListener(new CountdownView.OnCountdownEndListener() {
@@ -70,6 +91,11 @@ init(view);
     public void onPause() {
         super.onPause();
 
+    }
+    public void goToWebsite(String site){
+        Intent websiteIntent=new Intent(Intent.ACTION_VIEW);
+        websiteIntent.setData(Uri.parse(site));
+        startActivity(websiteIntent);
     }
     private void init(View view) {
         for(int i=0;i<IMAGES.length;i++) {

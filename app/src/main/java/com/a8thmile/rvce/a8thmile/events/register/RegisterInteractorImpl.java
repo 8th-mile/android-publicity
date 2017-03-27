@@ -56,7 +56,7 @@ public class RegisterInteractorImpl implements RegisterInteractor {
     //Add a event wish
     @Override
     public void callWishListApi(String event_id, String user_id, String token, final onRegisterCalledListener listener) {
-        Log.v("test","user_id "+user_id+" event_id "+event_id);
+
         EventRegister eventRegister=new EventRegister(Integer.parseInt(event_id),Integer.parseInt(user_id));
         EventWishListAdd eventWishListAdd = ServiceGenerator.createService(EventWishListAdd.class);
         Call<EventRegisterResponse> call= eventWishListAdd.register(eventRegister,token);

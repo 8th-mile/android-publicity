@@ -4,11 +4,9 @@ package com.a8thmile.rvce.a8thmile.ui.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -23,7 +21,6 @@ import com.a8thmile.rvce.a8thmile.models.EventResponse;
 import com.a8thmile.rvce.a8thmile.models.MyEventResponse;
 import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
 import com.a8thmile.rvce.a8thmile.ui.Adapters.MyEventsAdapter;
-import com.a8thmile.rvce.a8thmile.ui.Adapters.WishListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +77,7 @@ private RegisterPresenter registerPresenter;
     public void RegisterFailed(String message) {
 
         spinner.setVisibility(View.GONE);
+        if(getContext()!=null)
         Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
     }
 
@@ -97,20 +95,19 @@ private RegisterPresenter registerPresenter;
         {
             empty.setVisibility(View.GONE);
         }
-
-           for(EventFields e:events)
-           {
-               for(int i: responseEvents)
-               {
-                   if(Integer.parseInt(e.getId())==i)
-                   {
-                       myEvents.add(e);
-                       break;
-                   }
-               }
-           }
-        myEventsAdapter = new MyEventsAdapter(getContext(), R.layout.myevents_card, myEvents,token,id);
-        listView.setAdapter(myEventsAdapter);
-
+            if(events!=null) {
+                for (EventFields e : events) {
+                    for (int i : responseEvents) {
+                        if (Integer.parseInt(e.getId()) == i) {
+                            myEvents.add(e);
+                            break;
+                        }
+                    }
+                }
+            }
+        if(getContext()!=null) {
+            myEventsAdapter = new MyEventsAdapter(getContext(), R.layout.myevents_card, myEvents, token, id);
+            listView.setAdapter(myEventsAdapter);
+        }
     }
 }

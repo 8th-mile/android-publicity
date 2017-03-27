@@ -4,7 +4,6 @@ package com.a8thmile.rvce.a8thmile.ui.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.a8thmile.rvce.a8thmile.R;
 import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenter;
 import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenterImpl;
@@ -22,8 +20,10 @@ import com.a8thmile.rvce.a8thmile.models.EventResponse;
 import com.a8thmile.rvce.a8thmile.models.MyEventResponse;
 import com.a8thmile.rvce.a8thmile.ui.Activities.HomeActivity;
 import com.a8thmile.rvce.a8thmile.ui.Adapters.WishListAdapter;
+import com.a8thmile.rvce.a8thmile.ui.ExtraDetails;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -87,6 +87,7 @@ public class WishListFragment extends Fragment implements RegisterView{
     @Override
     public void RegisterFailed(String message) {
         spinner.setVisibility(View.GONE);
+        if(getContext()!=null)
         Toast.makeText(getContext(),message,Toast.LENGTH_LONG).show();
     }
 
@@ -97,9 +98,10 @@ public class WishListFragment extends Fragment implements RegisterView{
             wishList=eventResponse.getResults();
         if(wishList.size()!=0)
             empty.setVisibility(View.GONE);
-        adapter = new WishListAdapter(getContext(), R.layout.wishlist_card, wishList,token,id,WishListFragment.this,spinner);
-        lv.setAdapter(adapter);
-
+        if(getContext()!=null) {
+            adapter = new WishListAdapter(getContext(), R.layout.wishlist_card, wishList, token, id, WishListFragment.this, spinner);
+            lv.setAdapter(adapter);
+        }
 
 
 

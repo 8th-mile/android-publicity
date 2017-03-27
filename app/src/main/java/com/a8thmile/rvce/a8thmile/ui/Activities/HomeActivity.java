@@ -6,23 +6,16 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,8 +34,6 @@ import com.a8thmile.rvce.a8thmile.ui.fragments.MyEventsFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.SponserFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.TourFragment;
 import com.a8thmile.rvce.a8thmile.ui.fragments.WishListFragment;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -51,7 +42,6 @@ import com.google.android.gms.common.api.Status;
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 
-import java.util.HashMap;
 import java.util.List;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -112,7 +102,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        Log.v("test","home");
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         textView = (TextView) toolbar.findViewById(R.id.toolbar_title);
         Typeface face = Typeface.createFromAsset(getAssets(),
@@ -197,7 +187,7 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
             CURRENT_TAG = TAG_HOME;
             loadHomeFragment();
         }
-        eventPresenter.eventRequest(token);
+       // eventPresenter.eventRequest(token);
 
         spinner.setVisibility(View.VISIBLE);
 
@@ -490,7 +480,6 @@ public class HomeActivity extends AppCompatActivity implements EventView,GoogleA
     @Override
     public void loadData(EventResponse eventResponse) {
         this.eventFieldsList=eventResponse.getResults();
-
         spinner.setVisibility(View.GONE);
 
 

@@ -3,8 +3,6 @@ package com.a8thmile.rvce.a8thmile.ui.Adapters;
 import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,24 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.a8thmile.rvce.a8thmile.R;
-import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenter;
-import com.a8thmile.rvce.a8thmile.events.register.RegisterPresenterImpl;
-import com.a8thmile.rvce.a8thmile.events.register.RegisterView;
 import com.a8thmile.rvce.a8thmile.models.EventFields;
-import com.a8thmile.rvce.a8thmile.models.EventResponse;
-import com.a8thmile.rvce.a8thmile.models.MyEventResponse;
 import com.a8thmile.rvce.a8thmile.ui.Activities.EventActivity;
-import com.a8thmile.rvce.a8thmile.ui.fragments.MyEventsFragment;
-import com.a8thmile.rvce.a8thmile.ui.fragments.WishListFragment;
 
 import java.util.List;
 
 import io.codetail.animation.ViewAnimationUtils;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-import static com.a8thmile.rvce.a8thmile.R.id.det;
 import static com.a8thmile.rvce.a8thmile.R.id.imageView;
-import static com.a8thmile.rvce.a8thmile.R.id.rules;
 
 /**
  * Created by vignesh on 19/1/17.
@@ -95,24 +83,24 @@ public class MyEventsAdapter extends ArrayAdapter<EventFields>  {
             convertView.setTag(holder);
         } else
             holder = (ViewHolder)convertView.getTag();
-            holder.image.setImageResource(R.drawable.event4);
+            holder.image.setImageResource(rowItem.getImgid());
             holder.time.setText(rowItem.getDate());
             holder.description.setText(rowItem.getName());
-        if(rowItem.getPrice()==0)
+        if(rowItem.getPrice()==null)
             holder.price.setText("-");
         else
-            holder.price.setText(Integer.toString(rowItem.getPrice()));
+            holder.price.setText(rowItem.getPrice());
 
         holder.details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent detailsIntent=new Intent(context, EventActivity.class);
                 detailsIntent.putExtra("name",rowItem.getName());
-                detailsIntent.putExtra("price",Integer.toString(rowItem.getPrice()));
+                detailsIntent.putExtra("price",rowItem.getPrice());
                 detailsIntent.putExtra("about",rowItem.getAbout());
                 detailsIntent.putExtra("rules",rowItem.getRules());
-                detailsIntent.putExtra("first",Integer.toString(rowItem.getFirst_prize()));
-                detailsIntent.putExtra("second",Integer.toString(rowItem.getSecond_prize()));
+                detailsIntent.putExtra("first",rowItem.getFirst_prize());
+                detailsIntent.putExtra("second",rowItem.getSecond_prize());
                 detailsIntent.putExtra("date",rowItem.getDate());
 
                 context.startActivity(detailsIntent);

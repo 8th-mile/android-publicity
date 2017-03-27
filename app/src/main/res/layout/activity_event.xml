@@ -23,6 +23,7 @@
         android:id="@+id/trans_text"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
+
         />
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -30,6 +31,7 @@
         android:id="@+id/scroll_view"
         android:layout_below="@+id/trans_text"
         android:layout_height="fill_parent"
+
         android:background="@drawable/layout_bg"
         >
 
@@ -127,74 +129,182 @@
                     />
 
             </RelativeLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:weightSum="5"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+android:layout_weight="2"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
 
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="1st Prize"
+                android:id="@+id/firstText"
+                android:textStyle="bold"
+                android:textSize="20sp"
+
+                android:textColor="@color/texcol"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/first"
+                android:layout_below="@+id/firstText"
+                android:textSize="16sp"
+                fontPath="fonts/Exo2-Light.otf"
+                android:textColor="@color/texcol"
+                android:text="1000"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="2nd Prize"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:id="@+id/secondText"
+                android:textColor="@color/texcol"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/second"
+                fontPath="fonts/Exo2-Light.otf"
+                android:layout_below="@+id/secondText"
+                android:textSize="16sp"
+                android:textColor="@color/texcol"
+                android:text="500"/>
+        </RelativeLayout>
+
+
+            </LinearLayout>
+
+   <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+android:layout_weight="3"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Coordinator 1"
+                android:id="@+id/coord1"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/texcol"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:orientation="vertical"
-              >
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="1st Prize"
-                        android:id="@+id/firstText"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-
-                        android:textColor="@color/texcol"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/first"
-                        android:layout_below="@+id/firstText"
-                        android:textSize="16sp"
-                        fontPath="fonts/Exo2-Light.otf"
-                        android:textColor="@color/texcol"
-                        android:text="1000"/>
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="2nd Prize"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:id="@+id/secondText"
-                        android:textColor="@color/texcol"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/second"
-                        fontPath="fonts/Exo2-Light.otf"
-                        android:layout_below="@+id/secondText"
-                        android:textSize="16sp"
-                        android:textColor="@color/texcol"
-                        android:text="500"/>
-                </RelativeLayout>
-
+                android:orientation="horizontal"
+           android:weightSum="10"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_below="@+id/coord1">
+                <TextView
+                    android:layout_weight="8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+android:layout_marginRight="5dp"
+                    android:id="@+id/onecoord"
+                 android:gravity="center"
+                    android:textSize="16sp"
+                    fontPath="fonts/Exo2-Light.otf"
+                    android:textColor="@color/texcol"
+                    android:text="-"/>
+                <Button
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:id="@+id/call1"
+                    android:background="@drawable/ic_call_white_24dp"
+                    android:layout_height="35dp" />
             </LinearLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Coordinator 2"
+                android:id="@+id/coord2"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"
+                android:textColor="@color/texcol"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="10"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/coord2">
+                <TextView
+                    android:layout_weight="8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+
+                    android:id="@+id/secondcoord"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    fontPath="fonts/Exo2-Light.otf"
+                    android:textColor="@color/texcol"
+                    android:text="-"/>
+                <Button
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:id="@+id/call2"
+                    android:background="@drawable/ic_call_white_24dp"
+                    android:layout_height="35dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 >
             <TextView

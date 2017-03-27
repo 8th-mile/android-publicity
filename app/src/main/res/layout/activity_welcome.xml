@@ -8,23 +8,41 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.a8thmile.rvce.a8thmile.ui.Activities.WelcomeActivity">
+    tools:context="com.a8thmile.rvce.a8thmile.ui.Activities.WelcomeActivity"
+    android:background="@color/black"
+    >
+    <pl.droidsonroids.gif.GifImageView
+
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_centerInParent="true"
+        android:background="@color/TRANSPARENT"
+        />
+    <su.levenetc.android.textsurface.TextSurface
+        android:id="@+id/text_surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:padding="10dp"
         android:background="@drawable/border_img"
         android:layout_marginRight="10dp"
         android:text="Skip"
+        android:textColor="@color/white"
         android:id="@+id/skip"
         android:layout_alignParentRight="true"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:padding="10dp"
         android:background="@drawable/border_img"
         android:layout_marginLeft="10dp"
-        android:text="Don't show me again"
+        android:text="Don't show again"
+        android:textColor="@color/white"
         android:id="@+id/dontshow"
         android:layout_alignParentLeft="true"/>
 </RelativeLayout>

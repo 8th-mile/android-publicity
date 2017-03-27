@@ -33,7 +33,7 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="Image"
                     android:scaleType="fitXY"
-                    android:src="@drawable/event1" />
+                    android:src="@drawable/img4" />
 
                 <LinearLayout
                     android:id="@+id/linearView"

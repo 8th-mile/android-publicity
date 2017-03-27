@@ -1,21 +1,151 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:orientation="vertical"
+    android:paddingBottom="10dp"
     android:background="@drawable/gradient">
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_height="match_parent">
+
+
+        android:layout_height="wrap_content"
+       >
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="40dp"
+           android:textAlignment="center"
+           android:textSize="25sp"
+           android:textColor="@color/white"
+           android:text="Title Sponsor"/>
+        <ImageView
+            android:id="@+id/specs"
+            android:layout_width="270dp"
+            android:layout_height="270dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/specmakers"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:text="Silver Sponsor"/>
+        <ImageView
+            android:id="@+id/aia"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/all_india_admission"/>
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Coming Soon..."
+            android:layout_height="40dp"
             android:textAlignment="center"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            />
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:text="Other Sponsors"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/honda"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/honda2wheeler"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/coke"
+                android:background="@color/black"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:src="@drawable/coke_studio"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:weightSum="2">
+            <ImageView
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:id="@+id/indigo"
+                android:scaleType="fitXY"
+                android:src="@drawable/indigo_nation"/>
+
+            <ImageView
+                android:id="@+id/eureka"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/eurekaforbes"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:weightSum="2">
+            <ImageView
+                android:id="@+id/jk"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/jk_cement_logo"/>
+            <ImageView
+                android:id="@+id/kotak"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/kotak1"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+android:layout_marginTop="10dp"
+            android:weightSum="2">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent" android:layout_marginRight="10dp"
+
+                android:layout_weight="1"
+android:id="@+id/jeolous"
+                android:scaleType="fitXY"
+                android:src="@drawable/jealous_21"/>
+            <ImageView
+                android:id="@+id/chefs"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitXY"
+                android:src="@drawable/chefsbasket"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

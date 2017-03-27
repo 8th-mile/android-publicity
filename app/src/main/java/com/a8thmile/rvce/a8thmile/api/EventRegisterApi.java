@@ -2,7 +2,6 @@ package com.a8thmile.rvce.a8thmile.api;
 
 import com.a8thmile.rvce.a8thmile.models.EventRegister;
 import com.a8thmile.rvce.a8thmile.models.EventRegisterResponse;
-import com.a8thmile.rvce.a8thmile.models.EventResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
